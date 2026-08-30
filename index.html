@@ -32,12 +32,34 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 .target-custom{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
 .target-help{margin:9px 2px 0;color:var(--muted);font-size:12px;font-weight:700;line-height:1.4}
 
+
+.join-requests-box,.self-join-box{border:2px solid #c8c0b2;border-radius:16px;background:#fff;padding:14px;margin:0 0 16px}
+.join-requests-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.join-requests-head strong,.self-join-box h4{font-size:16px;font-weight:1000;margin:0}
+.join-requests-head small,.self-join-box p{display:block;color:var(--muted);font-size:12px;font-weight:750;line-height:1.4;margin:4px 0 0}
+.request-count{display:inline-grid;place-items:center;min-width:31px;height:31px;border:2px solid var(--line);border-radius:999px;background:var(--yellow);font-weight:1000}
+.join-request-list{display:grid;gap:8px}
+.join-request-item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid #d5cdbf;border-radius:13px;padding:10px;background:var(--paper)}
+.join-request-name{min-width:0}
+.join-request-name strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.join-request-name small{display:block;color:var(--muted);font-size:11px;font-weight:750;margin-top:2px}
+.request-actions{display:flex;gap:7px;flex:0 0 auto}
+.request-btn{min-height:39px;border:2px solid var(--line);border-radius:11px;padding:0 11px;font-weight:1000;cursor:pointer}
+.request-btn.accept{background:var(--green)}
+.request-btn.reject{background:var(--cream)}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:1000;margin:2px 0 8px}
+.self-join-box{text-align:left;margin:18px auto 0;max-width:520px}
+.self-join-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:11px}
+.self-join-status{margin-top:10px;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900;line-height:1.4}
+.self-join-status.pending{background:#fff6d6;border:1.5px solid #c8a84e}
+.self-join-status.accepted{background:#e7f7ed;border:1.5px solid #6cad80}
+.self-join-status.hidden{display:none}
 .add-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:16px}.players{display:grid;gap:10px;margin:14px 0 18px}.player-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid #c8c0b2;border-radius:14px;padding:10px 12px 10px 14px;background:#fff}.player-chip-main{display:flex;align-items:center;gap:10px;min-width:0}.player-chip strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.player-no{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:1000;border:2px solid var(--line);background:var(--cream);flex:0 0 auto}.icon-btn{width:40px;height:40px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:1000;cursor:pointer}.empty{border:2px dashed #bdb5a6;border-radius:15px;padding:24px;text-align:center;color:#777067;font-weight:750}.waiting{text-align:center;padding:30px 14px}.waiting-icon{font-size:46px;margin-bottom:10px}.waiting h3{margin:0 0 7px;font-size:22px}.waiting p{margin:0;color:var(--muted);font-weight:700}
 .game-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.round-pill{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--cream);font-weight:950;white-space:nowrap}.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);border:1px solid var(--line)}.leaderboard{width:100%;border-collapse:separate;border-spacing:0 9px}.leaderboard th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;padding:0 12px 2px;color:var(--muted)}.leaderboard td{background:#fff;border-top:2px solid #c7bfb0;border-bottom:2px solid #c7bfb0;padding:12px}.leaderboard td:first-child{border-left:2px solid #c7bfb0;border-radius:14px 0 0 14px}.leaderboard td:last-child{border-right:2px solid #c7bfb0;border-radius:0 14px 14px 0}.leaderboard tr.leader td{border-color:var(--green)}.score-name{font-weight:1000;max-width:260px;overflow:hidden;text-overflow:ellipsis}.score-val{font-size:24px;font-weight:1000;text-align:right;white-space:nowrap}.score-number{display:inline-block;min-width:1.4ch;transform-origin:center}.score-unit{font-size:13px;font-weight:900;color:var(--muted)}.remaining{display:block;font-size:12px;color:var(--muted);font-weight:950;text-align:right;margin-top:1px}.delta{display:block;font-size:11px;color:var(--muted);font-weight:800;text-align:right;min-height:15px}.progress{height:10px;background:#e7e0d2;border:1px solid #b9b09f;border-radius:999px;overflow:hidden;margin-top:7px;min-width:115px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green));border-radius:999px;transition:width .35s ease}.starter-notice{margin:0 0 14px;border:2.5px solid var(--line);border-radius:16px;background:linear-gradient(90deg,#fff8dc,#fff);padding:13px 15px;display:flex;align-items:center;gap:11px;font-weight:850;box-shadow:0 3px 0 rgba(50,46,42,.10)}.starter-notice .starter-icon{font-size:26px;flex:0 0 auto}.starter-notice strong{font-weight:1000}.starter-notice small{display:block;color:var(--muted);font-weight:800;margin-top:2px;line-height:1.35}.starter-notice.notice-pop{animation:noticePop .55s ease}@keyframes noticePop{0%{transform:translateY(-4px);opacity:.65}55%{transform:translateY(2px)}100%{transform:translateY(0);opacity:1}}.game-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}.btn-orange{background:var(--orange)}
 .review-list{display:grid;gap:9px;margin:16px 0}.review-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;border:2px solid #c8c0b2;border-radius:13px;background:#fff;padding:11px 13px}.review-row strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.review-points{font-size:20px;font-weight:1000}.review-total{display:block;font-size:11px;color:var(--muted);font-weight:800;margin-top:2px}.review-actions{display:grid;grid-template-columns:1fr 1.25fr;gap:10px;margin-top:14px}.finish-callout{border:2.5px solid var(--line);border-radius:17px;background:var(--yellow);padding:15px;margin:16px 0;text-align:center}.finish-callout strong{display:block;font-size:24px;margin-bottom:5px}.finish-callout span{display:block;color:#5d574f;font-weight:850}.finish-actions{display:grid;grid-template-columns:1fr 1.2fr;gap:10px}.qr-wrap{text-align:center}.qr-box{width:244px;max-width:100%;min-height:244px;margin:16px auto;background:#fff;border:3px solid var(--line);border-radius:18px;padding:10px;display:grid;place-items:center}.qr-box img,.qr-box canvas{max-width:100%;height:auto}.qr-code-label{font-size:27px;letter-spacing:4px;font-weight:1000;margin:3px 0 6px}.qr-link{font-size:11px;line-height:1.4;color:var(--muted);font-weight:750;overflow-wrap:anywhere}.qr-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.viewer-note{margin-top:15px;border:2px solid #c8c0b2;border-radius:14px;background:#fff;padding:13px;text-align:center;color:var(--muted);font-weight:800;font-size:13px}.history{margin-top:16px;border-top:2px dashed #c5bdaf;padding-top:14px}.history summary{cursor:pointer;font-weight:950}.history-list{margin-top:10px;display:grid;gap:8px}.history-item{background:#fff;border:1.5px solid #cfc6b8;border-radius:12px;padding:10px 12px;font-size:13px}.history-export{margin-top:12px}
 .overlay{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(25,23,20,.64);backdrop-filter:blur(7px);padding:18px}.overlay.show{display:flex}.score-card{width:min(100%,500px);background:var(--paper);border:4px solid var(--line);border-radius:26px;box-shadow:0 24px 70px rgba(0,0,0,.34);overflow:hidden;position:relative}.score-card:before,.score-card:after{content:"";position:absolute;left:18px;right:18px;height:8px;border-top:3px solid var(--line);border-bottom:3px solid var(--line);opacity:.7}.score-card:before{top:12px}.score-card:after{bottom:12px}.score-card-inner{padding:34px 24px 32px}.turn-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.turn-counter{font-size:12px;font-weight:1000;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}.turn-player{text-align:center;font-size:clamp(36px,9vw,58px);line-height:1;font-weight:1000;margin:18px 0 6px;overflow-wrap:anywhere}.current-score{text-align:center;color:#71695f;font-weight:850;margin-bottom:22px}.score-input-wrap{position:relative}.score-input-wrap input{height:86px;font-size:44px;text-align:center;border:3px solid var(--line);border-radius:18px;padding:0 58px 0 18px}.score-input-wrap span{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-weight:1000;color:#6c655c}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.quick button{min-height:42px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:1000;cursor:pointer}.turn-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin-top:14px}.turn-secondary{display:flex;justify-content:space-between;gap:8px;margin-top:12px}.link-btn{border:0;background:transparent;font-weight:950;text-decoration:underline;cursor:pointer;color:#5f574e;padding:8px 0}.winner{text-align:center}.winner .trophy{font-size:66px;line-height:1;margin:4px 0 12px}.winner h2{font-size:34px;margin:0 0 5px}.winner p{margin:0 0 18px;color:#655e56;font-weight:800}.podium{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:8px;align-items:end;margin:18px 0 22px}.place{border:2.5px solid var(--line);border-radius:16px 16px 9px 9px;padding:12px 8px;background:#fff;min-width:0}.place.first{background:var(--yellow);padding-top:20px;padding-bottom:18px}.place.second{background:#efe9df}.place.third{background:#f0c99e}.medal{font-size:25px;display:block;margin-bottom:6px}.place-name{font-weight:1000;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.place-score{font-weight:950;font-size:12px;margin-top:4px;color:#5d574f}.winner-actions{display:grid;gap:10px}.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:#fff;border-radius:999px;padding:11px 16px;font-weight:850;font-size:13px;opacity:0;pointer-events:none;transition:.2s ease;z-index:100;box-shadow:var(--soft-shadow);text-align:center;max-width:90%}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.score-number.score-pop{animation:scorePop .52s cubic-bezier(.2,.8,.2,1)}.round-pill.round-bump{animation:roundBump .58s ease}
 @keyframes scorePop{0%{transform:translateY(0) scale(1)}38%{transform:translateY(-5px) scale(1.13)}70%{transform:translateY(1px) scale(.98)}100%{transform:translateY(0) scale(1)}}@keyframes roundBump{0%{transform:translateX(0) rotate(0)}28%{transform:translateX(4px) rotate(1.5deg)}58%{transform:translateX(-2px) rotate(-1deg)}100%{transform:translateX(0) rotate(0)}}@keyframes cardWiggle{0%,82%,100%{transform:rotate(-3deg)}87%{transform:rotate(4deg)}91%{transform:rotate(-6deg)}95%{transform:rotate(2deg)}}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
-@media(prefers-reduced-motion:reduce){.logo-card{animation:none}.score-number.score-pop,.round-pill.round-bump{animation:none}}@media(max-width:650px){.app{padding:15px 11px calc(24px + env(safe-area-inset-bottom))}.hero{align-items:flex-start;flex-wrap:wrap}.hero-tools{margin-left:auto}.lang-btn{min-height:38px;padding:0 9px;font-size:12px}.logo-card{width:52px;height:68px}.logo-card b{font-size:24px}.logo-card b small{font-size:9px}.goal{min-width:86px;padding:8px 9px}.goal strong{font-size:27px}.panel-body{padding:15px}.home-grid{grid-template-columns:1fr}.leaderboard th{padding:0 6px 2px;font-size:10px}.leaderboard td{padding:9px 6px}.leaderboard td:nth-child(1){width:31%}.leaderboard td:nth-child(2){width:38%}.leaderboard td:nth-child(3){width:31%}.score-name{max-width:105px}.score-val{font-size:20px}.progress{min-width:72px}.remaining{font-size:10px}.delta{font-size:10px}.starter-notice{padding:11px 12px}.starter-notice .starter-icon{font-size:23px}.turn-actions,.review-actions,.finish-actions,.qr-actions{grid-template-columns:1fr}.podium{gap:5px}.place{padding-left:5px;padding-right:5px}}
+@media(prefers-reduced-motion:reduce){.logo-card{animation:none}.score-number.score-pop,.round-pill.round-bump{animation:none}}@media(max-width:650px){.app{padding:15px 11px calc(24px + env(safe-area-inset-bottom))}.hero{align-items:flex-start;flex-wrap:wrap}.hero-tools{margin-left:auto}.lang-btn{min-height:38px;padding:0 9px;font-size:12px}.logo-card{width:52px;height:68px}.logo-card b{font-size:24px}.logo-card b small{font-size:9px}.goal{min-width:86px;padding:8px 9px}.goal strong{font-size:27px}.panel-body{padding:15px}.home-grid{grid-template-columns:1fr}.self-join-row{grid-template-columns:1fr}.request-actions{width:100%}.request-btn{flex:1}.join-request-item{align-items:stretch;flex-direction:column}.leaderboard th{padding:0 6px 2px;font-size:10px}.leaderboard td{padding:9px 6px}.leaderboard td:nth-child(1){width:31%}.leaderboard td:nth-child(2){width:38%}.leaderboard td:nth-child(3){width:31%}.score-name{max-width:105px}.score-val{font-size:20px}.progress{min-width:72px}.remaining{font-size:10px}.delta{font-size:10px}.starter-notice{padding:11px 12px}.starter-notice .starter-icon{font-size:23px}.turn-actions,.review-actions,.finish-actions,.qr-actions{grid-template-columns:1fr}.podium{gap:5px}.place{padding-left:5px;padding-right:5px}}
 </style>
 </head>
 <body>
@@ -62,6 +84,18 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
         <p id="setupDesc">Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.</p>
       </div>
 
+      <div id="joinRequestsBox" class="join-requests-box hidden">
+        <div class="join-requests-head">
+          <div>
+            <strong id="joinRequestsTitle">Solicitudes para unirse</strong>
+            <small id="joinRequestsDesc">Los espectadores pueden pedir un lugar. Usted decide quién entra.</small>
+          </div>
+          <span id="joinRequestsCount" class="request-count">0</span>
+        </div>
+        <div id="joinRequestsList" class="join-request-list"></div>
+      </div>
+
+      <div id="manualAddLabel" class="section-label">Agregar jugador manualmente</div>
       <div class="add-row">
         <input id="playerName" type="text" maxlength="24" autocomplete="off" placeholder="Nombre del jugador">
         <button id="addPlayerBtn" class="btn btn-primary">Agregar</button>
@@ -92,7 +126,20 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
       <button id="startGameBtn" class="btn btn-green btn-wide" disabled>Iniciar juego</button>
     </div>
-    <div id="viewerWaiting" class="waiting hidden"><div class="waiting-icon">⏳</div><h3 id="waitingTitle">Esperando al host</h3><p id="waitingText">La partida todavía no ha comenzado.</p></div>
+    <div id="viewerWaiting" class="waiting hidden">
+      <div class="waiting-icon">⏳</div>
+      <h3 id="waitingTitle">Esperando al host</h3>
+      <p id="waitingText">La partida todavía no ha comenzado.</p>
+      <div id="selfJoinBox" class="self-join-box">
+        <h4 id="selfJoinTitle">¿Quiere jugar?</h4>
+        <p id="selfJoinDesc">Escriba el nombre con el que quiere aparecer. El host debe aprobarlo.</p>
+        <div id="selfJoinForm" class="self-join-row">
+          <input id="selfJoinName" type="text" maxlength="24" autocomplete="off" placeholder="Su nombre">
+          <button id="requestJoinBtn" type="button" class="btn btn-primary">Solicitar unirme</button>
+        </div>
+        <div id="selfJoinStatus" class="self-join-status hidden"></div>
+      </div>
+    </div>
     <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 id="scoreboardTitle" style="margin-bottom:3px">Marcador</h2><p id="scoreboardDesc">La ronda termina completa antes de comprobar quién llegó a la <strong>meta de la partida</strong>.</p></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
       <div id="starterNotice" class="starter-notice hidden"><span class="starter-icon">🃏</span><div><strong id="starterNoticeTitle">Primera carta</strong><small id="starterNoticeText"></small></div></div><div style="overflow-x:auto"><table class="leaderboard"><thead><tr><th id="playerHeader">Jugador</th><th id="progressHeader">Progreso</th><th id="pointsHeader" style="text-align:right">Puntos</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
       <div id="hostGameActions" class="game-actions hidden"><button id="roundBtn" class="btn btn-pink">＋ Suma de ronda</button><button id="undoRoundBtn" class="btn btn-orange" disabled>↶ Deshacer última ronda</button><button id="newGameBtn" class="btn btn-ghost">Nuevo juego</button></div>
@@ -163,6 +210,12 @@ const I18N={
     undoRound:"↶ Deshacer última ronda",undoConfirm:r=>`¿Deshacer la ronda ${r}? Se restaurarán los puntajes anteriores.`,undoDone:r=>`Ronda ${r} deshecha.`,undoError:"No se pudo deshacer la ronda.",
     reviewRound:"Revisar ronda",reviewSubtitle:"Confirme los puntos antes de sincronizarlos con todos.",correct:"Corregir",confirmRound:"Confirmar ronda",cancelRoundReview:"Cancelar ronda",
     projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Meta alcanzada",targetReachedSubtitle:"Revise el resultado antes de mostrar el podio.",reviewAgain:"Revisar ronda",finishGame:"Finalizar partida",leaderPreview:(n,p)=>`${n} quedaría con ${p} puntos.`,
+    joinRequestsTitle:"Solicitudes para unirse",joinRequestsDesc:"Los espectadores pueden pedir un lugar. Usted decide quién entra.",requestCount:n=>`${n} pendiente${n===1?"":"s"}`,
+    requestFromViewer:"Solicitud desde espectador",accept:"Aceptar",reject:"Rechazar",manualAdd:"Agregar jugador manualmente",
+    selfJoinTitle:"¿Quiere jugar?",selfJoinDesc:"Escriba el nombre con el que quiere aparecer. El host debe aprobarlo.",yourName:"Su nombre",requestJoin:"Solicitar unirme",
+    requestPending:"Solicitud enviada. Esperando aprobación del host.",requestAccepted:n=>`Ya está en la lista como ${n}.`,requestRejected:"El host rechazó su solicitud.",
+    requestSent:"Solicitud enviada al host.",requestError:"No se pudo enviar la solicitud.",requestNameRequired:"Escriba el nombre con el que quiere jugar.",
+    requestAcceptError:"No se pudo aceptar la solicitud.",requestRejectError:"No se pudo rechazar la solicitud.",playerAccepted:n=>`${n} fue agregado a la partida.`,
     presenceError:"No se pudo registrar la conexión en vivo.",
     summarySheet:"Resumen",roundsSheet:"Rondas",accSheet:"Acumulado",excelTitle:"Flip 7 Live - Resultado",position:"Posición",finalScore:"Puntaje final",roundsCount:"Rondas"
   },
@@ -197,13 +250,19 @@ const I18N={
     undoRound:"↶ Undo last round",undoConfirm:r=>`Undo round ${r}? Previous scores will be restored.`,undoDone:r=>`Round ${r} undone.`,undoError:"The round could not be undone.",
     reviewRound:"Review round",reviewSubtitle:"Confirm the scores before syncing them with everyone.",correct:"Correct",confirmRound:"Confirm round",cancelRoundReview:"Cancel round",
     projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Target reached",targetReachedSubtitle:"Review the result before showing the podium.",reviewAgain:"Review round",finishGame:"Finish game",leaderPreview:(n,p)=>`${n} would have ${p} points.`,
+    joinRequestsTitle:"Join requests",joinRequestsDesc:"Spectators can request a spot. You decide who joins.",requestCount:n=>`${n} pending`,
+    requestFromViewer:"Request from spectator",accept:"Accept",reject:"Reject",manualAdd:"Add player manually",
+    selfJoinTitle:"Want to play?",selfJoinDesc:"Enter the name you want to use. The host must approve it.",yourName:"Your name",requestJoin:"Request to join",
+    requestPending:"Request sent. Waiting for host approval.",requestAccepted:n=>`You are on the player list as ${n}.`,requestRejected:"The host declined your request.",
+    requestSent:"Request sent to the host.",requestError:"The request could not be sent.",requestNameRequired:"Enter the name you want to play as.",
+    requestAcceptError:"The request could not be accepted.",requestRejectError:"The request could not be declined.",playerAccepted:n=>`${n} was added to the game.`,
     presenceError:"Live connection could not be registered.",
     summarySheet:"Summary",roundsSheet:"Rounds",accSheet:"Cumulative",excelTitle:"Flip 7 Live - Result",position:"Position",finalScore:"Final score",roundsCount:"Rounds"
   }
 };
 const t=(key,...args)=>{const v=I18N[lang][key];return typeof v==="function"?v(...args):v};
 
-const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomCodeLabel=$("roomCodeLabel"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),qrRoomBtn=$("qrRoomBtn"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),goalValue=$("goalValue"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),undoRoundBtn=$("undoRoundBtn"),newGameBtn=$("newGameBtn"),historyList=$("historyList"),exportBtn=$("exportBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerUndoBtn=$("winnerUndoBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
+const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomCodeLabel=$("roomCodeLabel"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),qrRoomBtn=$("qrRoomBtn"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),goalValue=$("goalValue"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),undoRoundBtn=$("undoRoundBtn"),newGameBtn=$("newGameBtn"),historyList=$("historyList"),exportBtn=$("exportBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerUndoBtn=$("winnerUndoBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
 function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfig).some(v=>String(v).includes("PEGUE_AQUI"))}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function norm(v){return Array.isArray(v)?v.filter(Boolean):v&&typeof v==="object"?Object.keys(v).sort((a,b)=>Number(a)-Number(b)).map(k=>v[k]).filter(Boolean):[]}function roomNorm(d){
   if(!d)return null;
   const raw=Number(d.target);
@@ -213,6 +272,14 @@ function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfi
 function target(){
   const raw=Number(roomState?.target);
   return Number.isFinite(raw)&&raw>=DEFAULT_TARGET?raw:null
+}
+function joinRequests(){
+  const raw=roomState?.joinRequests;
+  if(!raw||typeof raw!=="object")return [];
+  return Object.values(raw).filter(r=>r&&r.uid&&r.name).sort((a,b)=>Number(a.requestedAt||0)-Number(b.requestedAt||0))
+}
+function ownAcceptedPlayer(){
+  return roomState?.players?.find(p=>p.sourceUid===uid)||null
 }function toastMsg(t){toast.textContent=t;toast.classList.add("show");clearTimeout(toastMsg.t);toastMsg.t=setTimeout(()=>toast.classList.remove("show"),2100)}
 
 function setText(id,key){
@@ -226,6 +293,8 @@ function applyLanguage(){
   createRoomBtn.textContent=t("createRoom"); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); joinRoomBtn.textContent=t("enter");
   setText("roomLabel","room"); qrRoomBtn.textContent=t("qr"); shareRoomBtn.textContent=t("share"); leaveRoomBtn.textContent=t("leave");
   setText("setupTitle","setupTitle"); setText("setupDesc","setupDesc"); playerName.placeholder=t("playerPlaceholder"); addPlayerBtn.textContent=t("add");
+  joinRequestsTitle.textContent=t("joinRequestsTitle"); joinRequestsDesc.textContent=t("joinRequestsDesc"); manualAddLabel.textContent=t("manualAdd");
+  selfJoinTitle.textContent=t("selfJoinTitle"); selfJoinDesc.textContent=t("selfJoinDesc"); selfJoinName.placeholder=t("yourName"); requestJoinBtn.textContent=t("requestJoin");
   setText("targetTitle","targetTitle"); setText("targetDesc","targetDesc"); target200Btn.textContent=t("target200"); customTargetBtn.textContent=t("custom");
   customTargetInput.placeholder=t("customPlaceholder"); saveTargetBtn.textContent=t("useTarget"); setText("targetHelp","targetHelp"); startGameBtn.textContent=t("startGame");
   setText("waitingTitle","waitingTitle"); setText("scoreboardTitle","scoreboard"); $("scoreboardDesc").innerHTML=t("scoreboardDesc");
@@ -308,23 +377,59 @@ function render(){
   if(!isHost&&!roomState.started){
     const base=roomState.players.length?t("waitingPlayers",roomState.players.length):t("waitingAdding");
     waitingText.textContent=tv?`${base} ${t("goal")}: ${tv}.`: `${base} ${t("goal")}: ${t("undefinedTarget")}.`;
+    renderSelfJoin();
   }
   if(roomState.started)renderGame()
 }
 function renderSetup(){
-  const tv=target();
+  const tv=target(),requests=joinRequests();
   playerList.innerHTML=roomState.players.length
     ?roomState.players.map((p,i)=>`<div class="player-chip"><div class="player-chip-main"><span class="player-no">${i+1}</span><strong>${esc(p.name)}</strong></div><button class="icon-btn" data-rm="${i}" aria-label="${t("remove")} ${esc(p.name)}">×</button></div>`).join("")
     :`<div class="empty">${t("emptyPlayers")}</div>`;
-  startGameBtn.disabled=roomState.players.length<2||!tv;
+
+  joinRequestsBox.classList.toggle("hidden",requests.length===0);
+  joinRequestsCount.textContent=requests.length;
+  joinRequestsList.innerHTML=requests.map(r=>`<div class="join-request-item">
+    <div class="join-request-name"><strong>${esc(r.name)}</strong><small>${t("requestFromViewer")}</small></div>
+    <div class="request-actions">
+      <button type="button" class="request-btn accept" data-accept="${esc(r.uid)}">${t("accept")}</button>
+      <button type="button" class="request-btn reject" data-reject="${esc(r.uid)}">${t("reject")}</button>
+    </div>
+  </div>`).join("");
+
+  startGameBtn.disabled=roomState.players.length<2||!tv||requests.length>0;
   targetPreview.textContent=tv?`${tv} pts`:t("undefinedTarget");
   target200Btn.classList.toggle("active",tv===DEFAULT_TARGET);
   customTargetBtn.classList.toggle("active",Number(tv)>DEFAULT_TARGET);
   if(Number(tv)>DEFAULT_TARGET)customTargetInput.value=tv;
+
   playerList.querySelectorAll("[data-rm]").forEach(b=>b.addEventListener("click",async()=>{
     const ps=[...roomState.players];ps.splice(Number(b.dataset.rm),1);
     await update(roomRef,{players:ps,updatedAt:Date.now()})
-  }))
+  }));
+  joinRequestsList.querySelectorAll("[data-accept]").forEach(b=>b.addEventListener("click",()=>acceptJoinRequest(b.dataset.accept)));
+  joinRequestsList.querySelectorAll("[data-reject]").forEach(b=>b.addEventListener("click",()=>rejectJoinRequest(b.dataset.reject)));
+}
+function renderSelfJoin(){
+  const accepted=ownAcceptedPlayer();
+  const request=roomState?.joinRequests?.[uid]||null;
+  const prevRequest=previousRoomState?.joinRequests?.[uid]||null;
+
+  selfJoinForm.classList.toggle("hidden",Boolean(accepted||request));
+  selfJoinStatus.className="self-join-status";
+
+  if(accepted){
+    selfJoinStatus.textContent=t("requestAccepted",accepted.name);
+    selfJoinStatus.classList.add("accepted");
+    selfJoinName.value=accepted.name;
+  }else if(request){
+    selfJoinStatus.textContent=t("requestPending");
+    selfJoinStatus.classList.add("pending");
+    selfJoinName.value=request.name||selfJoinName.value;
+  }else{
+    selfJoinStatus.classList.add("hidden");
+    if(prevRequest)toastMsg(t("requestRejected"));
+  }
 }
 function renderGame(){
   const tv=target()||DEFAULT_TARGET,last=roomState.history.at(-1),hasRounds=roomState.history.length>0;
@@ -391,13 +496,56 @@ function renderGame(){
 function animate(el,a,b){if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=b;return}const st=performance.now(),du=520,d=b-a;(function f(n){const t=Math.min(1,(n-st)/du),e=1-Math.pow(1-t,3);el.textContent=Math.round(a+d*e);if(t<1)requestAnimationFrame(f)})(st)}
 async function setTargetValue(v){if(!isHost||roomState.started)return;const n=Number(v);if(!Number.isInteger(n)||n<DEFAULT_TARGET||n>9999){toastMsg(t("targetRange"));return}await update(roomRef,{target:n,updatedAt:Date.now()});customTargetRow.classList.toggle("hidden",n===DEFAULT_TARGET);toastMsg(t("targetSet",n))}
 function showCustomTarget(){customTargetRow.classList.remove("hidden");customTargetInput.value=Number(target())>DEFAULT_TARGET?target():"";setTimeout(()=>customTargetInput.focus(),40)}
+async function requestToJoin(){
+  if(isHost||!roomState||roomState.started)return;
+  const name=selfJoinName.value.trim();
+  if(!name){toastMsg(t("requestNameRequired"));selfJoinName.focus();return}
+  if(roomState.players.some(p=>String(p.name).toLowerCase()===name.toLowerCase())){
+    toastMsg(t("duplicate"));return
+  }
+  try{
+    requestJoinBtn.disabled=true;
+    await set(ref(db,`rooms/${roomCode}/joinRequests/${uid}`),{uid,name,requestedAt:Date.now()});
+    toastMsg(t("requestSent"));
+  }catch(e){
+    console.error(e);toastMsg(t("requestError"))
+  }finally{
+    requestJoinBtn.disabled=false
+  }
+}
+async function acceptJoinRequest(requestUid){
+  if(!isHost||roomState.started)return;
+  const request=roomState?.joinRequests?.[requestUid];
+  if(!request)return;
+  const name=String(request.name||"").trim();
+  if(!name)return;
+  if(roomState.players.some(p=>String(p.name).toLowerCase()===name.toLowerCase())){
+    toastMsg(t("duplicate"));return
+  }
+  try{
+    const ps=[...roomState.players,{id:(crypto.randomUUID?crypto.randomUUID():Date.now()+""),name,score:0,sourceUid:requestUid}];
+    await update(roomRef,{players:ps,[`joinRequests/${requestUid}`]:null,updatedAt:Date.now()});
+    toastMsg(t("playerAccepted",name));
+  }catch(e){
+    console.error(e);toastMsg(t("requestAcceptError"))
+  }
+}
+async function rejectJoinRequest(requestUid){
+  if(!isHost||roomState.started)return;
+  try{
+    await update(roomRef,{[`joinRequests/${requestUid}`]:null,updatedAt:Date.now()})
+  }catch(e){
+    console.error(e);toastMsg(t("requestRejectError"))
+  }
+}
 async function addPlayer(){const n=playerName.value.trim();if(!n)return;if(roomState.players.some(p=>p.name.toLowerCase()===n.toLowerCase())){toastMsg(t("duplicate"));return}const ps=[...roomState.players,{id:(crypto.randomUUID?crypto.randomUUID():Date.now()+""),name:n,score:0}];playerName.value="";await update(roomRef,{players:ps,updatedAt:Date.now()});playerName.focus()}
 async function startGame(){
   if(!target()){toastMsg(t("needTarget"));return}
+  if(joinRequests().length)return;
   const players=[...roomState.players]
     .map(p=>({...p,score:0}))
     .sort((a,b)=>String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}));
-  await update(roomRef,{players,round:1,history:[],lastRoundStarter:null,started:true,gameOver:false,startedAt:Date.now(),finishedAt:null,updatedAt:Date.now()})
+  await update(roomRef,{players,joinRequests:null,round:1,history:[],lastRoundStarter:null,started:true,gameOver:false,startedAt:Date.now(),finishedAt:null,updatedAt:Date.now()})
 }function startRound(){pendingRound=null;roundDraft=roomState.players.map(p=>({id:p.id,points:null}));turnIndex=0;roundOverlay.classList.add("show");showTurn()}function showTurn(){
   const p=roomState.players[turnIndex],d=roundDraft[turnIndex];
   turnCounter.textContent=t("playerOf",turnIndex+1,roomState.players.length);
@@ -502,7 +650,7 @@ languageBtn.addEventListener("click",toggleLanguage);createRoomBtn.addEventListe
 customTargetBtn.addEventListener("click",showCustomTarget);
 saveTargetBtn.addEventListener("click",()=>{const n=Number(customTargetInput.value);if(!Number.isInteger(n)||n<=DEFAULT_TARGET||n>9999){toastMsg(t("customRange"));customTargetInput.focus();return}setTargetValue(n)});
 customTargetInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveTargetBtn.click()});
-addPlayerBtn.addEventListener("click",addPlayer);playerName.addEventListener("keydown",e=>{if(e.key==="Enter")addPlayer()});startGameBtn.addEventListener("click",startGame);roundBtn.addEventListener("click",startRound);undoRoundBtn.addEventListener("click",undoLastRound);newGameBtn.addEventListener("click",resetGame);exportBtn.addEventListener("click",exportExcel);passBtn.addEventListener("click",()=>setDraft(0));saveScoreBtn.addEventListener("click",()=>{const n=Number(pointsInput.value);if(!Number.isInteger(n)||n<0){toastMsg(t("integerScore"));return}setDraft(n)});pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveScoreBtn.click()});document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{pointsInput.value=Number(pointsInput.value||0)+Number(b.dataset.add);pointsInput.focus()}));backTurnBtn.addEventListener("click",()=>{if(turnIndex){turnIndex--;showTurn()}});cancelRoundBtn.addEventListener("click",cancelDraftRound);reviewCorrectBtn.addEventListener("click",correctRound);reviewConfirmBtn.addEventListener("click",confirmReviewedRound);reviewCancelBtn.addEventListener("click",cancelDraftRound);finishReviewBtn.addEventListener("click",()=>{finishConfirmOverlay.classList.remove("show");reviewOverlay.classList.add("show")});finishGameBtn.addEventListener("click",()=>commitPreparedRound(true));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerUndoBtn.addEventListener("click",undoLastRound);winnerNewGameBtn.addEventListener("click",resetGame);applyLanguage();await boot();
+requestJoinBtn.addEventListener("click",requestToJoin);selfJoinName.addEventListener("keydown",e=>{if(e.key==="Enter")requestJoinBtn.click()});addPlayerBtn.addEventListener("click",addPlayer);playerName.addEventListener("keydown",e=>{if(e.key==="Enter")addPlayer()});startGameBtn.addEventListener("click",startGame);roundBtn.addEventListener("click",startRound);undoRoundBtn.addEventListener("click",undoLastRound);newGameBtn.addEventListener("click",resetGame);exportBtn.addEventListener("click",exportExcel);passBtn.addEventListener("click",()=>setDraft(0));saveScoreBtn.addEventListener("click",()=>{const n=Number(pointsInput.value);if(!Number.isInteger(n)||n<0){toastMsg(t("integerScore"));return}setDraft(n)});pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveScoreBtn.click()});document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{pointsInput.value=Number(pointsInput.value||0)+Number(b.dataset.add);pointsInput.focus()}));backTurnBtn.addEventListener("click",()=>{if(turnIndex){turnIndex--;showTurn()}});cancelRoundBtn.addEventListener("click",cancelDraftRound);reviewCorrectBtn.addEventListener("click",correctRound);reviewConfirmBtn.addEventListener("click",confirmReviewedRound);reviewCancelBtn.addEventListener("click",cancelDraftRound);finishReviewBtn.addEventListener("click",()=>{finishConfirmOverlay.classList.remove("show");reviewOverlay.classList.add("show")});finishGameBtn.addEventListener("click",()=>commitPreparedRound(true));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerUndoBtn.addEventListener("click",undoLastRound);winnerNewGameBtn.addEventListener("click",resetGame);applyLanguage();await boot();
 </script>
 </body>
 </html>
