@@ -106,6 +106,18 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 .my-room-role{border:2px solid var(--line);border-radius:999px;padding:5px 9px;font-size:10px;font-weight:1000;white-space:nowrap}.my-room-role.host{background:var(--yellow)}.my-room-role.visitor{background:var(--green)}
 .my-room-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.my-room-meta span{border:1.5px solid #d2c9bc;border-radius:999px;background:var(--paper);padding:5px 8px;font-size:10px;font-weight:900}
 .my-room-actions{display:grid;grid-template-columns:1fr;gap:7px}
+.my-room-participants{margin:9px 0 11px;border:1.5px solid #d2c9bc;border-radius:11px;background:var(--paper);padding:8px 9px}
+.my-room-participants strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.55px;color:var(--muted);margin-bottom:4px}
+.my-room-participants span{display:block;font-size:11px;font-weight:900;line-height:1.45;overflow-wrap:anywhere}
+.my-room-actions{grid-template-columns:1fr auto}
+.my-room-actions{grid-template-columns:1fr auto auto auto}
+.room-card-icon-btn{width:45px;min-width:45px;min-height:45px;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
+.room-card-icon-btn.edit{background:#fff6c7}.room-card-icon-btn.results{background:#e9f2ff}
+.room-card-icon-btn:hover{filter:brightness(.97)}.room-card-icon-btn:focus-visible{outline:3px solid var(--indigo);outline-offset:2px}
+
+.delete-room-btn{width:45px;min-width:45px;min-height:45px;border:2px solid var(--line);border-radius:12px;background:#fff0f0;font-size:19px;cursor:pointer;display:grid;place-items:center}
+.delete-room-btn:hover{background:#ffdede}.delete-room-btn:focus-visible{outline:3px solid var(--indigo);outline-offset:2px}
+
 .my-rooms-empty{border:2px dashed #c9c0b3;border-radius:14px;padding:20px;text-align:center;color:var(--muted);font-size:12px;font-weight:850;line-height:1.5}
 .my-rooms-loading{text-align:center;padding:24px;color:var(--muted);font-weight:900}
 
@@ -153,7 +165,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
     <div class="choice"><h3 id="joinTitle">👀 Unirse a sala</h3><p id="joinDesc">Ingrese el código de una partida normal o de una sala permanente.</p><div class="join-row"><input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO"><button id="joinRoomBtn" class="btn btn-primary">Entrar</button></div></div>
   </div></div></section>
   <section id="roomScreen" class="panel hidden"><div class="panel-body">
-    <div class="room-bar"><div class="room-meta"><span id="roomLabel">Sala</span><span id="roomNamePill" class="room-name-pill hidden">Sala permanente</span><span id="roomCodeLabel" class="room-code">--------</span><span id="roomTypePill" class="room-type-pill">Normal</span><span id="roleLabel" class="role-pill">Host</span><span id="connectionStatus" class="connection-pill reconnecting">● Conectando…</span><span id="viewerCount" class="viewer-count">👥 0 conectados</span></div><div class="bar-actions permanent-actions"><button id="permanentStatsBtn" class="small-btn hidden">📊 Historial</button><button id="renameRoomBtn" class="small-btn hidden">✏️ Nombre</button><button id="makePermanentBtn" class="small-btn hidden">🏠 Hacer permanente</button><button id="transferHostBtn" class="small-btn hidden">👑 Cambiar host</button><button id="qrRoomBtn" class="small-btn">QR</button><button id="shareRoomBtn" class="small-btn">Compartir</button><button id="leaveRoomBtn" class="small-btn">Salir</button></div></div>
+    <div class="room-bar"><div class="room-meta"><span id="roomLabel">Sala</span><span id="roomNamePill" class="room-name-pill hidden">Sala permanente</span><span id="roomCodeLabel" class="room-code">--------</span><span id="roomTypePill" class="room-type-pill">Normal</span><span id="roleLabel" class="role-pill">Host</span><span id="connectionStatus" class="connection-pill reconnecting">● Conectando…</span><span id="viewerCount" class="viewer-count">👥 0 conectados</span></div><div class="bar-actions permanent-actions"><button id="permanentStatsBtn" class="small-btn hidden">📊 Resultados</button><button id="renameRoomBtn" class="small-btn hidden">✏️ Nombre</button><button id="makePermanentBtn" class="small-btn hidden">🏠 Hacer permanente</button><button id="transferHostBtn" class="small-btn hidden">👑 Cambiar host</button><button id="qrRoomBtn" class="small-btn">QR</button><button id="shareRoomBtn" class="small-btn">Compartir</button><button id="leaveRoomBtn" class="small-btn">Salir</button></div></div>
     <div id="hostSetup" class="hidden">
       <div class="panel-head" style="margin:-20px -20px 18px">
         <h2 id="setupTitle">Configurar partida</h2>
@@ -371,13 +383,13 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 <div id="permanentStatsOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="permanent-stats-card">
     <div class="turn-top"><span id="permanentStatsKicker" class="turn-counter">Sala permanente</span><button id="permanentStatsCloseBtn" class="small-btn" type="button">×</button></div>
-    <div id="permanentStatsTitle" class="turn-player" style="font-size:clamp(27px,7vw,40px)">Historial y estadísticas</div>
+    <div id="permanentStatsTitle" class="turn-player" style="font-size:clamp(27px,7vw,40px)">Resultados de la sala</div>
     <div id="permanentStatsSubtitle" class="current-score">Los datos se acumulan por juego dentro de esta sala.</div>
     <div id="permanentStatsSummary" class="stats-summary-grid"></div>
     <div id="currentGameStats"></div>
-    <div id="playerStatsTitle" class="stats-section-title">Estadísticas de jugadores</div>
+    <div id="playerStatsTitle" class="stats-section-title">Resultados de jugadores</div>
     <div class="stats-table-wrap"><table class="stats-table"><thead><tr><th id="statsPlayerCol">Jugador</th><th id="statsGamesCol">Juegos</th><th id="statsWinsCol">Victorias</th><th id="statsRoundWinsCol">Rondas ganadas</th><th id="statsPointsCol">Puntos</th><th id="statsAvgCol">Promedio</th></tr></thead><tbody id="playerStatsBody"></tbody></table></div>
-    <div id="gameHistoryTitle" class="stats-section-title">Historial de juegos</div>
+    <div id="gameHistoryTitle" class="stats-section-title">Juegos anteriores</div>
     <div id="permanentGamesList" class="game-history-list"></div>
     <div id="permanentPremiumNote" class="permanent-note">Esta estructura queda lista para convertirse en una función Premium cuando la app se publique en Android.</div>
   </div>
@@ -414,7 +426,7 @@ const firebaseConfig = {
 
 const DEFAULT_TARGET=200,$=id=>document.getElementById(id);
 let lang=localStorage.getItem("flip7_lang")==="en"?"en":"es";
-let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,winnerShown=false,pendingRound=null,presenceRef=null,presenceUnsubscribe=null,connectedUsers=0,connectedPresence=[],firebaseConnected=false,hostEditPlayerId=null,myScoreMode="cards",selectedNumbers=new Set(),selectedModifiers=new Set(),hostScoreMode="cards",hostSelectedNumbers=new Set(),hostSelectedModifiers=new Set(),editingHistoryRound=null,lastPlayerRoundSeen=null,lastLoadedRejectedStamp=null,playerNeedsResubmit=false,starterPopupTimer=null,ensuredMembershipRooms=new Set();
+let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,winnerShown=false,pendingRound=null,presenceRef=null,presenceUnsubscribe=null,connectedUsers=0,connectedPresence=[],firebaseConnected=false,hostEditPlayerId=null,myScoreMode="cards",selectedNumbers=new Set(),selectedModifiers=new Set(),hostScoreMode="cards",hostSelectedNumbers=new Set(),hostSelectedModifiers=new Set(),editingHistoryRound=null,lastPlayerRoundSeen=null,lastLoadedRejectedStamp=null,playerNeedsResubmit=false,starterPopupTimer=null,ensuredMembershipRooms=new Set(),renameTargetCode=null,resultsPreviewRoom=null;
 const presenceId=sessionStorage.getItem("flip7_presence_id")||(crypto.randomUUID?crypto.randomUUID():Date.now()+"_"+Math.random());
 sessionStorage.setItem("flip7_presence_id",presenceId);
 
@@ -457,13 +469,13 @@ const I18N={
     requestPending:"Solicitud enviada. Esperando aprobación del host.",requestAccepted:n=>`Ya está en la lista como ${n}.`,requestRejected:"El host rechazó su solicitud.",
     requestSent:"Solicitud enviada al host.",requestError:"No se pudo enviar la solicitud.",requestNameRequired:"Escriba el nombre con el que quiere jugar.",
     requestAcceptError:"No se pudo aceptar la solicitud.",requestRejectError:"No se pudo rechazar la solicitud.",playerAccepted:n=>`${n} fue agregado a la partida.`,
-    roomNormal:"Normal",roomPermanentGame:n=>`Permanente · Juego ${n}`,permanentDefaultName:"Sala permanente",renameRoom:"✏️ Nombre",renameRoomKicker:"Sala permanente",renameRoomTitle:"Nombre de la sala",renameRoomDesc:"Use un nombre para reconocer fácilmente esta sala permanente. Si lo deja vacío, volverá al nombre predeterminado.",renameRoomPlaceholder:"Ej. Viernes de Flip 7",renameRoomSave:"Guardar nombre",renameRoomCancel:"Cancelar",roomNameSaved:"Nombre de la sala actualizado.",roomNameError:"No se pudo cambiar el nombre de la sala.",makePermanent:"🏠 Hacer permanente",statsHistory:"📊 Historial",transferHost:"👑 Cambiar host",
+    roomNormal:"Normal",roomPermanentGame:n=>`Permanente · Juego ${n}`,permanentDefaultName:"Sala permanente",renameRoom:"✏️ Nombre",renameRoomKicker:"Sala permanente",renameRoomTitle:"Nombre de la sala",renameRoomDesc:"Use un nombre para reconocer fácilmente esta sala permanente. Si lo deja vacío, volverá al nombre predeterminado.",renameRoomPlaceholder:"Ej. Viernes de Flip 7",renameRoomSave:"Guardar nombre",renameRoomCancel:"Cancelar",roomNameSaved:"Nombre de la sala actualizado.",roomNameError:"No se pudo cambiar el nombre de la sala.",makePermanent:"🏠 Hacer permanente",statsHistory:"📊 Resultados",transferHost:"👑 Cambiar host",
     permanentConfirm:"¿Convertir esta sala en permanente? Mantendrá este mismo código y QR, y desde ahora guardará juegos, rondas y estadísticas.",
     permanentDone:"Sala convertida en permanente.",permanentError:"No se pudo convertir la sala.",
-    permanentStatsKicker:"Sala permanente",permanentStatsTitle:"Historial y estadísticas",permanentStatsSubtitle:"Los datos se acumulan por juego dentro de esta sala.",
+    permanentStatsKicker:"Sala permanente",permanentStatsTitle:"Resultados de la sala",permanentStatsSubtitle:"Los datos se acumulan por juego dentro de esta sala.",
     gamesPlayed:"Juegos",totalRoundsStat:"Rondas",totalPointsStat:"Puntos totales",uniquePlayers:"Jugadores",
-    playerStatsTitle:"Estadísticas de jugadores",statsGames:"Juegos",statsWins:"Victorias",statsRoundWins:"Rondas ganadas",statsAvg:"Promedio",
-    gameHistoryTitle:"Historial de juegos",currentGame:"Juego actual",inProgress:"En curso",noPermanentGames:"Todavía no hay juegos completados en esta sala.",
+    playerStatsTitle:"Resultados de jugadores",statsGames:"Juegos",statsWins:"Victorias",statsRoundWins:"Rondas ganadas",statsAvg:"Promedio",
+    gameHistoryTitle:"Juegos anteriores",currentGame:"Juego actual",inProgress:"En curso",noPermanentGames:"Todavía no hay juegos completados en esta sala.",
     gameLabel:n=>`Juego ${n}`,winnerLabel:n=>`Ganador: ${n}`,noWinner:"Sin ganador",roundWinnerLabel:n=>`Gana ronda: ${n}`,gameTotal:n=>`Total: ${n} pts`,gameTarget:n=>`Meta: ${n}`,gameRounds:n=>`${n} rondas`,
     transferHostTitle:"Cambiar host",transferHostSubtitle:"Seleccione un jugador conectado. El cambio es inmediato.",noTransferCandidates:"No hay otro jugador conectado disponible para recibir el host.",
     transferConfirm:n=>`¿Transferir el control de la sala a ${n}? Usted dejará de ser host.`,transferDone:n=>`${n} ahora es el host.`,transferError:"No se pudo cambiar el host.",
@@ -472,6 +484,9 @@ const I18N={
     permanentHistoryOnly:"El historial y la edición de rondas están disponibles en salas permanentes.",starterPopupKicker:"Siguiente ronda",
     myRoomsKicker:"Salas permanentes",myRoomsTitle:"Mis salas permanentes",myRoomsDesc:"Aquí aparecen las salas permanentes que ha visitado con este usuario.",myRoomsLoading:"Cargando salas…",myRoomsEmpty:"Todavía no pertenece a ninguna sala permanente. Puede crear una o entrar a una usando su código.",
     roomsAsHost:n=>`${n} como host`,roomsAsVisitor:n=>`${n} como visitante`,roomsTotal:n=>`${n} sala${n===1?"":"s"}`,visitorRole:"Visitante",enterRoomAgain:"Entrar a la sala",
+    participantsLabel:"Participantes",noParticipants:"Sin participantes registrados",openRoomResults:"Resultados",editRoomNameShort:"Cambiar nombre",deletePermanentRoom:n=>`Borrar ${n}`,deletePermanentRoomGeneric:"Borrar sala permanente",
+    deletePermanentConfirm:n=>`¿Borrar "${n}" permanentemente? Se eliminarán la sala, sus juegos, rondas, historial y estadísticas. Esta acción no se puede deshacer.`,
+    permanentRoomDeleted:n=>`${n} fue eliminada.`,permanentRoomDeleteError:"No se pudo borrar la sala permanente.",
     roomWaiting:"Esperando iniciar",roomFinished:"Juego finalizado",roomPlaying:(g,r)=>`Juego ${g} · Ronda ${r}`,myRoomsLoadError:"No se pudieron cargar sus salas permanentes.",
 
     presenceError:"No se pudo registrar la conexión en vivo.",
@@ -533,13 +548,13 @@ const I18N={
     requestPending:"Request sent. Waiting for host approval.",requestAccepted:n=>`You are on the player list as ${n}.`,requestRejected:"The host declined your request.",
     requestSent:"Request sent to the host.",requestError:"The request could not be sent.",requestNameRequired:"Enter the name you want to play as.",
     requestAcceptError:"The request could not be accepted.",requestRejectError:"The request could not be declined.",playerAccepted:n=>`${n} was added to the game.`,
-    roomNormal:"Normal",roomPermanentGame:n=>`Permanent · Game ${n}`,permanentDefaultName:"Permanent room",renameRoom:"✏️ Name",renameRoomKicker:"Permanent room",renameRoomTitle:"Room name",renameRoomDesc:"Give this permanent room a name so it is easy to recognize. Leave it blank to restore the default name.",renameRoomPlaceholder:"e.g. Friday Flip 7",renameRoomSave:"Save name",renameRoomCancel:"Cancel",roomNameSaved:"Room name updated.",roomNameError:"The room name could not be changed.",makePermanent:"🏠 Make permanent",statsHistory:"📊 History",transferHost:"👑 Change host",
+    roomNormal:"Normal",roomPermanentGame:n=>`Permanent · Game ${n}`,permanentDefaultName:"Permanent room",renameRoom:"✏️ Name",renameRoomKicker:"Permanent room",renameRoomTitle:"Room name",renameRoomDesc:"Give this permanent room a name so it is easy to recognize. Leave it blank to restore the default name.",renameRoomPlaceholder:"e.g. Friday Flip 7",renameRoomSave:"Save name",renameRoomCancel:"Cancel",roomNameSaved:"Room name updated.",roomNameError:"The room name could not be changed.",makePermanent:"🏠 Make permanent",statsHistory:"📊 Results",transferHost:"👑 Change host",
     permanentConfirm:"Convert this room into a permanent room? It will keep the same code and QR and will store games, rounds, and statistics from now on.",
     permanentDone:"Room converted to permanent.",permanentError:"The room could not be converted.",
-    permanentStatsKicker:"Permanent room",permanentStatsTitle:"History & statistics",permanentStatsSubtitle:"Data accumulates game by game inside this room.",
+    permanentStatsKicker:"Permanent room",permanentStatsTitle:"Room results",permanentStatsSubtitle:"Data accumulates game by game inside this room.",
     gamesPlayed:"Games",totalRoundsStat:"Rounds",totalPointsStat:"Total points",uniquePlayers:"Players",
-    playerStatsTitle:"Player statistics",statsGames:"Games",statsWins:"Wins",statsRoundWins:"Round wins",statsAvg:"Average",
-    gameHistoryTitle:"Game history",currentGame:"Current game",inProgress:"In progress",noPermanentGames:"There are no completed games in this room yet.",
+    playerStatsTitle:"Player results",statsGames:"Games",statsWins:"Wins",statsRoundWins:"Round wins",statsAvg:"Average",
+    gameHistoryTitle:"Previous games",currentGame:"Current game",inProgress:"In progress",noPermanentGames:"There are no completed games in this room yet.",
     gameLabel:n=>`Game ${n}`,winnerLabel:n=>`Winner: ${n}`,noWinner:"No winner",roundWinnerLabel:n=>`Round winner: ${n}`,gameTotal:n=>`Total: ${n} pts`,gameTarget:n=>`Target: ${n}`,gameRounds:n=>`${n} rounds`,
     transferHostTitle:"Change host",transferHostSubtitle:"Choose a connected player. The change is immediate.",noTransferCandidates:"There is no other connected player available to become host.",
     transferConfirm:n=>`Transfer room control to ${n}? You will stop being the host.`,transferDone:n=>`${n} is now the host.`,transferError:"The host could not be changed.",
@@ -548,6 +563,9 @@ const I18N={
     permanentHistoryOnly:"Round history and editing are available in permanent rooms.",starterPopupKicker:"Next round",
     myRoomsKicker:"Permanent rooms",myRoomsTitle:"My permanent rooms",myRoomsDesc:"These are the permanent rooms you have visited with this user.",myRoomsLoading:"Loading rooms…",myRoomsEmpty:"You do not belong to any permanent rooms yet. Create one or join one with its code.",
     roomsAsHost:n=>`${n} as host`,roomsAsVisitor:n=>`${n} as visitor`,roomsTotal:n=>`${n} room${n===1?"":"s"}`,visitorRole:"Visitor",enterRoomAgain:"Enter room",
+    participantsLabel:"Participants",noParticipants:"No participants registered",openRoomResults:"Results",editRoomNameShort:"Rename",deletePermanentRoom:n=>`Delete ${n}`,deletePermanentRoomGeneric:"Delete permanent room",
+    deletePermanentConfirm:n=>`Permanently delete "${n}"? The room, games, rounds, history, and statistics will be deleted. This cannot be undone.`,
+    permanentRoomDeleted:n=>`${n} was deleted.`,permanentRoomDeleteError:"The permanent room could not be deleted.",
     roomWaiting:"Waiting to start",roomFinished:"Game finished",roomPlaying:(g,r)=>`Game ${g} · Round ${r}`,myRoomsLoadError:"Your permanent rooms could not be loaded.",
 
     presenceError:"Live connection could not be registered.",
@@ -604,6 +622,17 @@ function permanentRoomStatus(r){
   if(r.started)return t("roomPlaying",Math.max(1,Number(r.gameNumber||1)),Math.max(1,Number(r.round||1)));
   return t("roomWaiting")
 }
+function permanentRoomParticipants(r){
+  const current=Array.isArray(r?.players)?r.players:norm(r?.players);
+  let names=current.map(p=>String(p?.name||"").trim()).filter(Boolean);
+  if(!names.length){
+    const games=Array.isArray(r?.games)?r.games:[];
+    const last=games.at(-1);
+    const archived=Array.isArray(last?.players)?last.players:[];
+    names=archived.map(p=>String(p?.name||"").trim()).filter(Boolean)
+  }
+  return [...new Set(names)]
+}
 async function loadMyPermanentRooms(){
   if(!db||!uid)return;
   myRoomsList.innerHTML=`<div class="my-rooms-loading">${t("myRoomsLoading")}</div>`;
@@ -653,6 +682,12 @@ async function loadMyPermanentRooms(){
     myRoomsList.innerHTML=rooms.map(({code,room:r,role})=>{
       const displayName=String(r.roomName||"").trim()||t("permanentDefaultName");
       const roleLabelText=role==="host"?t("host"):t("visitorRole");
+      const participants=permanentRoomParticipants(r);
+      const participantText=participants.length?participants.map(esc).join(" · "):t("noParticipants");
+      const deleteLabel=t("deletePermanentRoom",displayName);
+      const deleteButton=role==="host"?`<button type="button" class="delete-room-btn" data-delete-permanent-room="${esc(code)}" data-delete-room-name="${esc(displayName)}" title="${esc(deleteLabel)}" aria-label="${esc(deleteLabel)}">🗑️</button>`:"";
+      const editButton=role==="host"?`<button type="button" class="room-card-icon-btn edit" data-rename-permanent-room="${esc(code)}" data-room-current-name="${esc(String(r.roomName||""))}" title="${esc(t("editRoomNameShort"))}" aria-label="${esc(t("editRoomNameShort"))}">✏️</button>`:"";
+      const resultsButton=`<button type="button" class="room-card-icon-btn results" data-results-permanent-room="${esc(code)}" title="${esc(t("openRoomResults"))}" aria-label="${esc(t("openRoomResults"))}">📊</button>`;
       return `<div class="my-room-item">
         <div class="my-room-top">
           <div class="my-room-name"><strong>${esc(displayName)}</strong><small>${esc(code)}</small></div>
@@ -663,7 +698,8 @@ async function loadMyPermanentRooms(){
           <span>${permanentRoomStatus(r)}</span>
           <span>${t("gameRounds",Array.isArray(r.history)?r.history.length:norm(r.history).length)}</span>
         </div>
-        <div class="my-room-actions"><button type="button" class="btn btn-primary btn-wide" data-open-permanent-room="${esc(code)}">${t("enterRoomAgain")}</button></div>
+        <div class="my-room-participants"><strong>${t("participantsLabel")}</strong><span>${participantText}</span></div>
+        <div class="my-room-actions"><button type="button" class="btn btn-primary btn-wide" data-open-permanent-room="${esc(code)}">${t("enterRoomAgain")}</button>${resultsButton}${editButton}${deleteButton}</div>
       </div>`
     }).join("");
 
@@ -671,7 +707,16 @@ async function loadMyPermanentRooms(){
       const code=b.dataset.openPermanentRoom;
       myRoomsOverlay.classList.remove("show");
       await joinRoom(code,true)
-    }))
+    }));
+    myRoomsList.querySelectorAll("[data-results-permanent-room]").forEach(b=>b.addEventListener("click",async()=>{
+      const code=b.dataset.resultsPermanentRoom;
+      myRoomsOverlay.classList.remove("show");
+      await openPermanentStatsByCode(code)
+    }));
+    myRoomsList.querySelectorAll("[data-rename-permanent-room]").forEach(b=>b.addEventListener("click",()=>{
+      openRenameRoom(b.dataset.renamePermanentRoom,b.dataset.roomCurrentName||"")
+    }));
+    myRoomsList.querySelectorAll("[data-delete-permanent-room]").forEach(b=>b.addEventListener("click",()=>deletePermanentRoom(b.dataset.deletePermanentRoom,b.dataset.deleteRoomName)))
   }catch(e){
     console.error(e);
     myRoomsList.innerHTML=`<div class="my-rooms-empty">${t("myRoomsLoadError")}</div>`
@@ -680,6 +725,30 @@ async function loadMyPermanentRooms(){
 function openMyPermanentRooms(){
   myRoomsOverlay.classList.add("show");
   loadMyPermanentRooms()
+}
+async function deletePermanentRoom(code,name){
+  if(!db||!uid||!code)return;
+  const displayName=String(name||t("permanentDefaultName"));
+  try{
+    const snap=await get(ref(db,`rooms/${code}`));
+    if(!snap.exists()){
+      await remove(ref(db,`userRooms/${uid}/${code}`)).catch(()=>{});
+      ensuredMembershipRooms.delete(code);
+      await loadMyPermanentRooms();
+      return
+    }
+    const r=roomNorm(snap.val());
+    if(!r?.permanent||r.hostUid!==uid)return;
+    if(!confirm(t("deletePermanentConfirm",displayName)))return;
+
+    await remove(ref(db,`rooms/${code}`));
+    await remove(ref(db,`userRooms/${uid}/${code}`)).catch(()=>{});
+    ensuredMembershipRooms.delete(code);
+    toastMsg(t("permanentRoomDeleted",displayName));
+    await loadMyPermanentRooms()
+  }catch(e){
+    console.error(e);toastMsg(t("permanentRoomDeleteError"))
+  }
 }
 
 function target(){
@@ -1054,9 +1123,9 @@ function makeGameArchive(players,history,opts={}){
   const winner=ranked[0]?{id:ranked[0].id,name:ranked[0].name,score:Number(ranked[0].score||0)}:null;
   return {number,target:Number(opts.target||target()||DEFAULT_TARGET),startedAt:Number(opts.startedAt||roomState?.startedAt||0),finishedAt,winner,totalPoints,players:players.map(p=>({id:p.id,name:p.name,score:Number(p.score||0)})),rounds}
 }
-function permanentGames(){return Array.isArray(roomState?.games)?roomState.games:[]}
-function computePermanentStats(){
-  const games=permanentGames(),players=new Map();let rounds=0,totalPoints=0;
+function permanentGames(r=roomState){return Array.isArray(r?.games)?r.games:[]}
+function computePermanentStats(r=roomState){
+  const games=permanentGames(r),players=new Map();let rounds=0,totalPoints=0;
   for(const g of games){
     rounds+=Array.isArray(g.rounds)?g.rounds.length:0;totalPoints+=Number(g.totalPoints||0);
     for(const p of (g.players||[])){
@@ -1074,34 +1143,60 @@ function gameHistoryHtml(g){
   const rounds=Array.isArray(g.rounds)?g.rounds:[],winner=g.winner?.name||t("noWinner");
   return `<details class="game-history-card"><summary><span>${t("gameLabel",g.number)} · ${esc(winner)}</span><small>${t("gameRounds",rounds.length)}</small></summary><div class="game-history-body"><div class="game-meta-line"><span class="game-meta-pill">${t("winnerLabel",esc(winner))}</span><span class="game-meta-pill">${t("gameTarget",Number(g.target||DEFAULT_TARGET))}</span><span class="game-meta-pill">${t("gameTotal",Number(g.totalPoints||0))}</span></div>${rounds.map(r=>{const names=Array.isArray(r.winnerNames)?r.winnerNames.join(lang==="es"?" y ":" & "):"";const scores=(g.players||[]).map(p=>`${esc(p.name)} ${Number(r.scores?.[p.id]||0)}`).join(" · ");return `<div class="round-history-row"><strong>${t("round")} ${r.round}</strong><span class="round-history-scores">${scores}</span><span class="round-winner">${t("roundWinnerLabel",esc(names||"—"))}</span></div>`}).join("")}</div></details>`
 }
-function renderPermanentStats(){
-  if(!isPermanent())return;
-  permanentStatsTitle.textContent=roomDisplayName();
-  const s=computePermanentStats();
+function roomDisplayNameFor(r){
+  const n=String(r?.roomName||"").trim();
+  return n||t("permanentDefaultName")
+}
+function renderPermanentStats(r=roomState){
+  if(!r?.permanent)return;
+  resultsPreviewRoom=r;
+  permanentStatsTitle.textContent=roomDisplayNameFor(r);
+  const s=computePermanentStats(r);
   permanentStatsSummary.innerHTML=`<div class="stat-box"><strong>${s.games}</strong><small>${t("gamesPlayed")}</small></div><div class="stat-box"><strong>${s.rounds}</strong><small>${t("totalRoundsStat")}</small></div><div class="stat-box"><strong>${s.totalPoints}</strong><small>${t("totalPointsStat")}</small></div><div class="stat-box"><strong>${s.players.length}</strong><small>${t("uniquePlayers")}</small></div>`;
   playerStatsBody.innerHTML=s.players.length?s.players.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.games}</td><td>${p.wins}</td><td>${p.roundWins}</td><td>${p.points}</td><td>${p.games?(p.points/p.games).toFixed(1):"0.0"}</td></tr>`).join(""):`<tr><td colspan="6">${t("noPermanentGames")}</td></tr>`;
-  const currentVisible=roomState.started&&!roomState.gameOver;
-  currentGameStats.innerHTML=currentVisible?`<div class="current-game-card"><strong>${t("currentGame")} · ${t("gameLabel",gameNumber())}</strong><small>${t("inProgress")} · ${t("gameRounds",roomState.history.length)} · ${t("gameTotal",roomState.players.reduce((a,p)=>a+Number(p.score||0),0))}</small></div>`:"";
-  permanentGamesList.innerHTML=s.games?permanentGames().slice().reverse().map(gameHistoryHtml).join(""):`<div class="history-item">${t("noPermanentGames")}</div>`
+  const currentVisible=r.started&&!r.gameOver;
+  const players=Array.isArray(r.players)?r.players:norm(r.players);
+  const history=Array.isArray(r.history)?r.history:norm(r.history);
+  currentGameStats.innerHTML=currentVisible?`<div class="current-game-card"><strong>${t("currentGame")} · ${t("gameLabel",Math.max(1,Number(r.gameNumber||1)))}</strong><small>${t("inProgress")} · ${t("gameRounds",history.length)} · ${t("gameTotal",players.reduce((a,p)=>a+Number(p.score||0),0))}</small></div>`:"";
+  permanentGamesList.innerHTML=s.games?permanentGames(r).slice().reverse().map(gameHistoryHtml).join(""):`<div class="history-item">${t("noPermanentGames")}</div>`
 }
-function openRenameRoom(){
-  if(!isHost||!isPermanent())return;
-  renameRoomInput.value=String(roomState?.roomName||"");
+function openRenameRoom(code=roomCode,currentName=null){
+  const targetCode=String(code||"");
+  if(!targetCode)return;
+  if(targetCode===roomCode&&(!isHost||!isPermanent()))return;
+  renameTargetCode=targetCode;
+  renameRoomInput.value=currentName!==null?String(currentName||""):String(roomState?.roomName||"");
   renameRoomOverlay.classList.add("show");
   setTimeout(()=>{renameRoomInput.focus();renameRoomInput.select()},60)
 }
-function closeRenameRoom(){renameRoomOverlay.classList.remove("show")}
+function closeRenameRoom(){renameRoomOverlay.classList.remove("show");renameTargetCode=null}
 async function saveRoomName(){
-  if(!isHost||!isPermanent())return;
+  const targetCode=String(renameTargetCode||roomCode||"");
+  if(!targetCode)return;
   const name=renameRoomInput.value.trim().slice(0,40);
   renameRoomSaveBtn.disabled=true;
   try{
-    await update(roomRef,{roomName:name||null,updatedAt:Date.now()});
-    closeRenameRoom();toastMsg(t("roomNameSaved"))
+    const snap=await get(ref(db,`rooms/${targetCode}`));
+    if(!snap.exists())throw new Error("Room missing");
+    const r=roomNorm(snap.val());
+    if(!r?.permanent||r.hostUid!==uid)return;
+    await update(ref(db,`rooms/${targetCode}`),{roomName:name||null,updatedAt:Date.now()});
+    closeRenameRoom();toastMsg(t("roomNameSaved"));
+    if(myRoomsOverlay.classList.contains("show"))await loadMyPermanentRooms()
   }catch(e){console.error(e);toastMsg(t("roomNameError"))}
   finally{renameRoomSaveBtn.disabled=false}
 }
-function openPermanentStats(){if(!isPermanent())return;renderPermanentStats();permanentStatsOverlay.classList.add("show")}
+function openPermanentStats(){if(!isPermanent())return;renderPermanentStats(roomState);permanentStatsOverlay.classList.add("show")}
+async function openPermanentStatsByCode(code){
+  try{
+    const snap=await get(ref(db,`rooms/${code}`));
+    if(!snap.exists())return;
+    const r=roomNorm(snap.val());
+    if(!r?.permanent)return;
+    renderPermanentStats(r);
+    permanentStatsOverlay.classList.add("show")
+  }catch(e){console.error(e);toastMsg(t("myRoomsLoadError"))}
+}
 async function makePermanent(){
   if(!isHost||isPermanent())return;if(!confirm(t("permanentConfirm")))return;
   const now=Date.now(),changes={permanent:true,permanentSince:now,gameNumber:gameNumber(),updatedAt:now};
@@ -1373,7 +1468,7 @@ pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter"&&hostScoreMode==="
 
 finishReviewBtn.addEventListener("click",()=>{finishConfirmOverlay.classList.remove("show");pendingRound=null});finishGameBtn.addEventListener("click",()=>commitPreparedRound(true));
 editHistoryCloseBtn.addEventListener("click",closeEditHistoryOverlay);editHistoryBackBtn.addEventListener("click",closeHistoryEditor);editHistoryCancelBtn.addEventListener("click",closeHistoryEditor);editHistorySaveBtn.addEventListener("click",saveHistoryRoundEdits);
-myRoomsCloseBtn.addEventListener("click",()=>myRoomsOverlay.classList.remove("show"));renameRoomSaveBtn.addEventListener("click",saveRoomName);renameRoomCancelBtn.addEventListener("click",closeRenameRoom);renameRoomCloseBtn.addEventListener("click",closeRenameRoom);renameRoomInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveRoomName();if(e.key==="Escape")closeRenameRoom()});permanentStatsCloseBtn.addEventListener("click",()=>permanentStatsOverlay.classList.remove("show"));transferHostCloseBtn.addEventListener("click",()=>transferHostOverlay.classList.remove("show"));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerEditRoundsBtn.addEventListener("click",openEditHistory);winnerNewGameBtn.addEventListener("click",resetGame);
+myRoomsCloseBtn.addEventListener("click",()=>myRoomsOverlay.classList.remove("show"));renameRoomSaveBtn.addEventListener("click",saveRoomName);renameRoomCancelBtn.addEventListener("click",closeRenameRoom);renameRoomCloseBtn.addEventListener("click",closeRenameRoom);renameRoomInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveRoomName();if(e.key==="Escape")closeRenameRoom()});permanentStatsCloseBtn.addEventListener("click",()=>{permanentStatsOverlay.classList.remove("show");resultsPreviewRoom=null});transferHostCloseBtn.addEventListener("click",()=>transferHostOverlay.classList.remove("show"));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerEditRoundsBtn.addEventListener("click",openEditHistory);winnerNewGameBtn.addEventListener("click",resetGame);
 
 buildCardPicker();switchMyScoreMode("cards");switchHostScoreMode("cards");renderCardCalculator();renderHostCardCalculator();applyLanguage();await boot();
 </script>
