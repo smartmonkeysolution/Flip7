@@ -96,6 +96,19 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 .history-edit-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .room-type-pill{display:inline-flex;align-items:center;min-height:31px;border:2px solid var(--line);border-radius:999px;padding:4px 10px;background:#fff;font-size:11px;font-weight:1000;white-space:nowrap}
 .room-name-pill{display:inline-block;max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:2px solid var(--line);border-radius:11px;padding:6px 10px;background:var(--orange);font-size:12px;font-weight:1000}
+.choice-actions{display:grid;gap:8px}
+.my-rooms-card{width:min(100%,720px);max-height:92vh;overflow:auto;background:var(--paper);border:4px solid var(--line);border-radius:26px;box-shadow:0 24px 70px rgba(0,0,0,.34);padding:24px}
+.my-rooms-head{margin-bottom:14px}.my-rooms-head h2{margin:7px 0 5px;font-size:clamp(28px,7vw,40px)}.my-rooms-head p{margin:0;color:var(--muted);font-size:12px;font-weight:800;line-height:1.45}
+.my-rooms-summary{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.my-rooms-summary span{border:1.5px solid #c9c0b3;border-radius:999px;background:#fff;padding:6px 9px;font-size:10px;font-weight:1000}
+.my-rooms-list{display:grid;gap:9px}
+.my-room-item{border:2px solid #c8c0b2;border-radius:15px;background:#fff;padding:12px}
+.my-room-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.my-room-name{min-width:0}.my-room-name strong{display:block;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.my-room-name small{display:block;color:var(--muted);font-size:10px;font-weight:900;margin-top:3px}
+.my-room-role{border:2px solid var(--line);border-radius:999px;padding:5px 9px;font-size:10px;font-weight:1000;white-space:nowrap}.my-room-role.host{background:var(--yellow)}.my-room-role.visitor{background:var(--green)}
+.my-room-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.my-room-meta span{border:1.5px solid #d2c9bc;border-radius:999px;background:var(--paper);padding:5px 8px;font-size:10px;font-weight:900}
+.my-room-actions{display:grid;grid-template-columns:1fr;gap:7px}
+.my-rooms-empty{border:2px dashed #c9c0b3;border-radius:14px;padding:20px;text-align:center;color:var(--muted);font-size:12px;font-weight:850;line-height:1.5}
+.my-rooms-loading{text-align:center;padding:24px;color:var(--muted);font-weight:900}
+
 .rename-room-card{width:min(100%,500px);background:var(--paper);border:4px solid var(--line);border-radius:26px;box-shadow:0 24px 70px rgba(0,0,0,.34);padding:28px 24px}
 .rename-room-card h2{margin:10px 0 6px;font-size:30px;text-align:center}.rename-room-card p{margin:0 0 16px;text-align:center;color:var(--muted);font-weight:800;font-size:12px;line-height:1.45}
 .rename-room-actions{display:grid;grid-template-columns:1fr 1.2fr;gap:9px;margin-top:12px}
@@ -136,7 +149,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
   <div id="setupAlert" class="setup-alert"><strong>Falta conectar Firebase.</strong>La app está lista para partidas en vivo, pero primero debe pegar la configuración de su proyecto Firebase en <b>firebaseConfig</b>. Revise README.txt.</div>
   <section id="homeScreen" class="panel"><div class="panel-head"><h2 id="homeTitle">Partida compartida</h2><p id="homeDesc">Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.</p></div><div class="panel-body"><div class="home-grid">
     <div class="choice"><h3 id="createTitle">🎴 Partida normal</h3><p id="createDesc">Sala temporal para una partida. No guarda historial permanente.</p><button id="createRoomBtn" class="btn btn-green btn-wide">Crear partida normal</button></div>
-    <div class="choice"><h3 id="createPermanentTitle">🏠 Sala permanente</h3><p id="createPermanentDesc">Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.</p><button id="createPermanentRoomBtn" class="btn btn-orange btn-wide">Crear sala permanente</button></div>
+    <div class="choice"><h3 id="createPermanentTitle">🏠 Sala permanente</h3><p id="createPermanentDesc">Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.</p><div class="choice-actions"><button id="createPermanentRoomBtn" class="btn btn-orange btn-wide">Crear sala permanente</button><button id="myPermanentRoomsBtn" class="btn btn-ghost btn-wide">Mis salas permanentes</button></div></div>
     <div class="choice"><h3 id="joinTitle">👀 Unirse a sala</h3><p id="joinDesc">Ingrese el código de una partida normal o de una sala permanente.</p><div class="join-row"><input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO"><button id="joinRoomBtn" class="btn btn-primary">Entrar</button></div></div>
   </div></div></section>
   <section id="roomScreen" class="panel hidden"><div class="panel-body">
@@ -320,6 +333,19 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 </div>
 
 
+
+<div id="myRoomsOverlay" class="overlay" role="dialog" aria-modal="true">
+  <div class="my-rooms-card">
+    <div class="turn-top"><span id="myRoomsKicker" class="turn-counter">Salas permanentes</span><button id="myRoomsCloseBtn" class="small-btn" type="button">×</button></div>
+    <div class="my-rooms-head">
+      <h2 id="myRoomsTitle">Mis salas permanentes</h2>
+      <p id="myRoomsDesc">Aquí aparecen las salas permanentes que ha visitado con este usuario.</p>
+    </div>
+    <div id="myRoomsSummary" class="my-rooms-summary"></div>
+    <div id="myRoomsList" class="my-rooms-list"><div class="my-rooms-loading">Cargando…</div></div>
+  </div>
+</div>
+
 <div id="renameRoomOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="rename-room-card">
     <div class="turn-top"><span id="renameRoomKicker" class="turn-counter">Sala permanente</span><button id="renameRoomCloseBtn" class="small-btn" type="button">×</button></div>
@@ -388,7 +414,7 @@ const firebaseConfig = {
 
 const DEFAULT_TARGET=200,$=id=>document.getElementById(id);
 let lang=localStorage.getItem("flip7_lang")==="en"?"en":"es";
-let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,winnerShown=false,pendingRound=null,presenceRef=null,presenceUnsubscribe=null,connectedUsers=0,connectedPresence=[],firebaseConnected=false,hostEditPlayerId=null,myScoreMode="cards",selectedNumbers=new Set(),selectedModifiers=new Set(),hostScoreMode="cards",hostSelectedNumbers=new Set(),hostSelectedModifiers=new Set(),editingHistoryRound=null,lastPlayerRoundSeen=null,lastLoadedRejectedStamp=null,playerNeedsResubmit=false,starterPopupTimer=null;
+let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,winnerShown=false,pendingRound=null,presenceRef=null,presenceUnsubscribe=null,connectedUsers=0,connectedPresence=[],firebaseConnected=false,hostEditPlayerId=null,myScoreMode="cards",selectedNumbers=new Set(),selectedModifiers=new Set(),hostScoreMode="cards",hostSelectedNumbers=new Set(),hostSelectedModifiers=new Set(),editingHistoryRound=null,lastPlayerRoundSeen=null,lastLoadedRejectedStamp=null,playerNeedsResubmit=false,starterPopupTimer=null,ensuredMembershipRooms=new Set();
 const presenceId=sessionStorage.getItem("flip7_presence_id")||(crypto.randomUUID?crypto.randomUUID():Date.now()+"_"+Math.random());
 sessionStorage.setItem("flip7_presence_id",presenceId);
 
@@ -397,7 +423,7 @@ const I18N={
     subtitle:"Un marcador · todos lo ven en vivo",goal:"Meta",undefinedTarget:"Por definir",languageButton:"🌐 Idioma: ES",
     homeTitle:"Partida compartida",homeDesc:"Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.",
     createTitle:"🎴 Partida normal",createDesc:"Sala temporal para una partida. No guarda historial permanente.",createRoom:"Crear partida normal",
-    createPermanentTitle:"🏠 Sala permanente",createPermanentDesc:"Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.",createPermanentRoom:"Crear sala permanente",
+    createPermanentTitle:"🏠 Sala permanente",createPermanentDesc:"Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.",createPermanentRoom:"Crear sala permanente",myPermanentRooms:"Mis salas permanentes",
     joinTitle:"👀 Unirse a sala",joinDesc:"Ingrese el código de una partida normal o de una sala permanente.",code:"CÓDIGO",enter:"Entrar",
     room:"Sala",host:"Host",viewer:"Espectador",share:"Compartir",leave:"Salir",
     setupTitle:"Configurar partida",setupDesc:"Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.",
@@ -444,6 +470,10 @@ const I18N={
     transferNote:"Después del cambio, el nuevo host tendrá el control de la sala y usted pasará a ser espectador.",
     permanentPremiumNote:"Esta estructura queda lista para convertirse en una función Premium cuando la app se publique en Android.",
     permanentHistoryOnly:"El historial y la edición de rondas están disponibles en salas permanentes.",starterPopupKicker:"Siguiente ronda",
+    myRoomsKicker:"Salas permanentes",myRoomsTitle:"Mis salas permanentes",myRoomsDesc:"Aquí aparecen las salas permanentes que ha visitado con este usuario.",myRoomsLoading:"Cargando salas…",myRoomsEmpty:"Todavía no pertenece a ninguna sala permanente. Puede crear una o entrar a una usando su código.",
+    roomsAsHost:n=>`${n} como host`,roomsAsVisitor:n=>`${n} como visitante`,roomsTotal:n=>`${n} sala${n===1?"":"s"}`,visitorRole:"Visitante",enterRoomAgain:"Entrar a la sala",
+    roomWaiting:"Esperando iniciar",roomFinished:"Juego finalizado",roomPlaying:(g,r)=>`Juego ${g} · Ronda ${r}`,myRoomsLoadError:"No se pudieron cargar sus salas permanentes.",
+
     presenceError:"No se pudo registrar la conexión en vivo.",
     startRound:"▶ Iniciar ronda",roundInProgress:r=>`Ronda ${r} en curso`,liveRound:"Ronda en vivo",liveRoundDesc:"Los puntajes enviados son provisionales hasta que el host los apruebe.",
     approvedCount:(a,n)=>`${a}/${n} aprobados`,waitingScore:"Esperando",pendingScore:"Por revisar",approvedScore:"Aprobado",rejectedScore:"Rechazado",
@@ -469,7 +499,7 @@ const I18N={
     subtitle:"One scoreboard · everyone sees it live",goal:"Target",undefinedTarget:"To define",languageButton:"🌐 Language: EN",
     homeTitle:"Shared game",homeDesc:"One person creates the room and manages the score. Everyone else sees changes in real time.",
     createTitle:"🎴 Normal game",createDesc:"Temporary room for one game. It does not keep permanent history.",createRoom:"Create normal game",
-    createPermanentTitle:"🏠 Permanent room",createPermanentDesc:"Keeps the same code and QR, and stores games, rounds, and statistics.",createPermanentRoom:"Create permanent room",
+    createPermanentTitle:"🏠 Permanent room",createPermanentDesc:"Keeps the same code and QR, and stores games, rounds, and statistics.",createPermanentRoom:"Create permanent room",myPermanentRooms:"My permanent rooms",
     joinTitle:"👀 Join game",joinDesc:"Enter the room code. As a spectator, you will see the same live scoreboard.",code:"CODE",enter:"Join",
     room:"Room",host:"Host",viewer:"Spectator",share:"Share",leave:"Leave",
     setupTitle:"Set up game",setupDesc:"As host, you can add or remove players and choose the target before starting.",
@@ -516,6 +546,10 @@ const I18N={
     transferNote:"After the change, the new host will control the room and you will become a viewer.",
     permanentPremiumNote:"This structure is ready to become a Premium feature when the app is released on Android.",
     permanentHistoryOnly:"Round history and editing are available in permanent rooms.",starterPopupKicker:"Next round",
+    myRoomsKicker:"Permanent rooms",myRoomsTitle:"My permanent rooms",myRoomsDesc:"These are the permanent rooms you have visited with this user.",myRoomsLoading:"Loading rooms…",myRoomsEmpty:"You do not belong to any permanent rooms yet. Create one or join one with its code.",
+    roomsAsHost:n=>`${n} as host`,roomsAsVisitor:n=>`${n} as visitor`,roomsTotal:n=>`${n} room${n===1?"":"s"}`,visitorRole:"Visitor",enterRoomAgain:"Enter room",
+    roomWaiting:"Waiting to start",roomFinished:"Game finished",roomPlaying:(g,r)=>`Game ${g} · Round ${r}`,myRoomsLoadError:"Your permanent rooms could not be loaded.",
+
     presenceError:"Live connection could not be registered.",
     startRound:"▶ Start round",roundInProgress:r=>`Round ${r} in progress`,liveRound:"Live round",liveRoundDesc:"Submitted scores are provisional until the host approves them.",
     approvedCount:(a,n)=>`${a}/${n} approved`,waitingScore:"Waiting",pendingScore:"Review",approvedScore:"Approved",rejectedScore:"Rejected",
@@ -540,7 +574,7 @@ const I18N={
 };
 const t=(key,...args)=>{const v=I18N[lang][key];return typeof v==="function"?v(...args):v};
 
-const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),createPermanentRoomBtn=$("createPermanentRoomBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomNamePill=$("roomNamePill"),roomCodeLabel=$("roomCodeLabel"),roomTypePill=$("roomTypePill"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),permanentStatsBtn=$("permanentStatsBtn"),renameRoomBtn=$("renameRoomBtn"),makePermanentBtn=$("makePermanentBtn"),transferHostBtn=$("transferHostBtn"),qrRoomBtn=$("qrRoomBtn"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),liveRoundPanel=$("liveRoundPanel"),liveRoundTitle=$("liveRoundTitle"),liveRoundDesc=$("liveRoundDesc"),roundApprovalCount=$("roundApprovalCount"),roundLiveList=$("roundLiveList"),closeRoundWrap=$("closeRoundWrap"),closeRoundBtn=$("closeRoundBtn"),closeRoundHint=$("closeRoundHint"),playerScoreOverlay=$("playerScoreOverlay"),myScorePanel=$("myScorePanel"),myScoreKicker=$("myScoreKicker"),myScoreTitle=$("myScoreTitle"),myScoreDesc=$("myScoreDesc"),myScoreRound=$("myScoreRound"),mySubmissionState=$("mySubmissionState"),myScoreForm=$("myScoreForm"),cardsTabBtn=$("cardsTabBtn"),manualTabBtn=$("manualTabBtn"),cardsScorePane=$("cardsScorePane"),manualScorePane=$("manualScorePane"),myManualScore=$("myManualScore"),myBustBtn=$("myBustBtn"),myCardsBustBtn=$("myCardsBustBtn"),numberCardsGrid=$("numberCardsGrid"),modifierCardsGrid=$("modifierCardsGrid"),cardCalcLabel=$("cardCalcLabel"),cardCalcTotal=$("cardCalcTotal"),cardCalcDetail=$("cardCalcDetail"),clearMyScoreBtn=$("clearMyScoreBtn"),submitMyScoreBtn=$("submitMyScoreBtn"),playerScoreLockNote=$("playerScoreLockNote"),viewerRoundOverlay=$("viewerRoundOverlay"),viewerRoundKicker=$("viewerRoundKicker"),viewerRoundTitle=$("viewerRoundTitle"),viewerRoundDesc=$("viewerRoundDesc"),viewerRoundCount=$("viewerRoundCount"),viewerRoundList=$("viewerRoundList"),viewerRoundLockNote=$("viewerRoundLockNote"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),editRoundsBtn=$("editRoundsBtn"),newGameBtn=$("newGameBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),hostEntryNote=$("hostEntryNote"),hostCardsTabBtn=$("hostCardsTabBtn"),hostManualTabBtn=$("hostManualTabBtn"),hostCardsPane=$("hostCardsPane"),hostManualPane=$("hostManualPane"),hostNumberCardsGrid=$("hostNumberCardsGrid"),hostModifierCardsGrid=$("hostModifierCardsGrid"),hostCardCalcLabel=$("hostCardCalcLabel"),hostCardCalcTotal=$("hostCardCalcTotal"),hostCardCalcDetail=$("hostCardCalcDetail"),hostCardsBustBtn=$("hostCardsBustBtn"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),removeSubmissionBtn=$("removeSubmissionBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),editHistoryOverlay=$("editHistoryOverlay"),editHistoryKicker=$("editHistoryKicker"),editHistoryTitle=$("editHistoryTitle"),editHistorySubtitle=$("editHistorySubtitle"),editHistoryRoundList=$("editHistoryRoundList"),editHistoryEditor=$("editHistoryEditor"),editHistoryBackBtn=$("editHistoryBackBtn"),editHistoryRoundLabel=$("editHistoryRoundLabel"),editHistoryList=$("editHistoryList"),editHistoryCancelBtn=$("editHistoryCancelBtn"),editHistorySaveBtn=$("editHistorySaveBtn"),editHistoryCloseBtn=$("editHistoryCloseBtn"),renameRoomOverlay=$("renameRoomOverlay"),renameRoomKicker=$("renameRoomKicker"),renameRoomTitle=$("renameRoomTitle"),renameRoomDesc=$("renameRoomDesc"),renameRoomInput=$("renameRoomInput"),renameRoomCancelBtn=$("renameRoomCancelBtn"),renameRoomSaveBtn=$("renameRoomSaveBtn"),renameRoomCloseBtn=$("renameRoomCloseBtn"),starterPopupOverlay=$("starterPopupOverlay"),starterPopupKicker=$("starterPopupKicker"),starterPopupTitle=$("starterPopupTitle"),starterPopupText=$("starterPopupText"),permanentStatsOverlay=$("permanentStatsOverlay"),permanentStatsKicker=$("permanentStatsKicker"),permanentStatsTitle=$("permanentStatsTitle"),permanentStatsSubtitle=$("permanentStatsSubtitle"),permanentStatsSummary=$("permanentStatsSummary"),currentGameStats=$("currentGameStats"),playerStatsTitle=$("playerStatsTitle"),statsPlayerCol=$("statsPlayerCol"),statsGamesCol=$("statsGamesCol"),statsWinsCol=$("statsWinsCol"),statsRoundWinsCol=$("statsRoundWinsCol"),statsPointsCol=$("statsPointsCol"),statsAvgCol=$("statsAvgCol"),playerStatsBody=$("playerStatsBody"),gameHistoryTitle=$("gameHistoryTitle"),permanentGamesList=$("permanentGamesList"),permanentPremiumNote=$("permanentPremiumNote"),permanentStatsCloseBtn=$("permanentStatsCloseBtn"),transferHostOverlay=$("transferHostOverlay"),transferHostKicker=$("transferHostKicker"),transferHostTitle=$("transferHostTitle"),transferHostSubtitle=$("transferHostSubtitle"),transferHostList=$("transferHostList"),transferHostNote=$("transferHostNote"),transferHostCloseBtn=$("transferHostCloseBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerEditRoundsBtn=$("winnerEditRoundsBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
+const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),createPermanentRoomBtn=$("createPermanentRoomBtn"),myPermanentRoomsBtn=$("myPermanentRoomsBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomNamePill=$("roomNamePill"),roomCodeLabel=$("roomCodeLabel"),roomTypePill=$("roomTypePill"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),permanentStatsBtn=$("permanentStatsBtn"),renameRoomBtn=$("renameRoomBtn"),makePermanentBtn=$("makePermanentBtn"),transferHostBtn=$("transferHostBtn"),qrRoomBtn=$("qrRoomBtn"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),liveRoundPanel=$("liveRoundPanel"),liveRoundTitle=$("liveRoundTitle"),liveRoundDesc=$("liveRoundDesc"),roundApprovalCount=$("roundApprovalCount"),roundLiveList=$("roundLiveList"),closeRoundWrap=$("closeRoundWrap"),closeRoundBtn=$("closeRoundBtn"),closeRoundHint=$("closeRoundHint"),playerScoreOverlay=$("playerScoreOverlay"),myScorePanel=$("myScorePanel"),myScoreKicker=$("myScoreKicker"),myScoreTitle=$("myScoreTitle"),myScoreDesc=$("myScoreDesc"),myScoreRound=$("myScoreRound"),mySubmissionState=$("mySubmissionState"),myScoreForm=$("myScoreForm"),cardsTabBtn=$("cardsTabBtn"),manualTabBtn=$("manualTabBtn"),cardsScorePane=$("cardsScorePane"),manualScorePane=$("manualScorePane"),myManualScore=$("myManualScore"),myBustBtn=$("myBustBtn"),myCardsBustBtn=$("myCardsBustBtn"),numberCardsGrid=$("numberCardsGrid"),modifierCardsGrid=$("modifierCardsGrid"),cardCalcLabel=$("cardCalcLabel"),cardCalcTotal=$("cardCalcTotal"),cardCalcDetail=$("cardCalcDetail"),clearMyScoreBtn=$("clearMyScoreBtn"),submitMyScoreBtn=$("submitMyScoreBtn"),playerScoreLockNote=$("playerScoreLockNote"),viewerRoundOverlay=$("viewerRoundOverlay"),viewerRoundKicker=$("viewerRoundKicker"),viewerRoundTitle=$("viewerRoundTitle"),viewerRoundDesc=$("viewerRoundDesc"),viewerRoundCount=$("viewerRoundCount"),viewerRoundList=$("viewerRoundList"),viewerRoundLockNote=$("viewerRoundLockNote"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),editRoundsBtn=$("editRoundsBtn"),newGameBtn=$("newGameBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),hostEntryNote=$("hostEntryNote"),hostCardsTabBtn=$("hostCardsTabBtn"),hostManualTabBtn=$("hostManualTabBtn"),hostCardsPane=$("hostCardsPane"),hostManualPane=$("hostManualPane"),hostNumberCardsGrid=$("hostNumberCardsGrid"),hostModifierCardsGrid=$("hostModifierCardsGrid"),hostCardCalcLabel=$("hostCardCalcLabel"),hostCardCalcTotal=$("hostCardCalcTotal"),hostCardCalcDetail=$("hostCardCalcDetail"),hostCardsBustBtn=$("hostCardsBustBtn"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),removeSubmissionBtn=$("removeSubmissionBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),editHistoryOverlay=$("editHistoryOverlay"),editHistoryKicker=$("editHistoryKicker"),editHistoryTitle=$("editHistoryTitle"),editHistorySubtitle=$("editHistorySubtitle"),editHistoryRoundList=$("editHistoryRoundList"),editHistoryEditor=$("editHistoryEditor"),editHistoryBackBtn=$("editHistoryBackBtn"),editHistoryRoundLabel=$("editHistoryRoundLabel"),editHistoryList=$("editHistoryList"),editHistoryCancelBtn=$("editHistoryCancelBtn"),editHistorySaveBtn=$("editHistorySaveBtn"),editHistoryCloseBtn=$("editHistoryCloseBtn"),myRoomsOverlay=$("myRoomsOverlay"),myRoomsKicker=$("myRoomsKicker"),myRoomsTitle=$("myRoomsTitle"),myRoomsDesc=$("myRoomsDesc"),myRoomsSummary=$("myRoomsSummary"),myRoomsList=$("myRoomsList"),myRoomsCloseBtn=$("myRoomsCloseBtn"),renameRoomOverlay=$("renameRoomOverlay"),renameRoomKicker=$("renameRoomKicker"),renameRoomTitle=$("renameRoomTitle"),renameRoomDesc=$("renameRoomDesc"),renameRoomInput=$("renameRoomInput"),renameRoomCancelBtn=$("renameRoomCancelBtn"),renameRoomSaveBtn=$("renameRoomSaveBtn"),renameRoomCloseBtn=$("renameRoomCloseBtn"),starterPopupOverlay=$("starterPopupOverlay"),starterPopupKicker=$("starterPopupKicker"),starterPopupTitle=$("starterPopupTitle"),starterPopupText=$("starterPopupText"),permanentStatsOverlay=$("permanentStatsOverlay"),permanentStatsKicker=$("permanentStatsKicker"),permanentStatsTitle=$("permanentStatsTitle"),permanentStatsSubtitle=$("permanentStatsSubtitle"),permanentStatsSummary=$("permanentStatsSummary"),currentGameStats=$("currentGameStats"),playerStatsTitle=$("playerStatsTitle"),statsPlayerCol=$("statsPlayerCol"),statsGamesCol=$("statsGamesCol"),statsWinsCol=$("statsWinsCol"),statsRoundWinsCol=$("statsRoundWinsCol"),statsPointsCol=$("statsPointsCol"),statsAvgCol=$("statsAvgCol"),playerStatsBody=$("playerStatsBody"),gameHistoryTitle=$("gameHistoryTitle"),permanentGamesList=$("permanentGamesList"),permanentPremiumNote=$("permanentPremiumNote"),permanentStatsCloseBtn=$("permanentStatsCloseBtn"),transferHostOverlay=$("transferHostOverlay"),transferHostKicker=$("transferHostKicker"),transferHostTitle=$("transferHostTitle"),transferHostSubtitle=$("transferHostSubtitle"),transferHostList=$("transferHostList"),transferHostNote=$("transferHostNote"),transferHostCloseBtn=$("transferHostCloseBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerEditRoundsBtn=$("winnerEditRoundsBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
 function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfig).some(v=>String(v).includes("PEGUE_AQUI"))}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function norm(v){return Array.isArray(v)?v.filter(Boolean):v&&typeof v==="object"?Object.keys(v).sort((a,b)=>Number(a)-Number(b)).map(k=>v[k]).filter(Boolean):[]}function normalizeGames(v){
   if(!v||typeof v!=="object")return [];
   return Object.values(v).filter(Boolean).sort((a,b)=>Number(a.number||0)-Number(b.number||0))
@@ -556,6 +590,96 @@ function gameNumber(){return Math.max(1,Number(roomState?.gameNumber||1))}
 function roomDisplayName(){
   const n=String(roomState?.roomName||"").trim();
   return n||t("permanentDefaultName")
+}
+
+async function ensurePermanentMembership(code=roomCode){
+  if(!db||!uid||!code||ensuredMembershipRooms.has(code))return;
+  try{
+    await set(ref(db,`userRooms/${uid}/${code}`),true);
+    ensuredMembershipRooms.add(code)
+  }catch(e){console.warn("Permanent membership error",e)}
+}
+function permanentRoomStatus(r){
+  if(r.gameOver)return t("roomFinished");
+  if(r.started)return t("roomPlaying",Math.max(1,Number(r.gameNumber||1)),Math.max(1,Number(r.round||1)));
+  return t("roomWaiting")
+}
+async function loadMyPermanentRooms(){
+  if(!db||!uid)return;
+  myRoomsList.innerHTML=`<div class="my-rooms-loading">${t("myRoomsLoading")}</div>`;
+  myRoomsSummary.innerHTML="";
+  try{
+    const membershipSnap=await get(ref(db,`userRooms/${uid}`));
+    const memberships=membershipSnap.val();
+    const codes=memberships&&typeof memberships==="object"?Object.keys(memberships):[];
+    if(!codes.length){
+      myRoomsList.innerHTML=`<div class="my-rooms-empty">${t("myRoomsEmpty")}</div>`;
+      return
+    }
+    const rooms=(await Promise.all(codes.map(async code=>{
+      try{
+        const snap=await get(ref(db,`rooms/${code}`));
+        if(!snap.exists()){
+          await remove(ref(db,`userRooms/${uid}/${code}`)).catch(()=>{});
+          ensuredMembershipRooms.delete(code);
+          return null
+        }
+        const r=roomNorm(snap.val());
+        if(!r?.permanent){
+          await remove(ref(db,`userRooms/${uid}/${code}`)).catch(()=>{});
+          ensuredMembershipRooms.delete(code);
+          return null
+        }
+        return {code,room:r,role:r.hostUid===uid?"host":"visitor"}
+      }catch(e){console.warn("Room lookup error",code,e);return null}
+    }))).filter(Boolean);
+
+    rooms.sort((a,b)=>{
+      if(a.role!==b.role)return a.role==="host"?-1:1;
+      const an=String(a.room.roomName||t("permanentDefaultName"));
+      const bn=String(b.room.roomName||t("permanentDefaultName"));
+      return an.localeCompare(bn,lang,{sensitivity:"base"})
+    });
+
+    const hostCount=rooms.filter(x=>x.role==="host").length;
+    const visitorCount=rooms.length-hostCount;
+    myRoomsSummary.innerHTML=`<span>${t("roomsTotal",rooms.length)}</span><span>${t("roomsAsHost",hostCount)}</span><span>${t("roomsAsVisitor",visitorCount)}</span>`;
+
+    if(!rooms.length){
+      myRoomsList.innerHTML=`<div class="my-rooms-empty">${t("myRoomsEmpty")}</div>`;
+      return
+    }
+
+    myRoomsList.innerHTML=rooms.map(({code,room:r,role})=>{
+      const displayName=String(r.roomName||"").trim()||t("permanentDefaultName");
+      const roleLabelText=role==="host"?t("host"):t("visitorRole");
+      return `<div class="my-room-item">
+        <div class="my-room-top">
+          <div class="my-room-name"><strong>${esc(displayName)}</strong><small>${esc(code)}</small></div>
+          <span class="my-room-role ${role}">${roleLabelText}</span>
+        </div>
+        <div class="my-room-meta">
+          <span>${t("gameLabel",Math.max(1,Number(r.gameNumber||1)))}</span>
+          <span>${permanentRoomStatus(r)}</span>
+          <span>${t("gameRounds",Array.isArray(r.history)?r.history.length:norm(r.history).length)}</span>
+        </div>
+        <div class="my-room-actions"><button type="button" class="btn btn-primary btn-wide" data-open-permanent-room="${esc(code)}">${t("enterRoomAgain")}</button></div>
+      </div>`
+    }).join("");
+
+    myRoomsList.querySelectorAll("[data-open-permanent-room]").forEach(b=>b.addEventListener("click",async()=>{
+      const code=b.dataset.openPermanentRoom;
+      myRoomsOverlay.classList.remove("show");
+      await joinRoom(code,true)
+    }))
+  }catch(e){
+    console.error(e);
+    myRoomsList.innerHTML=`<div class="my-rooms-empty">${t("myRoomsLoadError")}</div>`
+  }
+}
+function openMyPermanentRooms(){
+  myRoomsOverlay.classList.add("show");
+  loadMyPermanentRooms()
 }
 
 function target(){
@@ -579,7 +703,7 @@ function applyLanguage(){
   languageBtn.textContent=t("languageButton");
   setText("appSubtitle","subtitle");
   setText("homeTitle","homeTitle"); setText("homeDesc","homeDesc"); setText("createTitle","createTitle"); setText("createDesc","createDesc"); setText("createPermanentTitle","createPermanentTitle"); setText("createPermanentDesc","createPermanentDesc");
-  createRoomBtn.textContent=t("createRoom"); createPermanentRoomBtn.textContent=t("createPermanentRoom"); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); joinRoomBtn.textContent=t("enter");
+  createRoomBtn.textContent=t("createRoom"); createPermanentRoomBtn.textContent=t("createPermanentRoom"); myPermanentRoomsBtn.textContent=t("myPermanentRooms"); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); joinRoomBtn.textContent=t("enter");
   setText("roomLabel","room"); permanentStatsBtn.textContent=t("statsHistory"); renameRoomBtn.textContent=t("renameRoom"); makePermanentBtn.textContent=t("makePermanent"); transferHostBtn.textContent=t("transferHost"); qrRoomBtn.textContent=t("qr"); shareRoomBtn.textContent=t("share"); leaveRoomBtn.textContent=t("leave");
   setText("setupTitle","setupTitle"); setText("setupDesc","setupDesc"); playerName.placeholder=t("playerPlaceholder"); addPlayerBtn.textContent=t("add");
   joinRequestsTitle.textContent=t("joinRequestsTitle"); joinRequestsDesc.textContent=t("joinRequestsDesc"); manualAddLabel.textContent=t("manualAdd");
@@ -595,6 +719,7 @@ function applyLanguage(){
   viewerNote.textContent=t("viewerNote");
   turnCounter.textContent=t("hostEntry"); hostEntryNote.textContent=t("hostEntryNote"); hostCardsTabBtn.textContent=t("hostCards"); hostManualTabBtn.textContent=t("hostManual"); hostCardCalcLabel.textContent=t("calculatedTotal"); hostCardsBustBtn.textContent=t("bustZero"); passBtn.textContent=t("zeroPoints"); saveScoreBtn.textContent=t("saveApprove"); removeSubmissionBtn.textContent=t("removeSubmission"); cancelRoundBtn.textContent=t("close");
   editRoundsBtn.textContent=t("editPreviousRounds"); editHistoryKicker.textContent=t("history"); editHistoryTitle.textContent=t("editHistoryTitle"); editHistorySubtitle.textContent=t("editHistorySubtitle"); editHistoryBackBtn.textContent=t("editHistoryBack"); editHistoryCancelBtn.textContent=t("editHistoryCancel"); editHistorySaveBtn.textContent=t("editHistorySave");
+  myRoomsKicker.textContent=t("myRoomsKicker"); myRoomsTitle.textContent=t("myRoomsTitle"); myRoomsDesc.textContent=t("myRoomsDesc");
   renameRoomKicker.textContent=t("renameRoomKicker"); renameRoomTitle.textContent=t("renameRoomTitle"); renameRoomDesc.textContent=t("renameRoomDesc"); renameRoomInput.placeholder=t("renameRoomPlaceholder"); renameRoomCancelBtn.textContent=t("renameRoomCancel"); renameRoomSaveBtn.textContent=t("renameRoomSave");
   starterPopupKicker.textContent=t("starterPopupKicker");
   permanentStatsKicker.textContent=t("permanentStatsKicker"); permanentStatsTitle.textContent=isPermanent()?roomDisplayName():t("permanentStatsTitle"); permanentStatsSubtitle.textContent=t("permanentStatsSubtitle");
@@ -611,7 +736,7 @@ function toggleLanguage(){
   localStorage.setItem("flip7_lang",lang);
   applyLanguage()
 }
-async function boot(){if(!configured()){setupAlert.classList.add("show");createRoomBtn.disabled=createPermanentRoomBtn.disabled=joinRoomBtn.disabled=true;return}try{const app=initializeApp(firebaseConfig),auth=getAuth(app);db=getDatabase(app);uid=(await signInAnonymously(auth)).user.uid;watchFirebaseConnection();const q=new URL(location.href).searchParams.get("room");if(q){joinCode.value=q.toUpperCase();await joinRoom(q,true)}}catch(e){console.error(e);setupAlert.classList.add("show");setupAlert.innerHTML="<strong>No se pudo conectar con Firebase.</strong>Revise firebaseConfig, Anonymous Authentication y Realtime Database.";createRoomBtn.disabled=createPermanentRoomBtn.disabled=joinRoomBtn.disabled=true}}
+async function boot(){if(!configured()){setupAlert.classList.add("show");createRoomBtn.disabled=createPermanentRoomBtn.disabled=myPermanentRoomsBtn.disabled=joinRoomBtn.disabled=true;return}try{const app=initializeApp(firebaseConfig),auth=getAuth(app);db=getDatabase(app);uid=(await signInAnonymously(auth)).user.uid;watchFirebaseConnection();const q=new URL(location.href).searchParams.get("room");if(q){joinCode.value=q.toUpperCase();await joinRoom(q,true)}}catch(e){console.error(e);setupAlert.classList.add("show");setupAlert.innerHTML="<strong>No se pudo conectar con Firebase.</strong>Revise firebaseConfig, Anonymous Authentication y Realtime Database.";createRoomBtn.disabled=createPermanentRoomBtn.disabled=myPermanentRoomsBtn.disabled=joinRoomBtn.disabled=true}}
 function watchFirebaseConnection(){
   onValue(ref(db,".info/connected"),snap=>{
     firebaseConnected=snap.val()===true;
@@ -667,12 +792,13 @@ async function createRoom(permanent=false){
   try{
     const c=await uniqueCode(),now=Date.now();
     await set(ref(db,"rooms/"+c),{hostUid:uid,createdAt:now,updatedAt:now,permanent:!!permanent,permanentSince:permanent?now:null,gameNumber:1,target:null,started:false,gameOver:false,round:1,players:[],history:[]});
+    if(permanent)await ensurePermanentMembership(c);
     await enterRoom(c,true)
   }catch(e){console.error(e);toastMsg(t("roomCreateError"))}
   finally{createRoomBtn.disabled=createPermanentRoomBtn.disabled=false}
 }
 async function joinRoom(c,auto=false){c=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");if(c.length!==8){if(!auto)toastMsg(t("codeLength"));return}try{const snap=await get(ref(db,"rooms/"+c));if(!snap.exists()){toastMsg(t("roomNotFound"));return}const d=roomNorm(snap.val());await enterRoom(c,d.hostUid===uid)}catch(e){console.error(e);toastMsg(t("roomOpenError"))}}
-async function enterRoom(c,host){if(unsubscribeRoom)unsubscribeRoom();await stopPresence();roomCode=c;roomRef=ref(db,"rooms/"+c);isHost=host;previousRoomState=null;winnerShown=false;pendingRound=null;roomCodeLabel.textContent=c;const roomUrl=new URL(location.href);roomUrl.searchParams.set("room",c);history.replaceState({},document.title,roomUrl.pathname+roomUrl.search+roomUrl.hash);homeScreen.classList.add("hidden");roomScreen.classList.remove("hidden");watchRoomPresence();if(firebaseConnected)await registerPresence();unsubscribeRoom=onValue(roomRef,s=>{if(!s.exists()){toastMsg(t("roomGone"));leaveRoom();return}previousRoomState=roomState?JSON.parse(JSON.stringify(roomState)):null;roomState=roomNorm(s.val());isHost=roomState.hostUid===uid;roleLabel.textContent=isHost?t("host"):t("viewer");if(presenceRef&&firebaseConnected)update(presenceRef,{role:isHost?"host":"viewer"}).catch(()=>{});render();if(roomState.gameOver&&!winnerShown){winnerShown=true;setTimeout(showWinner,220)}if(!roomState.gameOver){winnerShown=false;winnerOverlay.classList.remove("show")} })}
+async function enterRoom(c,host){if(unsubscribeRoom)unsubscribeRoom();await stopPresence();roomCode=c;roomRef=ref(db,"rooms/"+c);isHost=host;previousRoomState=null;winnerShown=false;pendingRound=null;roomCodeLabel.textContent=c;const roomUrl=new URL(location.href);roomUrl.searchParams.set("room",c);history.replaceState({},document.title,roomUrl.pathname+roomUrl.search+roomUrl.hash);homeScreen.classList.add("hidden");roomScreen.classList.remove("hidden");watchRoomPresence();if(firebaseConnected)await registerPresence();unsubscribeRoom=onValue(roomRef,s=>{if(!s.exists()){toastMsg(t("roomGone"));leaveRoom();return}previousRoomState=roomState?JSON.parse(JSON.stringify(roomState)):null;roomState=roomNorm(s.val());isHost=roomState.hostUid===uid;roleLabel.textContent=isHost?t("host"):t("viewer");if(roomState.permanent)ensurePermanentMembership(c);if(presenceRef&&firebaseConnected)update(presenceRef,{role:isHost?"host":"viewer"}).catch(()=>{});render();if(roomState.gameOver&&!winnerShown){winnerShown=true;setTimeout(showWinner,220)}if(!roomState.gameOver){winnerShown=false;winnerOverlay.classList.remove("show")} })}
 function render(){
   const tv=target();
   roleLabel.textContent=isHost?t("host"):t("viewer");
@@ -980,7 +1106,7 @@ async function makePermanent(){
   if(!isHost||isPermanent())return;if(!confirm(t("permanentConfirm")))return;
   const now=Date.now(),changes={permanent:true,permanentSince:now,gameNumber:gameNumber(),updatedAt:now};
   if(roomState.gameOver&&roomState.history.length)changes[`games/game_${gameNumber()}`]=makeGameArchive(roomState.players,roomState.history,{number:gameNumber(),finishedAt:roomState.finishedAt||now});
-  try{await update(roomRef,changes);toastMsg(t("permanentDone"))}catch(e){console.error(e);toastMsg(t("permanentError"))}
+  try{await update(roomRef,changes);await ensurePermanentMembership(roomCode);toastMsg(t("permanentDone"))}catch(e){console.error(e);toastMsg(t("permanentError"))}
 }
 function renderTransferHost(){
   if(!isPermanent()||!isHost)return;
@@ -1231,8 +1357,8 @@ function showQr(){
   }catch(e){console.warn(e);qrCode.textContent=u.toString()}
   qrOverlay.classList.add("show")
 }
-async function shareRoom(){const u=roomUrl();try{if(navigator.share){await navigator.share({title:isPermanent()?`${roomDisplayName()} · Flip 7 Live`:"Flip 7 Live",text:t("joinShare",roomCode),url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg(t("copied"))}else prompt(t("copyLink"),u.toString())}catch(e){if(e?.name!=="AbortError")prompt(t("copyLink"),u.toString())}}async function leaveRoom(){await stopPresence();if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");playerScoreOverlay.classList.remove("show");viewerRoundOverlay.classList.remove("show");editHistoryOverlay.classList.remove("show");renameRoomOverlay.classList.remove("show");starterPopupOverlay.classList.remove("show");clearTimeout(starterPopupTimer);permanentStatsOverlay.classList.remove("show");transferHostOverlay.classList.remove("show");reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");qrOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
-languageBtn.addEventListener("click",toggleLanguage);createRoomBtn.addEventListener("click",()=>createRoom(false));createPermanentRoomBtn.addEventListener("click",()=>createRoom(true));joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});permanentStatsBtn.addEventListener("click",openPermanentStats);renameRoomBtn.addEventListener("click",openRenameRoom);makePermanentBtn.addEventListener("click",makePermanent);transferHostBtn.addEventListener("click",openTransferHost);qrRoomBtn.addEventListener("click",showQr);shareRoomBtn.addEventListener("click",shareRoom);leaveRoomBtn.addEventListener("click",leaveRoom);qrShareBtn.addEventListener("click",shareRoom);qrCloseBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));qrCloseTopBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
+async function shareRoom(){const u=roomUrl();try{if(navigator.share){await navigator.share({title:isPermanent()?`${roomDisplayName()} · Flip 7 Live`:"Flip 7 Live",text:t("joinShare",roomCode),url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg(t("copied"))}else prompt(t("copyLink"),u.toString())}catch(e){if(e?.name!=="AbortError")prompt(t("copyLink"),u.toString())}}async function leaveRoom(){await stopPresence();if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");playerScoreOverlay.classList.remove("show");viewerRoundOverlay.classList.remove("show");editHistoryOverlay.classList.remove("show");myRoomsOverlay.classList.remove("show");renameRoomOverlay.classList.remove("show");starterPopupOverlay.classList.remove("show");clearTimeout(starterPopupTimer);permanentStatsOverlay.classList.remove("show");transferHostOverlay.classList.remove("show");reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");qrOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
+languageBtn.addEventListener("click",toggleLanguage);createRoomBtn.addEventListener("click",()=>createRoom(false));createPermanentRoomBtn.addEventListener("click",()=>createRoom(true));myPermanentRoomsBtn.addEventListener("click",openMyPermanentRooms);joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});permanentStatsBtn.addEventListener("click",openPermanentStats);renameRoomBtn.addEventListener("click",openRenameRoom);makePermanentBtn.addEventListener("click",makePermanent);transferHostBtn.addEventListener("click",openTransferHost);qrRoomBtn.addEventListener("click",showQr);shareRoomBtn.addEventListener("click",shareRoom);leaveRoomBtn.addEventListener("click",leaveRoom);qrShareBtn.addEventListener("click",shareRoom);qrCloseBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));qrCloseTopBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
 customTargetBtn.addEventListener("click",showCustomTarget);
 saveTargetBtn.addEventListener("click",()=>{const n=Number(customTargetInput.value);if(!Number.isInteger(n)||n<=DEFAULT_TARGET||n>9999){toastMsg(t("customRange"));customTargetInput.focus();return}setTargetValue(n)});
 customTargetInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveTargetBtn.click()});
@@ -1247,7 +1373,7 @@ pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter"&&hostScoreMode==="
 
 finishReviewBtn.addEventListener("click",()=>{finishConfirmOverlay.classList.remove("show");pendingRound=null});finishGameBtn.addEventListener("click",()=>commitPreparedRound(true));
 editHistoryCloseBtn.addEventListener("click",closeEditHistoryOverlay);editHistoryBackBtn.addEventListener("click",closeHistoryEditor);editHistoryCancelBtn.addEventListener("click",closeHistoryEditor);editHistorySaveBtn.addEventListener("click",saveHistoryRoundEdits);
-renameRoomSaveBtn.addEventListener("click",saveRoomName);renameRoomCancelBtn.addEventListener("click",closeRenameRoom);renameRoomCloseBtn.addEventListener("click",closeRenameRoom);renameRoomInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveRoomName();if(e.key==="Escape")closeRenameRoom()});permanentStatsCloseBtn.addEventListener("click",()=>permanentStatsOverlay.classList.remove("show"));transferHostCloseBtn.addEventListener("click",()=>transferHostOverlay.classList.remove("show"));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerEditRoundsBtn.addEventListener("click",openEditHistory);winnerNewGameBtn.addEventListener("click",resetGame);
+myRoomsCloseBtn.addEventListener("click",()=>myRoomsOverlay.classList.remove("show"));renameRoomSaveBtn.addEventListener("click",saveRoomName);renameRoomCancelBtn.addEventListener("click",closeRenameRoom);renameRoomCloseBtn.addEventListener("click",closeRenameRoom);renameRoomInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveRoomName();if(e.key==="Escape")closeRenameRoom()});permanentStatsCloseBtn.addEventListener("click",()=>permanentStatsOverlay.classList.remove("show"));transferHostCloseBtn.addEventListener("click",()=>transferHostOverlay.classList.remove("show"));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerEditRoundsBtn.addEventListener("click",openEditHistory);winnerNewGameBtn.addEventListener("click",resetGame);
 
 buildCardPicker();switchMyScoreMode("cards");switchHostScoreMode("cards");renderCardCalculator();renderHostCardCalculator();applyLanguage();await boot();
 </script>
