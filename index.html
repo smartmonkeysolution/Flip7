@@ -8,18 +8,10 @@
 <style>
 :root{--ink:#24211f;--cream:#fbf4e4;--paper:#fffaf0;--yellow:#f2c355;--pink:#e96480;--green:#56ad78;--orange:#e8a05b;--purple:#b965a4;--red:#d8525d;--muted:#6b645c;--line:#322e2a;--shadow:0 12px 34px rgba(32,29,24,.16);--soft-shadow:0 6px 16px rgba(32,29,24,.11);--radius:22px}
 *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded","Segoe UI",system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 12% 10%,rgba(233,100,128,.14),transparent 24%),radial-gradient(circle at 89% 20%,rgba(86,173,120,.15),transparent 20%),radial-gradient(circle at 35% 92%,rgba(185,101,164,.12),transparent 24%),#f1ebdf}button,input{font:inherit}button{touch-action:manipulation}.app{min-height:100vh;max-width:980px;margin:0 auto;padding:22px 16px calc(32px + env(safe-area-inset-bottom))}
-.hero{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}.brand{display:flex;gap:13px;align-items:center;min-width:0}.logo-card{width:65px;height:84px;flex:0 0 auto;border:3px solid var(--line);border-radius:12px;background:var(--yellow);display:grid;place-items:center;box-shadow:var(--soft-shadow);position:relative;overflow:hidden;animation:cardWiggle 7s ease-in-out infinite;transform-origin:50% 55%}.logo-card:before,.logo-card:after{content:"";position:absolute;left:8px;right:8px;height:8px;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}.logo-card:before{top:7px}.logo-card:after{bottom:7px}.logo-card b{font-size:30px;line-height:.85;text-align:center;letter-spacing:-1px}.logo-card b small{font-size:11px;display:block;letter-spacing:1px;margin-top:4px}h1{margin:0;font-size:clamp(28px,6vw,45px);letter-spacing:-1.5px;line-height:1}.subtitle{margin:6px 0 0;color:#5d574f;font-weight:700;font-size:14px}
-  .hero-tools{display:flex;align-items:center;gap:9px;flex:0 0 auto}
-  .lang-btn{
-    min-height:42px;border:2px solid var(--line);border-radius:13px;
-    padding:0 12px;background:#fff;font-weight:1000;cursor:pointer;
-    box-shadow:0 3px 0 rgba(50,46,42,.14);white-space:nowrap
-  }
-  .lang-btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(50,46,42,.14)}
-.goal{flex:0 0 auto;border:3px solid var(--line);background:var(--paper);border-radius:17px;padding:9px 13px;box-shadow:var(--soft-shadow);text-align:center;min-width:102px}.goal small{display:block;text-transform:uppercase;font-weight:1000;letter-spacing:1px;font-size:10px}.goal strong{font-size:31px;line-height:1}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}.brand{display:flex;gap:13px;align-items:center;min-width:0}.logo-card{width:65px;height:84px;flex:0 0 auto;border:3px solid var(--line);border-radius:12px;background:var(--yellow);display:grid;place-items:center;box-shadow:var(--soft-shadow);position:relative;overflow:hidden;animation:cardWiggle 7s ease-in-out infinite;transform-origin:50% 55%}.logo-card:before,.logo-card:after{content:"";position:absolute;left:8px;right:8px;height:8px;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}.logo-card:before{top:7px}.logo-card:after{bottom:7px}.logo-card b{font-size:30px;line-height:.85;text-align:center;letter-spacing:-1px}.logo-card b small{font-size:11px;display:block;letter-spacing:1px;margin-top:4px}h1{margin:0;font-size:clamp(28px,6vw,45px);letter-spacing:-1.5px;line-height:1}.subtitle{margin:6px 0 0;color:#5d574f;font-weight:700;font-size:14px}.goal{flex:0 0 auto;border:3px solid var(--line);background:var(--paper);border-radius:17px;padding:9px 13px;box-shadow:var(--soft-shadow);text-align:center;min-width:102px}.goal small{display:block;text-transform:uppercase;font-weight:1000;letter-spacing:1px;font-size:10px}.goal strong{font-size:31px;line-height:1}
 .panel{background:rgba(255,250,240,.94);border:3px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:20px 20px 16px;border-bottom:2px solid rgba(50,46,42,.15);background:linear-gradient(90deg,var(--pink) 0 18%,transparent 18% 36%,var(--green) 36% 55%,transparent 55% 73%,var(--orange) 73% 100%);background-size:100% 7px;background-repeat:no-repeat;background-position:bottom}.panel-head h2{margin:0 0 5px;font-size:22px}.panel-head p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.panel-body{padding:20px}.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{border:2px solid #c8c0b2;border-radius:18px;background:#fff;padding:17px}.choice h3{margin:0 0 7px;font-size:19px}.choice p{margin:0 0 15px;color:var(--muted);font-size:13px;line-height:1.4}.join-row{display:grid;grid-template-columns:1fr auto;gap:8px}
 input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid #bdb5a6;border-radius:15px;padding:0 16px;background:#fff;color:var(--ink);outline:none;font-weight:800}input:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(242,195,85,.34)}.room-input{text-transform:uppercase;letter-spacing:3px;text-align:center;font-size:20px}.btn{border:2.5px solid var(--line);border-radius:15px;min-height:52px;padding:0 18px;font-weight:1000;cursor:pointer;box-shadow:0 4px 0 var(--line);transition:.12s ease}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}.btn:disabled{opacity:.46;cursor:not-allowed;transform:none;box-shadow:none}.btn-primary{background:var(--yellow)}.btn-green{background:var(--green)}.btn-pink{background:var(--pink)}.btn-ghost{background:var(--cream)}.btn-dark{background:var(--ink);color:#fff}.btn-wide{width:100%}
-.setup-alert{display:none;margin-bottom:16px;border:2px solid var(--red);border-radius:16px;background:#fff3f3;padding:14px;font-size:13px;line-height:1.45}.setup-alert.show{display:block}.setup-alert strong{display:block;margin-bottom:5px}.room-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:#fff;margin-bottom:18px;flex-wrap:wrap}.room-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.room-code{font-size:21px;font-weight:1000;letter-spacing:3px;background:var(--yellow);border:2px solid var(--line);border-radius:11px;padding:5px 9px}.role-pill{border:2px solid var(--line);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.7px;background:var(--cream)}.connection-pill{border:2px solid var(--line);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:1000;white-space:nowrap;background:#fff}.connection-pill.live{background:#dff5e6}.connection-pill.reconnecting{background:#fff4ce}.connection-pill.offline{background:#ffe0e2}.viewer-count{border:2px solid #c8c0b2;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:950;background:#fff;white-space:nowrap}.bar-actions{display:flex;gap:7px;flex-wrap:wrap}.small-btn{min-height:40px;border:2px solid var(--line);border-radius:11px;padding:0 12px;background:#fff;font-weight:950;cursor:pointer}
+.setup-alert{display:none;margin-bottom:16px;border:2px solid var(--red);border-radius:16px;background:#fff3f3;padding:14px;font-size:13px;line-height:1.45}.setup-alert.show{display:block}.setup-alert strong{display:block;margin-bottom:5px}.room-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:#fff;margin-bottom:18px;flex-wrap:wrap}.room-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.room-code{font-size:21px;font-weight:1000;letter-spacing:3px;background:var(--yellow);border:2px solid var(--line);border-radius:11px;padding:5px 9px}.role-pill{border:2px solid var(--line);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.7px;background:var(--cream)}.bar-actions{display:flex;gap:7px;flex-wrap:wrap}.small-btn{min-height:40px;border:2px solid var(--line);border-radius:11px;padding:0 12px;background:#fff;font-weight:950;cursor:pointer}
 
 .target-box{margin:18px 0;border:2px solid #c8c0b2;border-radius:16px;background:#fff;padding:14px}
 .target-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
@@ -32,94 +24,32 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 .target-custom{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
 .target-help{margin:9px 2px 0;color:var(--muted);font-size:12px;font-weight:700;line-height:1.4}
 
-
-.join-requests-box,.self-join-box{border:2px solid #c8c0b2;border-radius:16px;background:#fff;padding:14px;margin:0 0 16px}
-.join-requests-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-.join-requests-head strong,.self-join-box h4{font-size:16px;font-weight:1000;margin:0}
-.join-requests-head small,.self-join-box p{display:block;color:var(--muted);font-size:12px;font-weight:750;line-height:1.4;margin:4px 0 0}
-.request-count{display:inline-grid;place-items:center;min-width:31px;height:31px;border:2px solid var(--line);border-radius:999px;background:var(--yellow);font-weight:1000}
-.join-request-list{display:grid;gap:8px}
-.join-request-item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid #d5cdbf;border-radius:13px;padding:10px;background:var(--paper)}
-.join-request-name{min-width:0}
-.join-request-name strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.join-request-name small{display:block;color:var(--muted);font-size:11px;font-weight:750;margin-top:2px}
-.request-actions{display:flex;gap:7px;flex:0 0 auto}
-.request-btn{min-height:39px;border:2px solid var(--line);border-radius:11px;padding:0 11px;font-weight:1000;cursor:pointer}
-.request-btn.accept{background:var(--green)}
-.request-btn.reject{background:var(--cream)}
-.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:1000;margin:2px 0 8px}
-.self-join-box{text-align:left;margin:18px auto 0;max-width:520px}
-.self-join-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:11px}
-.self-join-status{margin-top:10px;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900;line-height:1.4}
-.self-join-status.pending{background:#fff6d6;border:1.5px solid #c8a84e}
-.self-join-status.accepted{background:#e7f7ed;border:1.5px solid #6cad80}
-.self-join-status.hidden{display:none}
 .add-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:16px}.players{display:grid;gap:10px;margin:14px 0 18px}.player-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid #c8c0b2;border-radius:14px;padding:10px 12px 10px 14px;background:#fff}.player-chip-main{display:flex;align-items:center;gap:10px;min-width:0}.player-chip strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.player-no{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:1000;border:2px solid var(--line);background:var(--cream);flex:0 0 auto}.icon-btn{width:40px;height:40px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:1000;cursor:pointer}.empty{border:2px dashed #bdb5a6;border-radius:15px;padding:24px;text-align:center;color:#777067;font-weight:750}.waiting{text-align:center;padding:30px 14px}.waiting-icon{font-size:46px;margin-bottom:10px}.waiting h3{margin:0 0 7px;font-size:22px}.waiting p{margin:0;color:var(--muted);font-weight:700}
-.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.round-pill{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--cream);font-weight:950;white-space:nowrap}.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);border:1px solid var(--line)}.leaderboard{width:100%;border-collapse:separate;border-spacing:0 9px}.leaderboard th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;padding:0 12px 2px;color:var(--muted)}.leaderboard td{background:#fff;border-top:2px solid #c7bfb0;border-bottom:2px solid #c7bfb0;padding:12px}.leaderboard td:first-child{border-left:2px solid #c7bfb0;border-radius:14px 0 0 14px}.leaderboard td:last-child{border-right:2px solid #c7bfb0;border-radius:0 14px 14px 0}.leaderboard tr.leader td{border-color:var(--green)}.score-name{font-weight:1000;max-width:260px;overflow:hidden;text-overflow:ellipsis}.score-val{font-size:24px;font-weight:1000;text-align:right;white-space:nowrap}.score-number{display:inline-block;min-width:1.4ch;transform-origin:center}.score-unit{font-size:13px;font-weight:900;color:var(--muted)}.remaining{display:block;font-size:12px;color:var(--muted);font-weight:950;text-align:right;margin-top:1px}.delta{display:block;font-size:11px;color:var(--muted);font-weight:800;text-align:right;min-height:15px}.progress{height:10px;background:#e7e0d2;border:1px solid #b9b09f;border-radius:999px;overflow:hidden;margin-top:7px;min-width:115px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green));border-radius:999px;transition:width .35s ease}.starter-notice{margin:0 0 14px;border:2.5px solid var(--line);border-radius:16px;background:linear-gradient(90deg,#fff8dc,#fff);padding:13px 15px;display:flex;align-items:center;gap:11px;font-weight:850;box-shadow:0 3px 0 rgba(50,46,42,.10)}.starter-notice .starter-icon{font-size:26px;flex:0 0 auto}.starter-notice strong{font-weight:1000}.starter-notice small{display:block;color:var(--muted);font-weight:800;margin-top:2px;line-height:1.35}.starter-notice.notice-pop{animation:noticePop .55s ease}@keyframes noticePop{0%{transform:translateY(-4px);opacity:.65}55%{transform:translateY(2px)}100%{transform:translateY(0);opacity:1}}
-.live-round{margin:14px 0;border:2.5px solid var(--line);border-radius:18px;background:#fff;padding:14px}
-.live-round-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.live-round-head h3{margin:0;font-size:19px}.live-round-head p{margin:4px 0 0;color:var(--muted);font-size:12px;font-weight:750}
-.round-count{border:2px solid var(--line);border-radius:999px;background:var(--yellow);padding:7px 11px;font-size:12px;font-weight:1000;white-space:nowrap}
-.round-live-list{display:grid;gap:8px}
-.round-live-row{display:grid;grid-template-columns:minmax(115px,1.2fr) minmax(90px,.8fr) minmax(100px,.9fr) auto;gap:9px;align-items:center;border:1.5px solid #d3cabd;border-radius:13px;padding:10px;background:var(--paper)}
-.round-live-name{min-width:0}.round-live-name strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.round-live-name small{display:block;color:var(--muted);font-size:10px;font-weight:800;margin-top:2px}
-.round-score{font-size:19px;font-weight:1000}.projected-score{font-size:10px;color:var(--muted);font-weight:850;display:block}
-.status-chip{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border:1.5px solid var(--line);border-radius:999px;padding:4px 9px;font-size:10px;font-weight:1000;text-align:center}
-.status-waiting{background:#f2eee6}.status-pending{background:#fff0b8}.status-approved{background:#dff5e6}.status-rejected{background:#ffe0e2}
-.round-row-actions{display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap}
-.mini-action{min-height:34px;border:1.8px solid var(--line);border-radius:10px;padding:0 9px;background:#fff;font-size:10px;font-weight:1000;cursor:pointer}.mini-action.approve{background:var(--green)}.mini-action.reject{background:var(--cream)}.mini-action.edit{background:var(--yellow)}
-.close-round-wrap{display:grid;gap:7px;margin-top:12px}.close-round-hint{text-align:center;color:var(--muted);font-size:11px;font-weight:800}
-
-.my-score-panel{margin:14px 0;border:2.5px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fff,#fffaf0);padding:15px}
-.my-score-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.my-score-head h3{margin:0;font-size:19px}.my-score-head p{margin:4px 0 0;color:var(--muted);font-size:12px;font-weight:750}
-.score-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}.score-tab{min-height:43px;border:2px solid var(--line);border-radius:12px;background:var(--cream);font-weight:1000;cursor:pointer}.score-tab.active{background:var(--yellow)}
-.manual-score-grid{display:grid;grid-template-columns:1fr auto;gap:8px}
-.cards-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.card-pick{min-height:43px;border:2px solid var(--line);border-radius:10px;background:#fff;font-weight:1000;cursor:pointer}.card-pick.selected{background:var(--green)}
-.modifier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.modifier-pick{min-height:40px;border:2px solid var(--line);border-radius:10px;background:var(--cream);font-weight:1000;cursor:pointer}.modifier-pick.selected{background:var(--orange)}
-.card-total{display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid #c9c0b2;border-radius:13px;background:#fff;padding:10px 12px;margin-top:10px}.card-total strong{font-size:25px}.card-total small{display:block;color:var(--muted);font-size:10px;font-weight:800}
-.my-score-actions{display:grid;grid-template-columns:1fr 1.3fr;gap:8px;margin-top:11px}.submission-state{border-radius:13px;padding:11px 12px;font-size:12px;font-weight:900;line-height:1.4}.submission-state.pending{background:#fff0b8;border:1.5px solid #c6a649}.submission-state.approved{background:#dff5e6;border:1.5px solid #6bad80}.submission-state.rejected{background:#ffe0e2;border:1.5px solid #cc6f76}
-.host-entry-note{font-size:11px;color:var(--muted);font-weight:800;text-align:center;margin:-10px 0 14px}
-.game-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}.btn-orange{background:var(--orange)}
-.review-list{display:grid;gap:9px;margin:16px 0}.review-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;border:2px solid #c8c0b2;border-radius:13px;background:#fff;padding:11px 13px}.review-row strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.review-points{font-size:20px;font-weight:1000}.review-total{display:block;font-size:11px;color:var(--muted);font-weight:800;margin-top:2px}.review-actions{display:grid;grid-template-columns:1fr 1.25fr;gap:10px;margin-top:14px}.finish-callout{border:2.5px solid var(--line);border-radius:17px;background:var(--yellow);padding:15px;margin:16px 0;text-align:center}.finish-callout strong{display:block;font-size:24px;margin-bottom:5px}.finish-callout span{display:block;color:#5d574f;font-weight:850}.finish-actions{display:grid;grid-template-columns:1fr 1.2fr;gap:10px}.qr-wrap{text-align:center}.qr-box{width:244px;max-width:100%;min-height:244px;margin:16px auto;background:#fff;border:3px solid var(--line);border-radius:18px;padding:10px;display:grid;place-items:center}.qr-box img,.qr-box canvas{max-width:100%;height:auto}.qr-code-label{font-size:27px;letter-spacing:4px;font-weight:1000;margin:3px 0 6px}.qr-link{font-size:11px;line-height:1.4;color:var(--muted);font-weight:750;overflow-wrap:anywhere}.qr-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.viewer-note{margin-top:15px;border:2px solid #c8c0b2;border-radius:14px;background:#fff;padding:13px;text-align:center;color:var(--muted);font-weight:800;font-size:13px}.history{margin-top:16px;border-top:2px dashed #c5bdaf;padding-top:14px}.history summary{cursor:pointer;font-weight:950}.history-list{margin-top:10px;display:grid;gap:8px}.history-item{background:#fff;border:1.5px solid #cfc6b8;border-radius:12px;padding:10px 12px;font-size:13px}.history-export{margin-top:12px}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.round-pill{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--cream);font-weight:950;white-space:nowrap}.dot{width:10px;height:10px;border-radius:50%;background:var(--pink);border:1px solid var(--line)}.leaderboard{width:100%;border-collapse:separate;border-spacing:0 9px}.leaderboard th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;padding:0 12px 2px;color:var(--muted)}.leaderboard td{background:#fff;border-top:2px solid #c7bfb0;border-bottom:2px solid #c7bfb0;padding:12px}.leaderboard td:first-child{border-left:2px solid #c7bfb0;border-radius:14px 0 0 14px}.leaderboard td:last-child{border-right:2px solid #c7bfb0;border-radius:0 14px 14px 0}.leaderboard tr.leader td{border-color:var(--green)}.score-name{font-weight:1000;max-width:260px;overflow:hidden;text-overflow:ellipsis}.score-val{font-size:24px;font-weight:1000;text-align:right;white-space:nowrap}.score-number{display:inline-block;min-width:1.4ch;transform-origin:center}.delta{display:block;font-size:11px;color:var(--muted);font-weight:800;text-align:right;min-height:15px}.progress{height:10px;background:#e7e0d2;border:1px solid #b9b09f;border-radius:999px;overflow:hidden;margin-top:7px;min-width:115px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green));border-radius:999px;transition:width .35s ease}.game-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}.viewer-note{margin-top:15px;border:2px solid #c8c0b2;border-radius:14px;background:#fff;padding:13px;text-align:center;color:var(--muted);font-weight:800;font-size:13px}.history{margin-top:16px;border-top:2px dashed #c5bdaf;padding-top:14px}.history summary{cursor:pointer;font-weight:950}.history-list{margin-top:10px;display:grid;gap:8px}.history-item{background:#fff;border:1.5px solid #cfc6b8;border-radius:12px;padding:10px 12px;font-size:13px}.history-export{margin-top:12px}
 .overlay{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(25,23,20,.64);backdrop-filter:blur(7px);padding:18px}.overlay.show{display:flex}.score-card{width:min(100%,500px);background:var(--paper);border:4px solid var(--line);border-radius:26px;box-shadow:0 24px 70px rgba(0,0,0,.34);overflow:hidden;position:relative}.score-card:before,.score-card:after{content:"";position:absolute;left:18px;right:18px;height:8px;border-top:3px solid var(--line);border-bottom:3px solid var(--line);opacity:.7}.score-card:before{top:12px}.score-card:after{bottom:12px}.score-card-inner{padding:34px 24px 32px}.turn-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.turn-counter{font-size:12px;font-weight:1000;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}.turn-player{text-align:center;font-size:clamp(36px,9vw,58px);line-height:1;font-weight:1000;margin:18px 0 6px;overflow-wrap:anywhere}.current-score{text-align:center;color:#71695f;font-weight:850;margin-bottom:22px}.score-input-wrap{position:relative}.score-input-wrap input{height:86px;font-size:44px;text-align:center;border:3px solid var(--line);border-radius:18px;padding:0 58px 0 18px}.score-input-wrap span{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-weight:1000;color:#6c655c}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.quick button{min-height:42px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:1000;cursor:pointer}.turn-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin-top:14px}.turn-secondary{display:flex;justify-content:space-between;gap:8px;margin-top:12px}.link-btn{border:0;background:transparent;font-weight:950;text-decoration:underline;cursor:pointer;color:#5f574e;padding:8px 0}.winner{text-align:center}.winner .trophy{font-size:66px;line-height:1;margin:4px 0 12px}.winner h2{font-size:34px;margin:0 0 5px}.winner p{margin:0 0 18px;color:#655e56;font-weight:800}.podium{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:8px;align-items:end;margin:18px 0 22px}.place{border:2.5px solid var(--line);border-radius:16px 16px 9px 9px;padding:12px 8px;background:#fff;min-width:0}.place.first{background:var(--yellow);padding-top:20px;padding-bottom:18px}.place.second{background:#efe9df}.place.third{background:#f0c99e}.medal{font-size:25px;display:block;margin-bottom:6px}.place-name{font-weight:1000;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.place-score{font-weight:950;font-size:12px;margin-top:4px;color:#5d574f}.winner-actions{display:grid;gap:10px}.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:#fff;border-radius:999px;padding:11px 16px;font-weight:850;font-size:13px;opacity:0;pointer-events:none;transition:.2s ease;z-index:100;box-shadow:var(--soft-shadow);text-align:center;max-width:90%}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.score-number.score-pop{animation:scorePop .52s cubic-bezier(.2,.8,.2,1)}.round-pill.round-bump{animation:roundBump .58s ease}
 @keyframes scorePop{0%{transform:translateY(0) scale(1)}38%{transform:translateY(-5px) scale(1.13)}70%{transform:translateY(1px) scale(.98)}100%{transform:translateY(0) scale(1)}}@keyframes roundBump{0%{transform:translateX(0) rotate(0)}28%{transform:translateX(4px) rotate(1.5deg)}58%{transform:translateX(-2px) rotate(-1deg)}100%{transform:translateX(0) rotate(0)}}@keyframes cardWiggle{0%,82%,100%{transform:rotate(-3deg)}87%{transform:rotate(4deg)}91%{transform:rotate(-6deg)}95%{transform:rotate(2deg)}}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
-@media(prefers-reduced-motion:reduce){.logo-card{animation:none}.score-number.score-pop,.round-pill.round-bump{animation:none}}@media(max-width:650px){.app{padding:15px 11px calc(24px + env(safe-area-inset-bottom))}.hero{align-items:flex-start;flex-wrap:wrap}.hero-tools{margin-left:auto}.lang-btn{min-height:38px;padding:0 9px;font-size:12px}.logo-card{width:52px;height:68px}.logo-card b{font-size:24px}.logo-card b small{font-size:9px}.goal{min-width:86px;padding:8px 9px}.goal strong{font-size:27px}.panel-body{padding:15px}.home-grid{grid-template-columns:1fr}.self-join-row{grid-template-columns:1fr}.request-actions{width:100%}.request-btn{flex:1}.join-request-item{align-items:stretch;flex-direction:column}.leaderboard th{padding:0 6px 2px;font-size:10px}.leaderboard td{padding:9px 6px}.leaderboard td:nth-child(1){width:31%}.leaderboard td:nth-child(2){width:38%}.leaderboard td:nth-child(3){width:31%}.score-name{max-width:105px}.score-val{font-size:20px}.progress{min-width:72px}.remaining{font-size:10px}.delta{font-size:10px}.starter-notice{padding:11px 12px}.starter-notice .starter-icon{font-size:23px}.round-live-row{grid-template-columns:1fr 1fr}.round-row-actions{grid-column:1/-1;justify-content:stretch}.mini-action{flex:1}.cards-grid{grid-template-columns:repeat(5,1fr)}.modifier-grid{grid-template-columns:repeat(3,1fr)}.manual-score-grid,.my-score-actions{grid-template-columns:1fr}.turn-actions,.review-actions,.finish-actions,.qr-actions{grid-template-columns:1fr}.podium{gap:5px}.place{padding-left:5px;padding-right:5px}}
+@media(prefers-reduced-motion:reduce){.logo-card{animation:none}.score-number.score-pop,.round-pill.round-bump{animation:none}}@media(max-width:650px){.app{padding:15px 11px calc(24px + env(safe-area-inset-bottom))}.hero{align-items:flex-start}.logo-card{width:52px;height:68px}.logo-card b{font-size:24px}.logo-card b small{font-size:9px}.goal{min-width:86px;padding:8px 9px}.goal strong{font-size:27px}.panel-body{padding:15px}.home-grid{grid-template-columns:1fr}.leaderboard th:nth-child(2),.leaderboard td:nth-child(2){display:none}.leaderboard td{padding:11px 9px}.score-name{max-width:165px}.turn-actions{grid-template-columns:1fr}.podium{gap:5px}.place{padding-left:5px;padding-right:5px}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="hero">
-    <div class="brand"><div class="logo-card"><b>FLIP<small>7</small></b></div><div><h1>Flip 7 Live</h1><p id="appSubtitle" class="subtitle">Un marcador · todos lo ven en vivo</p></div></div>
-    <div class="hero-tools">
-      <button id="languageBtn" class="lang-btn" type="button">🌐 Idioma: ES</button>
-      <div class="goal"><small id="goalLabel">Meta</small><strong id="goalValue">Por definir</strong></div>
-    </div>
+    <div class="brand"><div class="logo-card"><b>FLIP<small>7</small></b></div><div><h1>Flip 7 Live</h1><p class="subtitle">Un marcador · todos lo ven en vivo</p></div></div>
+    <div class="goal"><small>Meta</small><strong id="goalValue">200</strong></div>
   </div>
   <div id="setupAlert" class="setup-alert"><strong>Falta conectar Firebase.</strong>La app está lista para partidas en vivo, pero primero debe pegar la configuración de su proyecto Firebase en <b>firebaseConfig</b>. Revise README.txt.</div>
-  <section id="homeScreen" class="panel"><div class="panel-head"><h2 id="homeTitle">Partida compartida</h2><p id="homeDesc">Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.</p></div><div class="panel-body"><div class="home-grid">
-    <div class="choice"><h3 id="createTitle">🎴 Crear partida</h3><p id="createDesc">Usted será el host: agrega jugadores, suma rondas y controla la partida.</p><button id="createRoomBtn" class="btn btn-green btn-wide">Crear sala</button></div>
-    <div class="choice"><h3 id="joinTitle">👀 Unirse a partida</h3><p id="joinDesc">Ingrese el código. Como espectador verá exactamente el mismo marcador en vivo.</p><div class="join-row"><input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO"><button id="joinRoomBtn" class="btn btn-primary">Entrar</button></div></div>
+  <section id="homeScreen" class="panel"><div class="panel-head"><h2>Partida compartida</h2><p>Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.</p></div><div class="panel-body"><div class="home-grid">
+    <div class="choice"><h3>🎴 Crear partida</h3><p>Usted será el host: agrega jugadores, suma rondas y controla la partida.</p><button id="createRoomBtn" class="btn btn-green btn-wide">Crear sala</button></div>
+    <div class="choice"><h3>👀 Unirse a partida</h3><p>Ingrese el código. Como espectador verá exactamente el mismo marcador en vivo.</p><div class="join-row"><input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO"><button id="joinRoomBtn" class="btn btn-primary">Entrar</button></div></div>
   </div></div></section>
   <section id="roomScreen" class="panel hidden"><div class="panel-body">
-    <div class="room-bar"><div class="room-meta"><span id="roomLabel">Sala</span><span id="roomCodeLabel" class="room-code">--------</span><span id="roleLabel" class="role-pill">Host</span><span id="connectionStatus" class="connection-pill reconnecting">● Conectando…</span><span id="viewerCount" class="viewer-count">👥 0 conectados</span></div><div class="bar-actions"><button id="qrRoomBtn" class="small-btn">QR</button><button id="shareRoomBtn" class="small-btn">Compartir</button><button id="leaveRoomBtn" class="small-btn">Salir</button></div></div>
+    <div class="room-bar"><div class="room-meta"><span>Sala</span><span id="roomCodeLabel" class="room-code">--------</span><span id="roleLabel" class="role-pill">Host</span></div><div class="bar-actions"><button id="shareRoomBtn" class="small-btn">Compartir</button><button id="leaveRoomBtn" class="small-btn">Salir</button></div></div>
     <div id="hostSetup" class="hidden">
       <div class="panel-head" style="margin:-20px -20px 18px">
-        <h2 id="setupTitle">Configurar partida</h2>
-        <p id="setupDesc">Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.</p>
+        <h2>Configurar partida</h2>
+        <p>Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.</p>
       </div>
 
-      <div id="joinRequestsBox" class="join-requests-box hidden">
-        <div class="join-requests-head">
-          <div>
-            <strong id="joinRequestsTitle">Solicitudes para unirse</strong>
-            <small id="joinRequestsDesc">Los espectadores pueden pedir un lugar. Usted decide quién entra.</small>
-          </div>
-          <span id="joinRequestsCount" class="request-count">0</span>
-        </div>
-        <div id="joinRequestsList" class="join-request-list"></div>
-      </div>
-
-      <div id="manualAddLabel" class="section-label">Agregar jugador manualmente</div>
       <div class="add-row">
         <input id="playerName" type="text" maxlength="24" autocomplete="off" placeholder="Nombre del jugador">
         <button id="addPlayerBtn" class="btn btn-primary">Agregar</button>
@@ -129,10 +59,10 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
       <div class="target-box">
         <div class="target-head">
           <div>
-            <strong id="targetTitle">Meta de la partida</strong>
-            <small id="targetDesc">Flip 7 normalmente termina en 200, pero puede usar una meta mayor.</small>
+            <strong>Meta de la partida</strong>
+            <small>Flip 7 normalmente termina en 200, pero puede usar una meta mayor.</small>
           </div>
-          <span id="targetPreview" class="target-preview">Por definir</span>
+          <span id="targetPreview" class="target-preview">200 pts</span>
         </div>
 
         <div class="target-options">
@@ -145,584 +75,66 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
                  inputmode="numeric" placeholder="Ej. 300" aria-label="Meta personalizada">
           <button id="saveTargetBtn" type="button" class="btn btn-primary">Usar meta</button>
         </div>
-        <p id="targetHelp" class="target-help">La meta personalizada debe ser superior a 200. Todos los espectadores verán la misma meta.</p>
+        <p class="target-help">La meta personalizada debe ser superior a 200. Todos los espectadores verán la misma meta.</p>
       </div>
 
       <button id="startGameBtn" class="btn btn-green btn-wide" disabled>Iniciar juego</button>
     </div>
-    <div id="viewerWaiting" class="waiting hidden">
-      <div class="waiting-icon">⏳</div>
-      <h3 id="waitingTitle">Esperando al host</h3>
-      <p id="waitingText">La partida todavía no ha comenzado.</p>
-      <div id="selfJoinBox" class="self-join-box">
-        <h4 id="selfJoinTitle">¿Quiere jugar?</h4>
-        <p id="selfJoinDesc">Escriba el nombre con el que quiere aparecer. El host debe aprobarlo.</p>
-        <div id="selfJoinForm" class="self-join-row">
-          <input id="selfJoinName" type="text" maxlength="24" autocomplete="off" placeholder="Su nombre">
-          <button id="requestJoinBtn" type="button" class="btn btn-primary">Solicitar unirme</button>
-        </div>
-        <div id="selfJoinStatus" class="self-join-status hidden"></div>
-      </div>
-    </div>
-    <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 id="scoreboardTitle" style="margin-bottom:3px">Marcador</h2><p id="scoreboardDesc">La ronda termina completa antes de comprobar quién llegó a la <strong>meta de la partida</strong>.</p></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
-      <div id="starterNotice" class="starter-notice hidden"><span class="starter-icon">🃏</span><div><strong id="starterNoticeTitle">Primera carta</strong><small id="starterNoticeText"></small></div></div>
-      <div style="overflow-x:auto"><table class="leaderboard"><thead><tr><th id="playerHeader">Jugador</th><th id="progressHeader">Progreso</th><th id="pointsHeader" style="text-align:right">Puntos</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
-
-      <div id="liveRoundPanel" class="live-round hidden">
-        <div class="live-round-head">
-          <div><h3 id="liveRoundTitle">Ronda en vivo</h3><p id="liveRoundDesc">Los puntajes enviados son provisionales hasta que el host los apruebe.</p></div>
-          <span id="roundApprovalCount" class="round-count">0/0 aprobados</span>
-        </div>
-        <div id="roundLiveList" class="round-live-list"></div>
-        <div id="closeRoundWrap" class="close-round-wrap hidden">
-          <button id="closeRoundBtn" class="btn btn-green btn-wide" disabled>Revisar y cerrar ronda</button>
-          <div id="closeRoundHint" class="close-round-hint">Todos los jugadores deben tener un puntaje aprobado.</div>
-        </div>
-      </div>
-
-      <div id="myScorePanel" class="my-score-panel hidden">
-        <div class="my-score-head">
-          <div><h3 id="myScoreTitle">Mi puntuación</h3><p id="myScoreDesc">Envíe su resultado de esta ronda al host.</p></div>
-          <span id="myScoreRound" class="round-pill">Ronda 1</span>
-        </div>
-        <div id="mySubmissionState" class="submission-state hidden"></div>
-        <div id="myScoreForm">
-          <div class="score-tabs">
-            <button id="manualTabBtn" type="button" class="score-tab active">✏️ Manual</button>
-            <button id="cardsTabBtn" type="button" class="score-tab">🃏 Mis cartas</button>
-          </div>
-          <div id="manualScorePane">
-            <div class="manual-score-grid">
-              <input id="myManualScore" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
-              <button id="myBustBtn" type="button" class="btn btn-ghost">Bust / 0</button>
-            </div>
-          </div>
-          <div id="cardsScorePane" class="hidden">
-            <div id="numberCardsGrid" class="cards-grid"></div>
-            <div id="modifierCardsGrid" class="modifier-grid"></div>
-            <div class="card-total"><div><small id="cardCalcLabel">Total calculado</small><strong id="cardCalcTotal">0</strong></div><div><small id="cardCalcDetail">Seleccione sus cartas.</small></div></div>
-          </div>
-          <div class="my-score-actions">
-            <button id="clearMyScoreBtn" type="button" class="btn btn-ghost">Limpiar</button>
-            <button id="submitMyScoreBtn" type="button" class="btn btn-primary">Enviar al host</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="hostGameActions" class="game-actions hidden"><button id="roundBtn" class="btn btn-pink">▶ Iniciar ronda</button><button id="undoRoundBtn" class="btn btn-orange" disabled>↶ Deshacer última ronda</button><button id="newGameBtn" class="btn btn-ghost">Nuevo juego</button></div>
-      <div id="viewerNote" class="viewer-note hidden">Marcador en vivo · esperando al host.</div>
-      <details class="history"><summary id="historySummary">Historial de rondas</summary><div id="historyList" class="history-list"></div><button id="exportBtn" class="btn btn-dark btn-wide history-export" disabled>Descargar historial en Excel</button></details>
+    <div id="viewerWaiting" class="waiting hidden"><div class="waiting-icon">⏳</div><h3>Esperando al host</h3><p id="waitingText">La partida todavía no ha comenzado.</p></div>
+    <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 style="margin-bottom:3px">Marcador</h2><p>La ronda termina completa antes de comprobar quién llegó a la <strong>meta de la partida</strong>.</p></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
+      <div style="overflow-x:auto"><table class="leaderboard"><thead><tr><th>Jugador</th><th>Progreso</th><th style="text-align:right">Puntos</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
+      <div id="hostGameActions" class="game-actions hidden"><button id="roundBtn" class="btn btn-pink">＋ Suma de ronda</button><button id="newGameBtn" class="btn btn-ghost">Nuevo juego</button></div>
+      <div id="viewerNote" class="viewer-note hidden">Marcador en vivo · solo el host puede registrar puntos.</div>
+      <details class="history"><summary>Historial de rondas</summary><div id="historyList" class="history-list"></div><button id="exportBtn" class="btn btn-dark btn-wide history-export" disabled>Descargar historial en Excel</button></details>
     </div>
   </div></section>
 </div>
-<div id="roundOverlay" class="overlay"><div class="score-card"><div class="score-card-inner"><div class="turn-top"><span id="turnCounter" class="turn-counter">Registro del host</span><span id="roundLabel" class="round-pill">Ronda 1</span></div><div id="turnPlayer" class="turn-player">Jugador</div><div id="turnCurrentScore" class="current-score">Puntaje oficial: 0</div><div id="hostEntryNote" class="host-entry-note">Puede registrar o corregir el puntaje de cualquier jugador.</div><div class="score-input-wrap"><input id="pointsInput" type="number" min="0" step="1" inputmode="numeric" placeholder="0"><span>pts</span></div><div class="quick"><button data-add="5">+5</button><button data-add="10">+10</button><button data-add="20">+20</button><button data-add="50">+50</button></div><div class="turn-actions"><button id="passBtn" class="btn btn-ghost">0 puntos</button><button id="saveScoreBtn" class="btn btn-green">Guardar y aprobar</button></div><div class="turn-secondary"><span></span><button id="cancelRoundBtn" class="link-btn">Cerrar</button></div><button id="backTurnBtn" class="hidden" type="button"></button></div></div></div>
-<div id="reviewOverlay" class="overlay" role="dialog" aria-modal="true"><div class="score-card"><div class="score-card-inner"><div class="turn-top"><span id="reviewRoundLabel" class="turn-counter">Ronda 1</span><span class="round-pill">✓</span></div><div id="reviewTitle" class="turn-player" style="font-size:clamp(28px,7vw,42px)">Revisar ronda</div><div id="reviewSubtitle" class="current-score">Confirme los puntos antes de sincronizarlos.</div><div id="reviewList" class="review-list"></div><div class="review-actions"><button id="reviewCorrectBtn" class="btn btn-ghost">Corregir</button><button id="reviewConfirmBtn" class="btn btn-green">Confirmar ronda</button></div><div class="turn-secondary"><span></span><button id="reviewCancelBtn" class="link-btn">Cancelar ronda</button></div></div></div></div>
-<div id="finishConfirmOverlay" class="overlay" role="dialog" aria-modal="true"><div class="score-card"><div class="score-card-inner winner"><div class="trophy">🏁</div><h2 id="finishConfirmTitle">Meta alcanzada</h2><p id="finishConfirmSubtitle">Revise el resultado antes de finalizar la partida.</p><div class="finish-callout"><strong id="finishLeader">Jugador</strong><span id="finishLeaderScore">200 puntos</span></div><div class="finish-actions"><button id="finishReviewBtn" class="btn btn-ghost">Revisar ronda</button><button id="finishGameBtn" class="btn btn-green">Finalizar partida</button></div></div></div></div>
-<div id="qrOverlay" class="overlay" role="dialog" aria-modal="true"><div class="score-card"><div class="score-card-inner qr-wrap"><div class="turn-top"><span id="qrTitle" class="turn-counter">Unirse a la sala</span><button id="qrCloseTopBtn" class="small-btn" type="button">×</button></div><div id="qrCodeLabel" class="qr-code-label">--------</div><div id="qrCode" class="qr-box"></div><div id="qrLinkText" class="qr-link"></div><div class="qr-actions"><button id="qrShareBtn" class="btn btn-primary">Compartir link</button><button id="qrCloseBtn" class="btn btn-ghost">Cerrar</button></div></div></div></div>
-<div id="winnerOverlay" class="overlay"><div class="score-card"><div class="score-card-inner winner"><div class="trophy">🏆</div><h2 id="winnerName">¡Partida terminada!</h2><p id="winnerSubtitle">Clasificación final</p><div class="podium"><div id="place2" class="place second"></div><div id="place1" class="place first"></div><div id="place3" class="place third"></div></div><div class="winner-actions"><button id="winnerCloseBtn" class="btn btn-primary btn-wide">Ver marcador final</button><button id="winnerUndoBtn" class="btn btn-orange btn-wide hidden">↶ Deshacer última ronda</button><button id="winnerNewGameBtn" class="link-btn hidden">Empezar otro juego</button></div></div></div></div>
+<div id="roundOverlay" class="overlay"><div class="score-card"><div class="score-card-inner"><div class="turn-top"><span id="turnCounter" class="turn-counter">Jugador 1 de 4</span><span id="roundLabel" class="round-pill">Ronda 1</span></div><div id="turnPlayer" class="turn-player">Jugador</div><div id="turnCurrentScore" class="current-score">Lleva 0 puntos</div><div class="score-input-wrap"><input id="pointsInput" type="number" min="0" step="1" inputmode="numeric" placeholder="0"><span>pts</span></div><div class="quick"><button data-add="5">+5</button><button data-add="10">+10</button><button data-add="20">+20</button><button data-add="50">+50</button></div><div class="turn-actions"><button id="passBtn" class="btn btn-ghost">Pasar</button><button id="saveScoreBtn" class="btn btn-green">Sumar puntos</button></div><div class="turn-secondary"><button id="backTurnBtn" class="link-btn">← Anterior</button><button id="cancelRoundBtn" class="link-btn">Cancelar ronda</button></div></div></div></div>
+<div id="winnerOverlay" class="overlay"><div class="score-card"><div class="score-card-inner winner"><div class="trophy">🏆</div><h2 id="winnerName">¡Partida terminada!</h2><p>Clasificación final</p><div class="podium"><div id="place2" class="place second"></div><div id="place1" class="place first"></div><div id="place3" class="place third"></div></div><div class="winner-actions"><button id="winnerCloseBtn" class="btn btn-primary btn-wide">Ver marcador final</button><button id="winnerNewGameBtn" class="link-btn hidden">Empezar otro juego</button></div></div></div></div>
 <div id="toast" class="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { getDatabase, ref, get, set, update, onValue, onDisconnect, remove } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+import { getDatabase, ref, get, set, update, onValue } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 /* ====== PEGUE AQUÍ LA CONFIGURACIÓN DE SU APP WEB DE FIREBASE ====== */
 const firebaseConfig = {
-  apiKey: "AIzaSyB2sS5SAX8BLjd0rghaQ5o0eGu2BCYt-EI",
-  authDomain: "flip7-live-sms.firebaseapp.com",
-  databaseURL: "https://flip7-live-sms-default-rtdb.firebaseio.com/",
-  projectId: "flip7-live-sms",
-  storageBucket: "flip7-live-sms.firebasestorage.app",
-  messagingSenderId: "34898308279",
-  appId: "1:34898308279:web:95e5cbf0cd6b14fe8eb132"
+  apiKey: "PEGUE_AQUI",
+  authDomain: "PEGUE_AQUI",
+  databaseURL: "PEGUE_AQUI",
+  projectId: "PEGUE_AQUI",
+  storageBucket: "PEGUE_AQUI",
+  messagingSenderId: "PEGUE_AQUI",
+  appId: "PEGUE_AQUI"
 };
 /* =================================================================== */
 
-const DEFAULT_TARGET=200,$=id=>document.getElementById(id);
-let lang=localStorage.getItem("flip7_lang")==="en"?"en":"es";
-let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,winnerShown=false,pendingRound=null,presenceRef=null,presenceUnsubscribe=null,connectedUsers=0,firebaseConnected=false,hostEditPlayerId=null,myScoreMode="manual",selectedNumbers=new Set(),selectedModifiers=new Set();
-const presenceId=sessionStorage.getItem("flip7_presence_id")||(crypto.randomUUID?crypto.randomUUID():Date.now()+"_"+Math.random());
-sessionStorage.setItem("flip7_presence_id",presenceId);
-
-const I18N={
-  es:{
-    subtitle:"Un marcador · todos lo ven en vivo",goal:"Meta",undefinedTarget:"Por definir",languageButton:"🌐 Idioma: ES",
-    homeTitle:"Partida compartida",homeDesc:"Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.",
-    createTitle:"🎴 Crear partida",createDesc:"Usted será el host: agrega jugadores, suma rondas y controla la partida.",createRoom:"Crear sala",
-    joinTitle:"👀 Unirse a partida",joinDesc:"Ingrese el código. Como espectador verá exactamente el mismo marcador en vivo.",code:"CÓDIGO",enter:"Entrar",
-    room:"Sala",host:"Host",viewer:"Espectador",share:"Compartir",leave:"Salir",
-    setupTitle:"Configurar partida",setupDesc:"Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.",
-    playerPlaceholder:"Nombre del jugador",add:"Agregar",emptyPlayers:"Agregue al menos 2 jugadores para comenzar.",remove:"Quitar",
-    targetTitle:"Meta de la partida",targetDesc:"Flip 7 normalmente termina en 200, pero puede usar una meta mayor.",
-    target200:"200 puntos",custom:"Personalizada",customPlaceholder:"Ej. 300",useTarget:"Usar meta",
-    targetHelp:"La meta personalizada debe ser superior a 200. Todos los espectadores verán la misma meta.",startGame:"Iniciar juego",
-    waitingTitle:"Esperando al host",waitingDefault:"La partida todavía no ha comenzado.",waitingPlayers:n=>`El host está preparando la partida con ${n} jugadores.`,waitingAdding:"El host está agregando los jugadores.",
-    scoreboard:"Marcador",scoreboardDesc:'La ronda termina completa antes de comprobar quién llegó a la <strong>meta de la partida</strong>.',
-    player:"Jugador",progress:"Progreso",points:"Puntos",round:"Ronda",final:"Final",roundSum:"＋ Suma de ronda",newGame:"Nuevo juego",
-    viewerNote:"Marcador en vivo · solo el host puede registrar puntos.",history:"Historial de rondas",exportExcel:"Descargar historial en Excel",
-    firstCard:"Primera carta",highestRound:(r,p)=>`Tuvo el puntaje más alto de la ronda ${r}: ${p} puntos.`,tieRound:(r,p)=>`Empate con ${p} puntos en la ronda ${r}.`,
-    remaining:n=>`Faltan ${n}`,targetReached:"Meta alcanzada",lastRound:n=>`+${n} última ronda`,passedLast:"Pasó última ronda",passed:"pasó",
-    playerOf:(i,n)=>`Jugador ${i} de ${n}`,carries:n=>`Lleva ${n} puntos`,pass:"Pasar",addPoints:"Sumar puntos",previous:"← Anterior",cancelRound:"Cancelar ronda",
-    gameEnded:"Partida terminada",finalRanking:"Clasificación final",viewFinal:"Ver marcador final",anotherGame:"Empezar otro juego",
-    noPlayer:"Sin jugador",wins:n=>`¡${n} gana!`,pts:"puntos",
-    targetRange:"La meta debe ser un número entero entre 200 y 9999.",targetSet:n=>`Meta establecida en ${n} puntos`,
-    customRange:"Ingrese una meta personalizada entre 201 y 9999.",duplicate:"Ese nombre ya está en la lista.",
-    needTarget:"Defina la meta antes de iniciar la partida.",roomCreateError:"No se pudo crear la sala.",codeLength:"El código debe tener 8 caracteres.",
-    roomNotFound:"No encontré esa sala.",roomOpenError:"No se pudo abrir la sala.",roomGone:"La sala ya no existe.",
-    roundSaved:"Ronda guardada",roundSaveError:"No se pudo guardar la ronda.",newGameConfirm:"¿Empezar un juego nuevo en esta misma sala? Se borrará el marcador e historial actual.",
-    copied:"Link copiado.",copyLink:"Copie este link:",joinShare:c=>`Únase a mi partida. Sala ${c}`,excelError:"No se pudo generar el Excel.",
-    integerScore:"Ingrese un número entero de 0 o más.",noRounds:"Aún no hay rondas completadas.",
-    live:"En vivo",reconnecting:"Reconectando…",offline:"Sin conexión",connectedCount:n=>`👥 ${n} conectado${n===1?"":"s"}`,qr:"QR",qrTitle:"Unirse a la sala",close:"Cerrar",shareLink:"Compartir link",
-    undoRound:"↶ Deshacer última ronda",undoConfirm:r=>`¿Deshacer la ronda ${r}? Se restaurarán los puntajes anteriores.`,undoDone:r=>`Ronda ${r} deshecha.`,undoError:"No se pudo deshacer la ronda.",
-    reviewRound:"Revisar ronda",reviewSubtitle:"Confirme los puntos antes de sincronizarlos con todos.",correct:"Corregir",confirmRound:"Confirmar ronda",cancelRoundReview:"Cancelar ronda",
-    projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Meta alcanzada",targetReachedSubtitle:"Revise el resultado antes de mostrar el podio.",reviewAgain:"Revisar ronda",finishGame:"Finalizar partida",leaderPreview:(n,p)=>`${n} quedaría con ${p} puntos.`,
-    joinRequestsTitle:"Solicitudes para unirse",joinRequestsDesc:"Los espectadores pueden pedir un lugar. Usted decide quién entra.",requestCount:n=>`${n} pendiente${n===1?"":"s"}`,
-    requestFromViewer:"Solicitud desde espectador",accept:"Aceptar",reject:"Rechazar",manualAdd:"Agregar jugador manualmente",
-    selfJoinTitle:"¿Quiere jugar?",selfJoinDesc:"Escriba el nombre con el que quiere aparecer. El host debe aprobarlo.",yourName:"Su nombre",requestJoin:"Solicitar unirme",
-    requestPending:"Solicitud enviada. Esperando aprobación del host.",requestAccepted:n=>`Ya está en la lista como ${n}.`,requestRejected:"El host rechazó su solicitud.",
-    requestSent:"Solicitud enviada al host.",requestError:"No se pudo enviar la solicitud.",requestNameRequired:"Escriba el nombre con el que quiere jugar.",
-    requestAcceptError:"No se pudo aceptar la solicitud.",requestRejectError:"No se pudo rechazar la solicitud.",playerAccepted:n=>`${n} fue agregado a la partida.`,
-    presenceError:"No se pudo registrar la conexión en vivo.",
-    startRound:"▶ Iniciar ronda",roundInProgress:r=>`Ronda ${r} en curso`,liveRound:"Ronda en vivo",liveRoundDesc:"Los puntajes enviados son provisionales hasta que el host los apruebe.",
-    approvedCount:(a,n)=>`${a}/${n} aprobados`,waitingScore:"Esperando",pendingScore:"Por revisar",approvedScore:"Aprobado",rejectedScore:"Rechazado",
-    connectedPlayer:"Con dispositivo",manualPlayer:"Sin dispositivo",approveScore:"Aprobar",editScore:"Editar",rejectScore:"Rechazar",addHostScore:"Agregar",
-    closeRound:"Revisar y cerrar ronda",closeRoundHint:"Todos los jugadores deben tener un puntaje aprobado.",readyToClose:"Todos los puntajes están aprobados.",
-    myScore:"Mi puntuación",myScoreDesc:"Envíe su resultado de esta ronda al host.",manualMode:"✏️ Manual",cardsMode:"🃏 Mis cartas",bustZero:"Bust / 0",
-    clearScore:"Limpiar",submitHost:"Enviar al host",submissionPending:"Puntaje enviado. Esperando aprobación del host.",submissionApproved:"✓ Puntaje aprobado por el host.",
-    submissionRejected:"El host rechazó el puntaje. Corríjalo y envíelo nuevamente.",noRoundOpen:"Esperando a que el host inicie la siguiente ronda.",
-    calculatedTotal:"Total calculado",selectCards:"Seleccione sus cartas.",flip7Bonus:"+15 Flip 7",
-    sentScore:n=>`Enviado: ${n} puntos`,scoreSubmitError:"No se pudo enviar el puntaje.",
-    hostEntry:"Registro del host",officialScore:n=>`Puntaje oficial: ${n}`,hostEntryNote:"Puede registrar o corregir el puntaje de cualquier jugador.",saveApprove:"Guardar y aprobar",zeroPoints:"0 puntos",
-    hostScoreSaved:"Puntaje guardado y aprobado.",scoreActionError:"No se pudo actualizar el puntaje.",roundStartError:"No se pudo iniciar la ronda.",
-    roundReviewTitle:"Resultado final de la ronda",roundReviewSubtitle:"Revise los puntajes aprobados antes de cerrar la ronda.",backToRound:"Volver a la ronda",confirmCloseRound:"Confirmar y cerrar",
-    projected:n=>`Proyectado: ${n}`,methodManual:"Manual",methodCards:"Cartas",methodHost:"Host",methodBust:"Bust",pendingProjection:n=>`+${n} provisional`,
-        summarySheet:"Resumen",roundsSheet:"Rondas",accSheet:"Acumulado",excelTitle:"Flip 7 Live - Resultado",position:"Posición",finalScore:"Puntaje final",roundsCount:"Rondas"
-  },
-  en:{
-    subtitle:"One scoreboard · everyone sees it live",goal:"Target",undefinedTarget:"To define",languageButton:"🌐 Language: EN",
-    homeTitle:"Shared game",homeDesc:"One person creates the room and manages the score. Everyone else sees changes in real time.",
-    createTitle:"🎴 Create game",createDesc:"You will be the host: add players, score rounds, and control the game.",createRoom:"Create room",
-    joinTitle:"👀 Join game",joinDesc:"Enter the room code. As a spectator, you will see the same live scoreboard.",code:"CODE",enter:"Join",
-    room:"Room",host:"Host",viewer:"Spectator",share:"Share",leave:"Leave",
-    setupTitle:"Set up game",setupDesc:"As host, you can add or remove players and choose the target before starting.",
-    playerPlaceholder:"Player name",add:"Add",emptyPlayers:"Add at least 2 players to start.",remove:"Remove",
-    targetTitle:"Game target",targetDesc:"Flip 7 normally ends at 200, but you can use a higher target.",
-    target200:"200 points",custom:"Custom",customPlaceholder:"E.g. 300",useTarget:"Use target",
-    targetHelp:"A custom target must be higher than 200. Every spectator will see the same target.",startGame:"Start game",
-    waitingTitle:"Waiting for host",waitingDefault:"The game has not started yet.",waitingPlayers:n=>`The host is preparing the game with ${n} players.`,waitingAdding:"The host is adding players.",
-    scoreboard:"Scoreboard",scoreboardDesc:'The full round is completed before checking who reached the <strong>game target</strong>.',
-    player:"Player",progress:"Progress",points:"Points",round:"Round",final:"Final",roundSum:"＋ Add round scores",newGame:"New game",
-    viewerNote:"Live scoreboard · only the host can enter scores.",history:"Round history",exportExcel:"Download history to Excel",
-    firstCard:"First card",highestRound:(r,p)=>`Highest score in round ${r}: ${p} points.`,tieRound:(r,p)=>`Tie at ${p} points in round ${r}.`,
-    remaining:n=>`${n} left`,targetReached:"Target reached",lastRound:n=>`+${n} last round`,passedLast:"Passed last round",passed:"passed",
-    playerOf:(i,n)=>`Player ${i} of ${n}`,carries:n=>`Has ${n} points`,pass:"Pass",addPoints:"Add points",previous:"← Previous",cancelRound:"Cancel round",
-    gameEnded:"Game finished",finalRanking:"Final ranking",viewFinal:"View final scoreboard",anotherGame:"Start another game",
-    noPlayer:"No player",wins:n=>`${n} wins!`,pts:"points",
-    targetRange:"The target must be a whole number between 200 and 9999.",targetSet:n=>`Target set to ${n} points`,
-    customRange:"Enter a custom target between 201 and 9999.",duplicate:"That name is already on the list.",
-    needTarget:"Choose a target before starting the game.",roomCreateError:"The room could not be created.",codeLength:"The code must be 8 characters.",
-    roomNotFound:"I couldn't find that room.",roomOpenError:"The room could not be opened.",roomGone:"This room no longer exists.",
-    roundSaved:"Round saved",roundSaveError:"The round could not be saved.",newGameConfirm:"Start a new game in this same room? The current scoreboard and history will be cleared.",
-    copied:"Link copied.",copyLink:"Copy this link:",joinShare:c=>`Join my Flip 7 game. Room ${c}`,excelError:"The Excel file could not be generated.",
-    integerScore:"Enter a whole number of 0 or more.",noRounds:"No completed rounds yet.",
-    live:"Live",reconnecting:"Reconnecting…",offline:"Offline",connectedCount:n=>`👥 ${n} connected`,qr:"QR",qrTitle:"Join room",close:"Close",shareLink:"Share link",
-    undoRound:"↶ Undo last round",undoConfirm:r=>`Undo round ${r}? Previous scores will be restored.`,undoDone:r=>`Round ${r} undone.`,undoError:"The round could not be undone.",
-    reviewRound:"Review round",reviewSubtitle:"Confirm the scores before syncing them with everyone.",correct:"Correct",confirmRound:"Confirm round",cancelRoundReview:"Cancel round",
-    projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Target reached",targetReachedSubtitle:"Review the result before showing the podium.",reviewAgain:"Review round",finishGame:"Finish game",leaderPreview:(n,p)=>`${n} would have ${p} points.`,
-    joinRequestsTitle:"Join requests",joinRequestsDesc:"Spectators can request a spot. You decide who joins.",requestCount:n=>`${n} pending`,
-    requestFromViewer:"Request from spectator",accept:"Accept",reject:"Reject",manualAdd:"Add player manually",
-    selfJoinTitle:"Want to play?",selfJoinDesc:"Enter the name you want to use. The host must approve it.",yourName:"Your name",requestJoin:"Request to join",
-    requestPending:"Request sent. Waiting for host approval.",requestAccepted:n=>`You are on the player list as ${n}.`,requestRejected:"The host declined your request.",
-    requestSent:"Request sent to the host.",requestError:"The request could not be sent.",requestNameRequired:"Enter the name you want to play as.",
-    requestAcceptError:"The request could not be accepted.",requestRejectError:"The request could not be declined.",playerAccepted:n=>`${n} was added to the game.`,
-    presenceError:"Live connection could not be registered.",
-    startRound:"▶ Start round",roundInProgress:r=>`Round ${r} in progress`,liveRound:"Live round",liveRoundDesc:"Submitted scores are provisional until the host approves them.",
-    approvedCount:(a,n)=>`${a}/${n} approved`,waitingScore:"Waiting",pendingScore:"Review",approvedScore:"Approved",rejectedScore:"Rejected",
-    connectedPlayer:"With device",manualPlayer:"No device",approveScore:"Approve",editScore:"Edit",rejectScore:"Reject",addHostScore:"Add",
-    closeRound:"Review and close round",closeRoundHint:"Every player needs an approved score.",readyToClose:"All scores are approved.",
-    myScore:"My score",myScoreDesc:"Send your result for this round to the host.",manualMode:"✏️ Manual",cardsMode:"🃏 My cards",bustZero:"Bust / 0",
-    clearScore:"Clear",submitHost:"Send to host",submissionPending:"Score sent. Waiting for host approval.",submissionApproved:"✓ Score approved by the host.",
-    submissionRejected:"The host rejected the score. Correct it and submit again.",noRoundOpen:"Waiting for the host to start the next round.",
-    calculatedTotal:"Calculated total",selectCards:"Select your cards.",flip7Bonus:"+15 Flip 7",
-    sentScore:n=>`Submitted: ${n} points`,scoreSubmitError:"The score could not be submitted.",
-    hostEntry:"Host entry",officialScore:n=>`Official score: ${n}`,hostEntryNote:"You can enter or correct any player's score.",saveApprove:"Save & approve",zeroPoints:"0 points",
-    hostScoreSaved:"Score saved and approved.",scoreActionError:"The score could not be updated.",roundStartError:"The round could not be started.",
-    roundReviewTitle:"Final round result",roundReviewSubtitle:"Review the approved scores before closing the round.",backToRound:"Back to round",confirmCloseRound:"Confirm & close",
-    projected:n=>`Projected: ${n}`,methodManual:"Manual",methodCards:"Cards",methodHost:"Host",methodBust:"Bust",pendingProjection:n=>`+${n} provisional`,
-        summarySheet:"Summary",roundsSheet:"Rounds",accSheet:"Cumulative",excelTitle:"Flip 7 Live - Result",position:"Position",finalScore:"Final score",roundsCount:"Rounds"
-  }
-};
-const t=(key,...args)=>{const v=I18N[lang][key];return typeof v==="function"?v(...args):v};
-
-const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomCodeLabel=$("roomCodeLabel"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),qrRoomBtn=$("qrRoomBtn"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),goalValue=$("goalValue"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),liveRoundPanel=$("liveRoundPanel"),liveRoundTitle=$("liveRoundTitle"),liveRoundDesc=$("liveRoundDesc"),roundApprovalCount=$("roundApprovalCount"),roundLiveList=$("roundLiveList"),closeRoundWrap=$("closeRoundWrap"),closeRoundBtn=$("closeRoundBtn"),closeRoundHint=$("closeRoundHint"),myScorePanel=$("myScorePanel"),myScoreTitle=$("myScoreTitle"),myScoreDesc=$("myScoreDesc"),myScoreRound=$("myScoreRound"),mySubmissionState=$("mySubmissionState"),myScoreForm=$("myScoreForm"),manualTabBtn=$("manualTabBtn"),cardsTabBtn=$("cardsTabBtn"),manualScorePane=$("manualScorePane"),cardsScorePane=$("cardsScorePane"),myManualScore=$("myManualScore"),myBustBtn=$("myBustBtn"),numberCardsGrid=$("numberCardsGrid"),modifierCardsGrid=$("modifierCardsGrid"),cardCalcLabel=$("cardCalcLabel"),cardCalcTotal=$("cardCalcTotal"),cardCalcDetail=$("cardCalcDetail"),clearMyScoreBtn=$("clearMyScoreBtn"),submitMyScoreBtn=$("submitMyScoreBtn"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),undoRoundBtn=$("undoRoundBtn"),newGameBtn=$("newGameBtn"),historyList=$("historyList"),exportBtn=$("exportBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),hostEntryNote=$("hostEntryNote"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerUndoBtn=$("winnerUndoBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
-function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfig).some(v=>String(v).includes("PEGUE_AQUI"))}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function norm(v){return Array.isArray(v)?v.filter(Boolean):v&&typeof v==="object"?Object.keys(v).sort((a,b)=>Number(a)-Number(b)).map(k=>v[k]).filter(Boolean):[]}function roomNorm(d){
-  if(!d)return null;
-  const raw=Number(d.target);
-  const normalizedTarget=Number.isFinite(raw)&&raw>=DEFAULT_TARGET?raw:(d.started?DEFAULT_TARGET:null);
-  return {...d,players:norm(d.players),history:norm(d.history),round:Number(d.round||1),target:normalizedTarget,started:!!d.started,gameOver:!!d.gameOver}
-}
-function target(){
-  const raw=Number(roomState?.target);
-  return Number.isFinite(raw)&&raw>=DEFAULT_TARGET?raw:null
-}
-function joinRequests(){
-  const raw=roomState?.joinRequests;
-  if(!raw||typeof raw!=="object")return [];
-  return Object.values(raw).filter(r=>r&&r.uid&&r.name).sort((a,b)=>Number(a.requestedAt||0)-Number(b.requestedAt||0))
-}
-function ownAcceptedPlayer(){
-  return roomState?.players?.find(p=>p.sourceUid===uid)||null
-}function toastMsg(t){toast.textContent=t;toast.classList.add("show");clearTimeout(toastMsg.t);toastMsg.t=setTimeout(()=>toast.classList.remove("show"),2100)}
-
-function setText(id,key){
-  const el=$(id); if(el)el.textContent=t(key);
-}
-function applyLanguage(){
-  document.documentElement.lang=lang;
-  languageBtn.textContent=t("languageButton");
-  setText("appSubtitle","subtitle"); setText("goalLabel","goal");
-  setText("homeTitle","homeTitle"); setText("homeDesc","homeDesc"); setText("createTitle","createTitle"); setText("createDesc","createDesc");
-  createRoomBtn.textContent=t("createRoom"); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); joinRoomBtn.textContent=t("enter");
-  setText("roomLabel","room"); qrRoomBtn.textContent=t("qr"); shareRoomBtn.textContent=t("share"); leaveRoomBtn.textContent=t("leave");
-  setText("setupTitle","setupTitle"); setText("setupDesc","setupDesc"); playerName.placeholder=t("playerPlaceholder"); addPlayerBtn.textContent=t("add");
-  joinRequestsTitle.textContent=t("joinRequestsTitle"); joinRequestsDesc.textContent=t("joinRequestsDesc"); manualAddLabel.textContent=t("manualAdd");
-  selfJoinTitle.textContent=t("selfJoinTitle"); selfJoinDesc.textContent=t("selfJoinDesc"); selfJoinName.placeholder=t("yourName"); requestJoinBtn.textContent=t("requestJoin");
-  setText("targetTitle","targetTitle"); setText("targetDesc","targetDesc"); target200Btn.textContent=t("target200"); customTargetBtn.textContent=t("custom");
-  customTargetInput.placeholder=t("customPlaceholder"); saveTargetBtn.textContent=t("useTarget"); setText("targetHelp","targetHelp"); startGameBtn.textContent=t("startGame");
-  setText("waitingTitle","waitingTitle"); setText("scoreboardTitle","scoreboard"); $("scoreboardDesc").innerHTML=t("scoreboardDesc");
-  setText("playerHeader","player"); setText("progressHeader","progress"); setText("pointsHeader","points");
-  liveRoundTitle.textContent=t("liveRound"); liveRoundDesc.textContent=t("liveRoundDesc"); closeRoundBtn.textContent=t("closeRound");
-  myScoreTitle.textContent=t("myScore"); myScoreDesc.textContent=t("myScoreDesc"); manualTabBtn.textContent=t("manualMode"); cardsTabBtn.textContent=t("cardsMode");
-  myBustBtn.textContent=t("bustZero"); clearMyScoreBtn.textContent=t("clearScore"); submitMyScoreBtn.textContent=t("submitHost"); cardCalcLabel.textContent=t("calculatedTotal");
-  viewerNote.textContent=t("viewerNote"); setText("historySummary","history"); exportBtn.textContent=t("exportExcel");
-  turnCounter.textContent=t("hostEntry"); hostEntryNote.textContent=t("hostEntryNote"); passBtn.textContent=t("zeroPoints"); saveScoreBtn.textContent=t("saveApprove"); cancelRoundBtn.textContent=t("close");
-  setText("winnerSubtitle","finalRanking"); winnerCloseBtn.textContent=t("viewFinal"); winnerUndoBtn.textContent=t("undoRound"); winnerNewGameBtn.textContent=t("anotherGame");
-  undoRoundBtn.textContent=t("undoRound"); reviewTitle.textContent=t("reviewRound"); reviewSubtitle.textContent=t("reviewSubtitle"); reviewCorrectBtn.textContent=t("correct"); reviewConfirmBtn.textContent=t("confirmRound"); reviewCancelBtn.textContent=t("cancelRoundReview");
-  finishConfirmTitle.textContent=t("targetReachedTitle"); finishConfirmSubtitle.textContent=t("targetReachedSubtitle"); finishReviewBtn.textContent=t("reviewAgain"); finishGameBtn.textContent=t("finishGame"); qrTitle.textContent=t("qrTitle"); qrShareBtn.textContent=t("shareLink"); qrCloseBtn.textContent=t("close");
-  if(!roomState)goalValue.textContent=t("undefinedTarget");
-  if(roomState)render();
-}
-function toggleLanguage(){
-  lang=lang==="es"?"en":"es";
-  localStorage.setItem("flip7_lang",lang);
-  applyLanguage()
-}
-async function boot(){if(!configured()){setupAlert.classList.add("show");createRoomBtn.disabled=joinRoomBtn.disabled=true;return}try{const app=initializeApp(firebaseConfig),auth=getAuth(app);db=getDatabase(app);uid=(await signInAnonymously(auth)).user.uid;watchFirebaseConnection();const q=new URL(location.href).searchParams.get("room");if(q){joinCode.value=q.toUpperCase();await joinRoom(q,true)}}catch(e){console.error(e);setupAlert.classList.add("show");setupAlert.innerHTML="<strong>No se pudo conectar con Firebase.</strong>Revise firebaseConfig, Anonymous Authentication y Realtime Database.";createRoomBtn.disabled=joinRoomBtn.disabled=true}}
-function watchFirebaseConnection(){
-  onValue(ref(db,".info/connected"),snap=>{
-    firebaseConnected=snap.val()===true;
-    renderConnectionStatus();
-    if(firebaseConnected&&roomCode)registerPresence();
-  });
-  window.addEventListener("online",renderConnectionStatus);
-  window.addEventListener("offline",renderConnectionStatus)
-}
-function renderConnectionStatus(){
-  if(!connectionStatus)return;
-  const online=navigator.onLine!==false;
-  let key="reconnecting",cls="reconnecting";
-  if(!online){key="offline";cls="offline"}
-  else if(firebaseConnected){key="live";cls="live"}
-  connectionStatus.className=`connection-pill ${cls}`;
-  connectionStatus.textContent=`● ${t(key)}`
-}
-function renderViewerCount(){
-  if(!viewerCount)return;
-  viewerCount.textContent=t("connectedCount",connectedUsers)
-}
-async function registerPresence(){
-  if(!db||!uid||!roomCode||!firebaseConnected)return;
-  const p=ref(db,`presence/${roomCode}/${presenceId}`);
-  presenceRef=p;
-  try{
-    await set(p,{uid,role:isHost?"host":"viewer",connectedAt:Date.now()});
-    await onDisconnect(p).remove()
-  }catch(e){console.warn("Presence error",e);presenceRef=null}
-}
-function watchRoomPresence(){
-  if(presenceUnsubscribe)presenceUnsubscribe();
-  if(!roomCode){connectedUsers=0;renderViewerCount();return}
-  presenceUnsubscribe=onValue(ref(db,`presence/${roomCode}`),snap=>{
-    const value=snap.val();
-    connectedUsers=value&&typeof value==="object"?Object.keys(value).length:0;
-    renderViewerCount()
-  },e=>{console.warn("Presence count error",e);connectedUsers=0;renderViewerCount()})
-}
-async function stopPresence(){
-  if(presenceUnsubscribe){presenceUnsubscribe();presenceUnsubscribe=null}
-  connectedUsers=0;renderViewerCount();
-  if(!presenceRef)return;
-  const p=presenceRef; presenceRef=null;
-  try{await remove(p)}catch(e){console.warn("Presence cleanup",e)}
-}
+const DEFAULT_TARGET=200,$=id=>document.getElementById(id);let db=null,uid=null,roomCode="",roomRef=null,unsubscribeRoom=null,isHost=false,roomState=null,previousRoomState=null,roundDraft=[],turnIndex=0,winnerShown=false;
+const homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),createRoomBtn=$("createRoomBtn"),joinCode=$("joinCode"),joinRoomBtn=$("joinRoomBtn"),roomCodeLabel=$("roomCodeLabel"),roleLabel=$("roleLabel"),shareRoomBtn=$("shareRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),hostSetup=$("hostSetup"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),goalValue=$("goalValue"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),roundBtn=$("roundBtn"),newGameBtn=$("newGameBtn"),historyList=$("historyList"),exportBtn=$("exportBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
+function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfig).some(v=>String(v).includes("PEGUE_AQUI"))}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function norm(v){return Array.isArray(v)?v.filter(Boolean):v&&typeof v==="object"?Object.keys(v).sort((a,b)=>Number(a)-Number(b)).map(k=>v[k]).filter(Boolean):[]}function roomNorm(d){return d?{...d,players:norm(d.players),history:norm(d.history),round:Number(d.round||1),target:Math.max(DEFAULT_TARGET,Number(d.target||DEFAULT_TARGET)),started:!!d.started,gameOver:!!d.gameOver}:null}function target(){return Math.max(DEFAULT_TARGET,Number(roomState?.target||DEFAULT_TARGET))}function toastMsg(t){toast.textContent=t;toast.classList.add("show");clearTimeout(toastMsg.t);toastMsg.t=setTimeout(()=>toast.classList.remove("show"),2100)}
+async function boot(){if(!configured()){setupAlert.classList.add("show");createRoomBtn.disabled=joinRoomBtn.disabled=true;return}try{const app=initializeApp(firebaseConfig),auth=getAuth(app);db=getDatabase(app);uid=(await signInAnonymously(auth)).user.uid;const q=new URL(location.href).searchParams.get("room");if(q){joinCode.value=q.toUpperCase();await joinRoom(q,true)}}catch(e){console.error(e);setupAlert.classList.add("show");setupAlert.innerHTML="<strong>No se pudo conectar con Firebase.</strong>Revise firebaseConfig, Anonymous Authentication y Realtime Database.";createRoomBtn.disabled=joinRoomBtn.disabled=true}}
 function code(){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",b=new Uint8Array(8);crypto.getRandomValues(b);return Array.from(b,x=>a[x%a.length]).join("")}async function uniqueCode(){for(let i=0;i<8;i++){const c=code();if(!(await get(ref(db,"rooms/"+c))).exists())return c}throw Error("No room code")}
-async function createRoom(){createRoomBtn.disabled=true;try{const c=await uniqueCode();await set(ref(db,"rooms/"+c),{hostUid:uid,createdAt:Date.now(),updatedAt:Date.now(),target:null,started:false,gameOver:false,round:1,players:[],history:[]});await enterRoom(c,true)}catch(e){console.error(e);toastMsg(t("roomCreateError"))}finally{createRoomBtn.disabled=false}}
-async function joinRoom(c,auto=false){c=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");if(c.length!==8){if(!auto)toastMsg(t("codeLength"));return}try{const snap=await get(ref(db,"rooms/"+c));if(!snap.exists()){toastMsg(t("roomNotFound"));return}const d=roomNorm(snap.val());await enterRoom(c,d.hostUid===uid)}catch(e){console.error(e);toastMsg(t("roomOpenError"))}}
-async function enterRoom(c,host){if(unsubscribeRoom)unsubscribeRoom();await stopPresence();roomCode=c;roomRef=ref(db,"rooms/"+c);isHost=host;previousRoomState=null;winnerShown=false;pendingRound=null;roomCodeLabel.textContent=c;const roomUrl=new URL(location.href);roomUrl.searchParams.set("room",c);history.replaceState({},document.title,roomUrl.pathname+roomUrl.search+roomUrl.hash);homeScreen.classList.add("hidden");roomScreen.classList.remove("hidden");watchRoomPresence();if(firebaseConnected)await registerPresence();unsubscribeRoom=onValue(roomRef,s=>{if(!s.exists()){toastMsg(t("roomGone"));leaveRoom();return}previousRoomState=roomState?JSON.parse(JSON.stringify(roomState)):null;roomState=roomNorm(s.val());isHost=roomState.hostUid===uid;roleLabel.textContent=isHost?t("host"):t("viewer");render();if(roomState.gameOver&&!winnerShown){winnerShown=true;setTimeout(showWinner,220)}if(!roomState.gameOver){winnerShown=false;winnerOverlay.classList.remove("show")} })}
-function render(){
-  const tv=target();
-  goalValue.textContent=tv??t("undefinedTarget");
-  roleLabel.textContent=isHost?t("host"):t("viewer");
-  renderConnectionStatus(); renderViewerCount();
-  hostSetup.classList.toggle("hidden",!(isHost&&!roomState.started));
-  viewerWaiting.classList.toggle("hidden",isHost||roomState.started);
-  gameArea.classList.toggle("hidden",!roomState.started);
-  winnerNewGameBtn.classList.toggle("hidden",!isHost);
-  if(isHost&&!roomState.started)renderSetup();
-  if(!isHost&&!roomState.started){
-    const base=roomState.players.length?t("waitingPlayers",roomState.players.length):t("waitingAdding");
-    waitingText.textContent=tv?`${base} ${t("goal")}: ${tv}.`: `${base} ${t("goal")}: ${t("undefinedTarget")}.`;
-    renderSelfJoin();
-  }
-  if(roomState.started)renderGame()
-}
-function renderSetup(){
-  const tv=target(),requests=joinRequests();
-  playerList.innerHTML=roomState.players.length
-    ?roomState.players.map((p,i)=>`<div class="player-chip"><div class="player-chip-main"><span class="player-no">${i+1}</span><strong>${esc(p.name)}</strong></div><button class="icon-btn" data-rm="${i}" aria-label="${t("remove")} ${esc(p.name)}">×</button></div>`).join("")
-    :`<div class="empty">${t("emptyPlayers")}</div>`;
-
-  joinRequestsBox.classList.toggle("hidden",requests.length===0);
-  joinRequestsCount.textContent=requests.length;
-  joinRequestsList.innerHTML=requests.map(r=>`<div class="join-request-item">
-    <div class="join-request-name"><strong>${esc(r.name)}</strong><small>${t("requestFromViewer")}</small></div>
-    <div class="request-actions">
-      <button type="button" class="request-btn accept" data-accept="${esc(r.uid)}">${t("accept")}</button>
-      <button type="button" class="request-btn reject" data-reject="${esc(r.uid)}">${t("reject")}</button>
-    </div>
-  </div>`).join("");
-
-  startGameBtn.disabled=roomState.players.length<2||!tv||requests.length>0;
-  targetPreview.textContent=tv?`${tv} pts`:t("undefinedTarget");
-  target200Btn.classList.toggle("active",tv===DEFAULT_TARGET);
-  customTargetBtn.classList.toggle("active",Number(tv)>DEFAULT_TARGET);
-  if(Number(tv)>DEFAULT_TARGET)customTargetInput.value=tv;
-
-  playerList.querySelectorAll("[data-rm]").forEach(b=>b.addEventListener("click",async()=>{
-    const idx=Number(b.dataset.rm),removed=roomState.players[idx],ps=[...roomState.players];ps.splice(idx,1);
-    const changes={players:ps,updatedAt:Date.now()};if(removed?.sourceUid)changes[`playerLinks/${removed.sourceUid}`]=null;
-    await update(roomRef,changes)
-  }));
-  joinRequestsList.querySelectorAll("[data-accept]").forEach(b=>b.addEventListener("click",()=>acceptJoinRequest(b.dataset.accept)));
-  joinRequestsList.querySelectorAll("[data-reject]").forEach(b=>b.addEventListener("click",()=>rejectJoinRequest(b.dataset.reject)));
-}
-function renderSelfJoin(){
-  const accepted=ownAcceptedPlayer();
-  const request=roomState?.joinRequests?.[uid]||null;
-  const prevRequest=previousRoomState?.joinRequests?.[uid]||null;
-
-  selfJoinForm.classList.toggle("hidden",Boolean(accepted||request));
-  selfJoinStatus.className="self-join-status";
-
-  if(accepted){
-    selfJoinStatus.textContent=t("requestAccepted",accepted.name);
-    selfJoinStatus.classList.add("accepted");
-    selfJoinName.value=accepted.name;
-  }else if(request){
-    selfJoinStatus.textContent=t("requestPending");
-    selfJoinStatus.classList.add("pending");
-    selfJoinName.value=request.name||selfJoinName.value;
-  }else{
-    selfJoinStatus.classList.add("hidden");
-    if(prevRequest)toastMsg(t("requestRejected"));
-  }
-}
-function currentSubmissions(){const s=roomState?.currentRound?.submissions;return s&&typeof s==="object"?s:{}}
-function ownPlayer(){return roomState?.players?.find(p=>p.sourceUid===uid)||null}
-function roundIsOpen(){return Boolean(roomState?.currentRound&&roomState.currentRound.status==="open")}
-function submissionFor(playerId){return currentSubmissions()[playerId]||null}
-function statusText(status){return status==="approved"?t("approvedScore"):status==="pending"?t("pendingScore"):status==="rejected"?t("rejectedScore"):t("waitingScore")}
-function methodText(method){return method==="cards"?t("methodCards"):method==="host"?t("methodHost"):method==="bust"?t("methodBust"):t("methodManual")}
-function renderGame(){
-  const tv=target()||DEFAULT_TARGET,last=roomState.history.at(-1),hasRounds=roomState.history.length>0,open=roundIsOpen(),subs=currentSubmissions();
-  const displayPlayers=[...roomState.players].sort((a,b)=>!hasRounds?String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}):Number(b.score||0)-Number(a.score||0)||String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}));
-  const max=Math.max(...displayPlayers.map(p=>Number(p.score||0)),0);
-  scoreBody.innerHTML=displayPlayers.map(p=>{
-    const s=Number(p.score||0),remaining=Math.max(0,tv-s),pct=Math.min(100,s/tv*100),d=Number(last?.scores?.[p.id]||0),sub=subs[p.id],provisional=open&&sub?Number(sub.points||0):null,proj=provisional===null?null:s+provisional;
-    return `<tr class="${s===max&&max>0?"leader":""}"><td><div class="score-name">${esc(p.name)}</div></td><td><div class="progress"><span style="width:${pct}%"></span></div></td><td class="score-val"><span class="score-number" data-id="${p.id}">${s}</span><span class="score-unit"> pts</span><span class="remaining">${remaining>0?t("remaining",remaining):t("targetReached")}</span><span class="delta">${proj!==null?t("pendingProjection",provisional)+` → ${proj}`:(d>0?t("lastRound",d):d===0&&hasRounds?t("passedLast"):"")}</span></td></tr>`
-  }).join("");
-  roundPill.innerHTML=`<span class="dot"></span> ${roomState.gameOver?t("final"):`${t("round")} ${roomState.round}`}`;
-  hostGameActions.classList.toggle("hidden",!isHost);viewerNote.classList.toggle("hidden",isHost);undoRoundBtn.disabled=!roomState.history.length||open;exportBtn.disabled=!roomState.history.length;
-  if(isHost){roundBtn.disabled=open||roomState.gameOver;roundBtn.textContent=open?t("roundInProgress",roomState.round):t("startRound")}else viewerNote.textContent=open?t("liveRoundDesc"):t("noRoundOpen");
-  renderLiveRound();renderMyScorePanel();
-  const starter=roomState.lastRoundStarter;if(starter){const names=Array.isArray(starter.names)?starter.names:[starter.name].filter(Boolean),who=names.join(names.length===2?(lang==="es"?" y ":" and "):", ");starterNotice.classList.remove("hidden");starterNoticeTitle.textContent=`${t("firstCard")}: ${who}`;starterNoticeText.textContent=names.length>1?t("tieRound",starter.round,starter.points):t("highestRound",starter.round,starter.points)}else starterNotice.classList.add("hidden");
-  historyList.innerHTML=roomState.history.length?[...roomState.history].reverse().map(h=>`<div class="history-item"><strong>${t("round")} ${h.round}:</strong> ${roomState.players.map(p=>{const v=Number(h.scores?.[p.id]||0);return `${esc(p.name)} ${v?"+"+v:t("passed")}`}).join(" · ")}</div>`).join(""):`<div class="history-item">${t("noRounds")}</div>`;
-  if(previousRoomState){const old=Object.fromEntries(previousRoomState.players.map(p=>[p.id,Number(p.score||0)]));roomState.players.forEach(p=>{const el=scoreBody.querySelector(`[data-id="${p.id}"]`),a=Number(old[p.id]??p.score),b=Number(p.score||0);if(el&&a!==b){animate(el,a,b);el.classList.remove("score-pop");void el.offsetWidth;el.classList.add("score-pop")}});if(previousRoomState.round!==roomState.round||previousRoomState.gameOver!==roomState.gameOver){roundPill.classList.remove("round-bump");void roundPill.offsetWidth;roundPill.classList.add("round-bump")}}
-}
-function renderLiveRound(){
-  const open=roundIsOpen();liveRoundPanel.classList.toggle("hidden",!open);if(!open)return;
-  const subs=currentSubmissions(),players=roomState.players,approved=players.filter(p=>subs[p.id]?.status==="approved").length;roundApprovalCount.textContent=t("approvedCount",approved,players.length);
-  roundLiveList.innerHTML=players.map(p=>{const sub=subs[p.id],status=sub?.status||"waiting",points=sub?Number(sub.points||0):null,projected=sub?Number(p.score||0)+points:null,device=p.sourceUid?t("connectedPlayer"):t("manualPlayer");const actions=isHost?`<div class="round-row-actions">${status==="pending"?`<button class="mini-action approve" data-approve-score="${p.id}">${t("approveScore")}</button><button class="mini-action edit" data-edit-score="${p.id}">${t("editScore")}</button><button class="mini-action reject" data-reject-score="${p.id}">${t("rejectScore")}</button>`:status==="approved"?`<button class="mini-action edit" data-edit-score="${p.id}">${t("editScore")}</button>`:`<button class="mini-action edit" data-edit-score="${p.id}">${t("addHostScore")}</button>`}</div>`:"";return `<div class="round-live-row"><div class="round-live-name"><strong>${esc(p.name)}</strong><small>${device}${sub?` · ${methodText(sub.method)}`:""}</small></div><div><span class="status-chip status-${status}">${statusText(status)}</span></div><div class="round-score">${points===null?"—":points}<span class="projected-score">${projected===null?"":t("projected",projected)}</span></div>${actions}</div>`}).join("");
-  if(isHost){closeRoundWrap.classList.remove("hidden");const ready=approved===players.length&&players.length>0;closeRoundBtn.disabled=!ready;closeRoundHint.textContent=ready?t("readyToClose"):t("closeRoundHint");roundLiveList.querySelectorAll("[data-approve-score]").forEach(b=>b.addEventListener("click",()=>approveSubmission(b.dataset.approveScore)));roundLiveList.querySelectorAll("[data-reject-score]").forEach(b=>b.addEventListener("click",()=>rejectSubmission(b.dataset.rejectScore)));roundLiveList.querySelectorAll("[data-edit-score]").forEach(b=>b.addEventListener("click",()=>openHostScoreEditor(b.dataset.editScore)))}else closeRoundWrap.classList.add("hidden")
-}
-function renderMyScorePanel(){
-  const p=ownPlayer(),open=roundIsOpen();myScorePanel.classList.toggle("hidden",!p||!open||isHost);if(!p||!open||isHost)return;
-  const sub=submissionFor(p.id);myScoreRound.textContent=`${t("round")} ${roomState.round}`;mySubmissionState.className="submission-state";
-  if(sub?.status==="approved"){mySubmissionState.textContent=t("submissionApproved");mySubmissionState.classList.add("approved");myScoreForm.classList.add("hidden")}
-  else if(sub?.status==="pending"){mySubmissionState.textContent=t("submissionPending");mySubmissionState.classList.add("pending");myScoreForm.classList.remove("hidden")}
-  else if(sub?.status==="rejected"){mySubmissionState.textContent=t("submissionRejected");mySubmissionState.classList.add("rejected");myScoreForm.classList.remove("hidden")}
-  else{mySubmissionState.classList.add("hidden");myScoreForm.classList.remove("hidden")}
-}
+async function createRoom(){createRoomBtn.disabled=true;try{const c=await uniqueCode();await set(ref(db,"rooms/"+c),{hostUid:uid,createdAt:Date.now(),updatedAt:Date.now(),target:DEFAULT_TARGET,started:false,gameOver:false,round:1,players:[],history:[]});await enterRoom(c,true)}catch(e){console.error(e);toastMsg("No se pudo crear la sala.")}finally{createRoomBtn.disabled=false}}
+async function joinRoom(c,auto=false){c=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");if(c.length!==8){if(!auto)toastMsg("El código debe tener 8 caracteres.");return}try{const snap=await get(ref(db,"rooms/"+c));if(!snap.exists()){toastMsg("No encontré esa sala.");return}const d=roomNorm(snap.val());await enterRoom(c,d.hostUid===uid)}catch(e){console.error(e);toastMsg("No se pudo abrir la sala.")}}
+async function enterRoom(c,host){if(unsubscribeRoom)unsubscribeRoom();roomCode=c;roomRef=ref(db,"rooms/"+c);isHost=host;previousRoomState=null;winnerShown=false;roomCodeLabel.textContent=c;const roomUrl=new URL(location.href);roomUrl.searchParams.set("room",c);history.replaceState({},document.title,roomUrl.pathname+roomUrl.search+roomUrl.hash);homeScreen.classList.add("hidden");roomScreen.classList.remove("hidden");unsubscribeRoom=onValue(roomRef,s=>{if(!s.exists()){toastMsg("La sala ya no existe.");leaveRoom();return}previousRoomState=roomState?JSON.parse(JSON.stringify(roomState)):null;roomState=roomNorm(s.val());isHost=roomState.hostUid===uid;roleLabel.textContent=isHost?"Host":"Espectador";render();if(roomState.gameOver&&!winnerShown){winnerShown=true;setTimeout(showWinner,220)}if(!roomState.gameOver)winnerShown=false})}
+function render(){goalValue.textContent=target();hostSetup.classList.toggle("hidden",!(isHost&&!roomState.started));viewerWaiting.classList.toggle("hidden",isHost||roomState.started);gameArea.classList.toggle("hidden",!roomState.started);winnerNewGameBtn.classList.toggle("hidden",!isHost);if(isHost&&!roomState.started)renderSetup();if(!isHost&&!roomState.started)waitingText.textContent=roomState.players.length?`El host está preparando la partida con ${roomState.players.length} jugadores. Meta: ${target()} puntos.`:`El host está agregando los jugadores. Meta: ${target()} puntos.`;if(roomState.started)renderGame()}
+function renderSetup(){const t=target();playerList.innerHTML=roomState.players.length?roomState.players.map((p,i)=>`<div class="player-chip"><div class="player-chip-main"><span class="player-no">${i+1}</span><strong>${esc(p.name)}</strong></div><button class="icon-btn" data-rm="${i}" aria-label="Quitar ${esc(p.name)}">×</button></div>`).join(""):'<div class="empty">Agregue al menos 2 jugadores para comenzar.</div>';startGameBtn.disabled=roomState.players.length<2;targetPreview.textContent=`${t} pts`;target200Btn.classList.toggle("active",t===DEFAULT_TARGET);customTargetBtn.classList.toggle("active",t>DEFAULT_TARGET);if(t>DEFAULT_TARGET)customTargetInput.value=t;playerList.querySelectorAll("[data-rm]").forEach(b=>b.addEventListener("click",async()=>{const ps=[...roomState.players];ps.splice(Number(b.dataset.rm),1);await update(roomRef,{players:ps,updatedAt:Date.now()})}))}
+function renderGame(){const max=Math.max(...roomState.players.map(p=>Number(p.score||0)),0),last=roomState.history.at(-1);scoreBody.innerHTML=roomState.players.map(p=>{const s=Number(p.score||0),pct=Math.min(100,s/target()*100),d=Number(last?.scores?.[p.id]||0);return `<tr class="${s===max&&max>0?"leader":""}"><td><div class="score-name">${esc(p.name)}</div></td><td><div class="progress"><span style="width:${pct}%"></span></div></td><td class="score-val"><span class="score-number" data-id="${p.id}">${s}</span><span class="delta">${d>0?"+"+d+" última ronda":""}</span></td></tr>`}).join("");roundPill.innerHTML=`<span class="dot"></span> ${roomState.gameOver?"Final":"Ronda "+roomState.round}`;roundBtn.disabled=roomState.gameOver;roundBtn.textContent=roomState.gameOver?"Partida terminada":"＋ Suma de ronda";hostGameActions.classList.toggle("hidden",!isHost);viewerNote.classList.toggle("hidden",isHost);exportBtn.disabled=!roomState.history.length;historyList.innerHTML=roomState.history.length?[...roomState.history].reverse().map(h=>`<div class="history-item"><strong>Ronda ${h.round}:</strong> ${roomState.players.map(p=>{const v=Number(h.scores?.[p.id]||0);return `${esc(p.name)} ${v?"+"+v:"pasó"}`}).join(" · ")}</div>`).join(""):'<div class="history-item">Aún no hay rondas completadas.</div>';if(previousRoomState){const old=Object.fromEntries(previousRoomState.players.map(p=>[p.id,Number(p.score||0)]));roomState.players.forEach(p=>{const el=scoreBody.querySelector(`[data-id="${p.id}"]`),a=Number(old[p.id]??p.score),b=Number(p.score||0);if(el&&a!==b){animate(el,a,b);el.classList.remove("score-pop");void el.offsetWidth;el.classList.add("score-pop")}});if(previousRoomState.round!==roomState.round||previousRoomState.gameOver!==roomState.gameOver){roundPill.classList.remove("round-bump");void roundPill.offsetWidth;roundPill.classList.add("round-bump")}}}
 function animate(el,a,b){if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=b;return}const st=performance.now(),du=520,d=b-a;(function f(n){const t=Math.min(1,(n-st)/du),e=1-Math.pow(1-t,3);el.textContent=Math.round(a+d*e);if(t<1)requestAnimationFrame(f)})(st)}
-async function setTargetValue(v){if(!isHost||roomState.started)return;const n=Number(v);if(!Number.isInteger(n)||n<DEFAULT_TARGET||n>9999){toastMsg(t("targetRange"));return}await update(roomRef,{target:n,updatedAt:Date.now()});customTargetRow.classList.toggle("hidden",n===DEFAULT_TARGET);toastMsg(t("targetSet",n))}
-function showCustomTarget(){customTargetRow.classList.remove("hidden");customTargetInput.value=Number(target())>DEFAULT_TARGET?target():"";setTimeout(()=>customTargetInput.focus(),40)}
-async function requestToJoin(){
-  if(isHost||!roomState||roomState.started)return;
-  const name=selfJoinName.value.trim();
-  if(!name){toastMsg(t("requestNameRequired"));selfJoinName.focus();return}
-  if(roomState.players.some(p=>String(p.name).toLowerCase()===name.toLowerCase())){
-    toastMsg(t("duplicate"));return
-  }
-  try{
-    requestJoinBtn.disabled=true;
-    await set(ref(db,`rooms/${roomCode}/joinRequests/${uid}`),{uid,name,requestedAt:Date.now()});
-    toastMsg(t("requestSent"));
-  }catch(e){
-    console.error(e);toastMsg(t("requestError"))
-  }finally{
-    requestJoinBtn.disabled=false
-  }
-}
-async function acceptJoinRequest(requestUid){
-  if(!isHost||roomState.started)return;
-  const request=roomState?.joinRequests?.[requestUid];
-  if(!request)return;
-  const name=String(request.name||"").trim();
-  if(!name)return;
-  if(roomState.players.some(p=>String(p.name).toLowerCase()===name.toLowerCase())){
-    toastMsg(t("duplicate"));return
-  }
-  try{
-    const ps=[...roomState.players,{id:(crypto.randomUUID?crypto.randomUUID():Date.now()+""),name,score:0,sourceUid:requestUid}];
-    await update(roomRef,{players:ps,[`playerLinks/${requestUid}`]:ps[ps.length-1].id,[`joinRequests/${requestUid}`]:null,updatedAt:Date.now()});
-    toastMsg(t("playerAccepted",name));
-  }catch(e){
-    console.error(e);toastMsg(t("requestAcceptError"))
-  }
-}
-async function rejectJoinRequest(requestUid){
-  if(!isHost||roomState.started)return;
-  try{
-    await update(roomRef,{[`joinRequests/${requestUid}`]:null,updatedAt:Date.now()})
-  }catch(e){
-    console.error(e);toastMsg(t("requestRejectError"))
-  }
-}
-async function addPlayer(){const n=playerName.value.trim();if(!n)return;if(roomState.players.some(p=>p.name.toLowerCase()===n.toLowerCase())){toastMsg(t("duplicate"));return}const ps=[...roomState.players,{id:(crypto.randomUUID?crypto.randomUUID():Date.now()+""),name:n,score:0}];playerName.value="";await update(roomRef,{players:ps,updatedAt:Date.now()});playerName.focus()}
-async function startGame(){
-  if(!target()){toastMsg(t("needTarget"));return}
-  if(joinRequests().length)return;
-  const players=[...roomState.players]
-    .map(p=>({...p,score:0}))
-    .sort((a,b)=>String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}));
-  const playerLinks={};players.forEach(p=>{if(p.sourceUid)playerLinks[p.sourceUid]=p.id});
-  await update(roomRef,{players,playerLinks,joinRequests:null,currentRound:null,round:1,history:[],lastRoundStarter:null,started:true,gameOver:false,startedAt:Date.now(),finishedAt:null,updatedAt:Date.now()})
-}async function startRound(){
-  if(!isHost||roomState.gameOver||roundIsOpen())return;
-  try{await update(roomRef,{currentRound:{number:roomState.round,status:"open",startedAt:Date.now(),submissions:{}},updatedAt:Date.now()})}
-  catch(e){console.error(e);toastMsg(t("roundStartError"))}
-}
-function openHostScoreEditor(playerId){
-  if(!isHost||!roundIsOpen())return;const p=roomState.players.find(x=>x.id===playerId);if(!p)return;hostEditPlayerId=playerId;const sub=submissionFor(playerId);
-  turnCounter.textContent=t("hostEntry");roundLabel.textContent=`${t("round")} ${roomState.round}`;turnPlayer.textContent=p.name;turnCurrentScore.textContent=t("officialScore",Number(p.score||0));hostEntryNote.textContent=t("hostEntryNote");pointsInput.value=sub?Number(sub.points||0):"";roundOverlay.classList.add("show");setTimeout(()=>pointsInput.focus(),50)
-}
-async function saveHostScore(points){
-  if(!isHost||!roundIsOpen()||!hostEditPlayerId)return;const p=roomState.players.find(x=>x.id===hostEditPlayerId);if(!p)return;
-  const sub={playerId:p.id,uid:p.sourceUid||uid,points:Number(points),method:"host",status:"approved",submittedAt:Date.now(),approvedAt:Date.now(),approvedBy:uid};
-  try{await set(ref(db,`rooms/${roomCode}/currentRound/submissions/${p.id}`),sub);roundOverlay.classList.remove("show");hostEditPlayerId=null;toastMsg(t("hostScoreSaved"))}catch(e){console.error(e);toastMsg(t("scoreActionError"))}
-}
-async function approveSubmission(playerId){if(!isHost)return;const sub=submissionFor(playerId);if(!sub)return;try{await update(ref(db,`rooms/${roomCode}/currentRound/submissions/${playerId}`),{status:"approved",approvedAt:Date.now(),approvedBy:uid})}catch(e){console.error(e);toastMsg(t("scoreActionError"))}}
-async function rejectSubmission(playerId){if(!isHost)return;const sub=submissionFor(playerId);if(!sub)return;try{await update(ref(db,`rooms/${roomCode}/currentRound/submissions/${playerId}`),{status:"rejected",approvedAt:null,approvedBy:null})}catch(e){console.error(e);toastMsg(t("scoreActionError"))}}
-function switchMyScoreMode(mode){myScoreMode=mode;manualTabBtn.classList.toggle("active",mode==="manual");cardsTabBtn.classList.toggle("active",mode==="cards");manualScorePane.classList.toggle("hidden",mode!=="manual");cardsScorePane.classList.toggle("hidden",mode!=="cards")}
-function buildCardPicker(){
-  numberCardsGrid.innerHTML=Array.from({length:13},(_,n)=>`<button type="button" class="card-pick" data-number-card="${n}">${n}</button>`).join("");
-  modifierCardsGrid.innerHTML=["x2","+2","+4","+6","+8","+10"].map(m=>`<button type="button" class="modifier-pick" data-modifier-card="${m}">${m}</button>`).join("");
-  numberCardsGrid.querySelectorAll("[data-number-card]").forEach(b=>b.addEventListener("click",()=>{const n=Number(b.dataset.numberCard);selectedNumbers.has(n)?selectedNumbers.delete(n):selectedNumbers.size<7&&selectedNumbers.add(n);renderCardCalculator()}));
-  modifierCardsGrid.querySelectorAll("[data-modifier-card]").forEach(b=>b.addEventListener("click",()=>{const m=b.dataset.modifierCard;selectedModifiers.has(m)?selectedModifiers.delete(m):selectedModifiers.add(m);renderCardCalculator()}))
-}
-function cardScore(){const nums=[...selectedNumbers],base=nums.reduce((a,b)=>a+b,0),doubled=selectedModifiers.has("x2")?base*2:base,plus=[...selectedModifiers].filter(x=>x.startsWith("+")).reduce((a,x)=>a+Number(x.slice(1)),0),bonus=nums.length===7?15:0;return{total:doubled+plus+bonus,nums,mods:[...selectedModifiers],bonus}}
-function renderCardCalculator(){numberCardsGrid.querySelectorAll("[data-number-card]").forEach(b=>b.classList.toggle("selected",selectedNumbers.has(Number(b.dataset.numberCard))));modifierCardsGrid.querySelectorAll("[data-modifier-card]").forEach(b=>b.classList.toggle("selected",selectedModifiers.has(b.dataset.modifierCard)));const c=cardScore();cardCalcTotal.textContent=c.total;const parts=[];if(c.nums.length)parts.push(c.nums.join("+"));if(c.mods.length)parts.push(c.mods.join(" "));if(c.bonus)parts.push(t("flip7Bonus"));cardCalcDetail.textContent=parts.length?parts.join(" · "):t("selectCards")}
-function clearMyScore(){myManualScore.value="";selectedNumbers.clear();selectedModifiers.clear();renderCardCalculator()}
-async function submitMyScore(forceBust=false){
-  const p=ownPlayer();if(!p||!roundIsOpen())return;const existing=submissionFor(p.id);if(existing?.status==="approved")return;let points=0,method="manual",details=null;
-  if(forceBust){points=0;method="bust"}else if(myScoreMode==="cards"){const c=cardScore();points=c.total;method="cards";details={numbers:c.nums,modifiers:c.mods,flip7:c.bonus===15}}else{points=Number(myManualScore.value);if(!Number.isInteger(points)||points<0){toastMsg(t("integerScore"));return}}
-  const sub={playerId:p.id,uid,points,method,status:"pending",submittedAt:Date.now()};if(details)sub.details=details;
-  try{await set(ref(db,`rooms/${roomCode}/currentRound/submissions/${p.id}`),sub);toastMsg(t("sentScore",points))}catch(e){console.error(e);toastMsg(t("scoreSubmitError"))}
-}
-function buildRoundOutcome(){
-  const subs=currentSubmissions(),scores={};let players=roomState.players.map(p=>{const v=Number(subs[p.id]?.points||0);scores[p.id]=v;return{...p,score:Number(p.score||0)+v}});
-  const highestRound=Math.max(...Object.values(scores).map(Number),0),starterNames=roomState.players.filter(p=>Number(scores[p.id]||0)===highestRound).map(p=>p.name).sort((a,b)=>String(a).localeCompare(String(b),lang,{sensitivity:"base"})),lastRoundStarter={round:roomState.round,names:starterNames,points:highestRound};
-  players=players.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}));const history=[...roomState.history,{round:roomState.round,scores}];return{scores,players,history,lastRoundStarter,reached:players.some(p=>Number(p.score)>=target())}
-}
-function showCloseRoundReview(){
-  const players=roomState.players,subs=currentSubmissions();if(!roundIsOpen()||players.some(p=>subs[p.id]?.status!=="approved"))return;pendingRound=buildRoundOutcome();
-  reviewRoundLabel.textContent=`${t("round")} ${roomState.round}`;reviewTitle.textContent=t("roundReviewTitle");reviewSubtitle.textContent=t("roundReviewSubtitle");reviewList.innerHTML=players.map(p=>{const pts=Number(subs[p.id]?.points||0),projected=Number(p.score||0)+pts;return `<div class="review-row"><div><strong>${esc(p.name)}</strong><span class="review-total">${t("projectedTotal",projected)}</span></div><span class="review-points">${pts?"+"+pts:"0"}</span></div>`}).join("");reviewCorrectBtn.textContent=t("backToRound");reviewConfirmBtn.textContent=t("confirmCloseRound");reviewCancelBtn.classList.add("hidden");reviewOverlay.classList.add("show")
-}
-async function confirmReviewedRound(){
-  if(!pendingRound)pendingRound=buildRoundOutcome();reviewOverlay.classList.remove("show");if(pendingRound.reached){const lead=pendingRound.players[0];finishLeader.textContent=lead?.name||t("player");finishLeaderScore.textContent=t("leaderPreview",lead?.name||t("player"),Number(lead?.score||0));finishConfirmOverlay.classList.add("show");return}await commitPreparedRound(false)
-}
-async function commitPreparedRound(finalize){
-  if(!pendingRound)pendingRound=buildRoundOutcome();reviewConfirmBtn.disabled=finishGameBtn.disabled=true;
-  try{const reached=Boolean(pendingRound.reached&&finalize);await update(roomRef,{players:pendingRound.players,history:pendingRound.history,lastRoundStarter:pendingRound.lastRoundStarter,currentRound:null,round:reached?roomState.round:roomState.round+1,gameOver:reached,finishedAt:reached?Date.now():null,updatedAt:Date.now()});reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");roundOverlay.classList.remove("show");pendingRound=null;hostEditPlayerId=null;if(!reached)toastMsg(t("roundSaved"))}
-  catch(e){console.error(e);toastMsg(t("roundSaveError"));if(finalize)finishConfirmOverlay.classList.add("show");else reviewOverlay.classList.add("show")}finally{reviewConfirmBtn.disabled=finishGameBtn.disabled=false}
-}
-
-function starterFromHistory(history,players){
-  const h=history.at(-1); if(!h)return null;
-  const vals=players.map(p=>Number(h.scores?.[p.id]||0));
-  const high=Math.max(...vals,0);
-  const names=players.filter(p=>Number(h.scores?.[p.id]||0)===high).map(p=>p.name).sort((a,b)=>String(a).localeCompare(String(b),lang,{sensitivity:"base"}));
-  return {round:h.round,names,points:high}
-}
-async function undoLastRound(){
-  if(!isHost||!roomState.history.length)return;
-  const last=roomState.history.at(-1);
-  if(!confirm(t("undoConfirm",last.round)))return;
-  const history=roomState.history.slice(0,-1);
-  let players=roomState.players.map(p=>({...p,score:Math.max(0,Number(p.score||0)-Number(last.scores?.[p.id]||0))}));
-  players=history.length?players.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"})):players.sort((a,b)=>String(a.name).localeCompare(String(b.name),lang,{sensitivity:"base"}));
-  const lastRoundStarter=starterFromHistory(history,players);
-  winnerOverlay.classList.remove("show"); winnerShown=false;
-  try{
-    await update(roomRef,{players,history,lastRoundStarter,currentRound:null,round:Number(last.round),gameOver:false,finishedAt:null,updatedAt:Date.now()});
-    toastMsg(t("undoDone",last.round))
-  }catch(e){console.error(e);toastMsg(t("undoError"))}
-}
-async function resetGame(){if(!isHost||!confirm(t("newGameConfirm")))return;winnerOverlay.classList.remove("show");winnerShown=false;await update(roomRef,{players:roomState.players.map(p=>({...p,score:0})),currentRound:null,round:1,history:[],lastRoundStarter:null,started:false,gameOver:false,startedAt:null,finishedAt:null,updatedAt:Date.now()})}
-function ranking(){return [...roomState.players].sort((a,b)=>Number(b.score)-Number(a.score)||a.name.localeCompare(b.name,lang))}function place(p,n){return p?`<span class="medal">${{1:"🥇",2:"🥈",3:"🥉"}[n]}</span><div class="place-name">${esc(p.name)}</div><div class="place-score">${p.score} ${t("pts")}</div>`:`<span class="medal">—</span><div class="place-name">${t("noPlayer")}</div><div class="place-score">—</div>`}function showWinner(){const r=ranking();winnerName.textContent=t("wins",r[0]?.name||t("player"));$("place1").innerHTML=place(r[0],1);$("place2").innerHTML=place(r[1],2);$("place3").innerHTML=place(r[2],3);winnerOverlay.classList.add("show");confetti()}function confetti(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const c=["#e96480","#56ad78","#e8a05b","#f2c355","#b965a4"];for(let i=0;i<50;i++){const e=document.createElement("i");Object.assign(e.style,{position:"fixed",top:"-20px",left:Math.random()*100+"vw",width:"11px",height:"18px",background:c[i%c.length],border:"2px solid #322e2a",zIndex:60,pointerEvents:"none",animation:`fall ${1.5+Math.random()*.7}s linear ${Math.random()*.4}s forwards`});document.body.appendChild(e);setTimeout(()=>e.remove(),2700)}}
-function roomUrl(){const u=new URL(location.href);u.searchParams.set("room",roomCode);return u}
-function showQr(){
-  const u=roomUrl(); qrCodeLabel.textContent=roomCode; qrLinkText.textContent=u.toString(); qrCode.innerHTML="";
-  try{
-    if(window.QRCode)new window.QRCode(qrCode,{text:u.toString(),width:220,height:220,colorDark:"#24211f",colorLight:"#fffaf0",correctLevel:window.QRCode.CorrectLevel.M});
-    else qrCode.textContent=u.toString()
-  }catch(e){console.warn(e);qrCode.textContent=u.toString()}
-  qrOverlay.classList.add("show")
-}
-async function shareRoom(){const u=roomUrl();try{if(navigator.share){await navigator.share({title:"Flip 7 Live",text:t("joinShare",roomCode),url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg(t("copied"))}else prompt(t("copyLink"),u.toString())}catch(e){if(e?.name!=="AbortError")prompt(t("copyLink"),u.toString())}}async function leaveRoom(){await stopPresence();if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");qrOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");goalValue.textContent=t("undefinedTarget");const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
-async function exportExcel(){
-  if(!roomState.history.length)return;
-  try{
-    const XLSX=await import("https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm"),r=ranking(),
-      summary=[[t("excelTitle")],[t("room"),roomCode],[t("goal"),target()],[t("roundsCount"),roomState.history.length],[],[t("position"),t("player"),t("finalScore")],...r.map((p,i)=>[i+1,p.name,Number(p.score)])],
-      rounds=[[t("round"),...roomState.players.map(p=>p.name)],...roomState.history.map(h=>[h.round,...roomState.players.map(p=>Number(h.scores?.[p.id]||0))]),[],["TOTAL",...roomState.players.map(p=>Number(p.score))]],
-      acc=[[t("round"),...roomState.players.map(p=>p.name)]],running=Object.fromEntries(roomState.players.map(p=>[p.id,0]));
-    roomState.history.forEach(h=>{roomState.players.forEach(p=>running[p.id]+=Number(h.scores?.[p.id]||0));acc.push([h.round,...roomState.players.map(p=>running[p.id])])});
-    const wb=XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),t("summarySheet"));
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rounds),t("roundsSheet"));
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(acc),t("accSheet"));
-    XLSX.writeFile(wb,`Flip7_${roomCode}.xlsx`)
-  }catch(e){console.error(e);toastMsg(t("excelError"))}
-}
-languageBtn.addEventListener("click",toggleLanguage);createRoomBtn.addEventListener("click",createRoom);joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});qrRoomBtn.addEventListener("click",showQr);shareRoomBtn.addEventListener("click",shareRoom);leaveRoomBtn.addEventListener("click",leaveRoom);qrShareBtn.addEventListener("click",shareRoom);qrCloseBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));qrCloseTopBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
+async function setTargetValue(v){if(!isHost||roomState.started)return;const n=Number(v);if(!Number.isInteger(n)||n<DEFAULT_TARGET||n>9999){toastMsg("La meta debe ser un número entero entre 200 y 9999.");return}await update(roomRef,{target:n,updatedAt:Date.now()});customTargetRow.classList.toggle("hidden",n===DEFAULT_TARGET);toastMsg(`Meta establecida en ${n} puntos`)}
+function showCustomTarget(){customTargetRow.classList.remove("hidden");customTargetInput.value=target()>DEFAULT_TARGET?target():"";setTimeout(()=>customTargetInput.focus(),40)}
+async function addPlayer(){const n=playerName.value.trim();if(!n)return;if(roomState.players.some(p=>p.name.toLowerCase()===n.toLowerCase())){toastMsg("Ese nombre ya está en la lista.");return}const ps=[...roomState.players,{id:(crypto.randomUUID?crypto.randomUUID():Date.now()+""),name:n,score:0}];playerName.value="";await update(roomRef,{players:ps,updatedAt:Date.now()});playerName.focus()}
+async function startGame(){await update(roomRef,{players:roomState.players.map(p=>({...p,score:0})),round:1,history:[],started:true,gameOver:false,startedAt:Date.now(),finishedAt:null,updatedAt:Date.now()})}function startRound(){roundDraft=roomState.players.map(p=>({id:p.id,points:null}));turnIndex=0;roundOverlay.classList.add("show");showTurn()}function showTurn(){const p=roomState.players[turnIndex],d=roundDraft[turnIndex];turnCounter.textContent=`Jugador ${turnIndex+1} de ${roomState.players.length}`;roundLabel.textContent=`Ronda ${roomState.round}`;turnPlayer.textContent=p.name;turnCurrentScore.textContent=`Lleva ${Number(p.score||0)} puntos`;pointsInput.value=d.points===null?"":d.points;backTurnBtn.style.visibility=turnIndex?"visible":"hidden";setTimeout(()=>pointsInput.focus(),50)}function setDraft(v){roundDraft[turnIndex].points=v;if(turnIndex<roomState.players.length-1){turnIndex++;showTurn()}else commitRound()}
+async function commitRound(){saveScoreBtn.disabled=passBtn.disabled=true;try{const scores={},players=roomState.players.map((p,i)=>{const v=Number(roundDraft[i].points||0);scores[p.id]=v;return {...p,score:Number(p.score||0)+v}}),history=[...roomState.history,{round:roomState.round,scores}],reached=players.some(p=>Number(p.score)>=target());await update(roomRef,{players,history,round:reached?roomState.round:roomState.round+1,gameOver:reached,finishedAt:reached?Date.now():null,updatedAt:Date.now()});roundOverlay.classList.remove("show");if(!reached)toastMsg("Ronda guardada") }catch(e){console.error(e);toastMsg("No se pudo guardar la ronda.")}finally{saveScoreBtn.disabled=passBtn.disabled=false}}
+async function resetGame(){if(!isHost||!confirm("¿Empezar un juego nuevo en esta misma sala? Se borrará el marcador e historial actual."))return;winnerOverlay.classList.remove("show");winnerShown=false;await update(roomRef,{players:roomState.players.map(p=>({...p,score:0})),round:1,history:[],started:false,gameOver:false,startedAt:null,finishedAt:null,updatedAt:Date.now()})}
+function ranking(){return [...roomState.players].sort((a,b)=>Number(b.score)-Number(a.score)||a.name.localeCompare(b.name,"es"))}function place(p,n){return p?`<span class="medal">${{1:"🥇",2:"🥈",3:"🥉"}[n]}</span><div class="place-name">${esc(p.name)}</div><div class="place-score">${p.score} puntos</div>`:'<span class="medal">—</span><div class="place-name">Sin jugador</div><div class="place-score">—</div>'}function showWinner(){const r=ranking();winnerName.textContent=`¡${r[0]?.name||"Ganador"} gana!`;$("place1").innerHTML=place(r[0],1);$("place2").innerHTML=place(r[1],2);$("place3").innerHTML=place(r[2],3);winnerOverlay.classList.add("show");confetti()}function confetti(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const c=["#e96480","#56ad78","#e8a05b","#f2c355","#b965a4"];for(let i=0;i<50;i++){const e=document.createElement("i");Object.assign(e.style,{position:"fixed",top:"-20px",left:Math.random()*100+"vw",width:"11px",height:"18px",background:c[i%c.length],border:"2px solid #322e2a",zIndex:60,pointerEvents:"none",animation:`fall ${1.5+Math.random()*.7}s linear ${Math.random()*.4}s forwards`});document.body.appendChild(e);setTimeout(()=>e.remove(),2700)}}
+async function shareRoom(){const u=new URL(location.href);u.searchParams.set("room",roomCode);try{if(navigator.share){await navigator.share({title:"Flip 7 Live",text:`Únase a mi partida. Sala ${roomCode}`,url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg("Link copiado.")}else prompt("Copie este link:",u.toString())}catch(e){if(e?.name!=="AbortError")prompt("Copie este link:",u.toString())}}function leaveRoom(){if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");goalValue.textContent=DEFAULT_TARGET;const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
+async function exportExcel(){if(!roomState.history.length)return;try{const XLSX=await import("https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm"),r=ranking(),summary=[["Flip 7 Live - Resultado"],["Sala",roomCode],["Meta",target()],["Rondas",roomState.history.length],[],["Posición","Jugador","Puntaje final"],...r.map((p,i)=>[i+1,p.name,Number(p.score)])],rounds=[["Ronda",...roomState.players.map(p=>p.name)],...roomState.history.map(h=>[h.round,...roomState.players.map(p=>Number(h.scores?.[p.id]||0))]),[],["TOTAL",...roomState.players.map(p=>Number(p.score))]],acc=[["Ronda",...roomState.players.map(p=>p.name)]],running=Object.fromEntries(roomState.players.map(p=>[p.id,0]));roomState.history.forEach(h=>{roomState.players.forEach(p=>running[p.id]+=Number(h.scores?.[p.id]||0));acc.push([h.round,...roomState.players.map(p=>running[p.id])])});const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"Resumen");XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rounds),"Rondas");XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(acc),"Acumulado");XLSX.writeFile(wb,`Flip7_${roomCode}.xlsx`)}catch(e){console.error(e);toastMsg("No se pudo generar el Excel.")}}
+createRoomBtn.addEventListener("click",createRoom);joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});shareRoomBtn.addEventListener("click",shareRoom);leaveRoomBtn.addEventListener("click",leaveRoom);target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
 customTargetBtn.addEventListener("click",showCustomTarget);
-saveTargetBtn.addEventListener("click",()=>{const n=Number(customTargetInput.value);if(!Number.isInteger(n)||n<=DEFAULT_TARGET||n>9999){toastMsg(t("customRange"));customTargetInput.focus();return}setTargetValue(n)});
+saveTargetBtn.addEventListener("click",()=>{const n=Number(customTargetInput.value);if(!Number.isInteger(n)||n<=DEFAULT_TARGET||n>9999){toastMsg("Ingrese una meta personalizada entre 201 y 9999.");customTargetInput.focus();return}setTargetValue(n)});
 customTargetInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveTargetBtn.click()});
-requestJoinBtn.addEventListener("click",requestToJoin);selfJoinName.addEventListener("keydown",e=>{if(e.key==="Enter")requestJoinBtn.click()});addPlayerBtn.addEventListener("click",addPlayer);playerName.addEventListener("keydown",e=>{if(e.key==="Enter")addPlayer()});startGameBtn.addEventListener("click",startGame);roundBtn.addEventListener("click",startRound);undoRoundBtn.addEventListener("click",undoLastRound);newGameBtn.addEventListener("click",resetGame);exportBtn.addEventListener("click",exportExcel);
-closeRoundBtn.addEventListener("click",showCloseRoundReview);manualTabBtn.addEventListener("click",()=>switchMyScoreMode("manual"));cardsTabBtn.addEventListener("click",()=>switchMyScoreMode("cards"));myBustBtn.addEventListener("click",()=>submitMyScore(true));clearMyScoreBtn.addEventListener("click",clearMyScore);submitMyScoreBtn.addEventListener("click",()=>submitMyScore(false));myManualScore.addEventListener("keydown",e=>{if(e.key==="Enter")submitMyScore(false)});
-passBtn.addEventListener("click",()=>saveHostScore(0));saveScoreBtn.addEventListener("click",()=>{const n=Number(pointsInput.value);if(!Number.isInteger(n)||n<0){toastMsg(t("integerScore"));return}saveHostScore(n)});pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveScoreBtn.click()});document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{pointsInput.value=Number(pointsInput.value||0)+Number(b.dataset.add);pointsInput.focus()}));cancelRoundBtn.addEventListener("click",()=>{roundOverlay.classList.remove("show");hostEditPlayerId=null});reviewCorrectBtn.addEventListener("click",()=>{reviewOverlay.classList.remove("show");pendingRound=null});reviewConfirmBtn.addEventListener("click",confirmReviewedRound);reviewCancelBtn.addEventListener("click",()=>{reviewOverlay.classList.remove("show");pendingRound=null});finishReviewBtn.addEventListener("click",()=>{finishConfirmOverlay.classList.remove("show");reviewOverlay.classList.add("show")});finishGameBtn.addEventListener("click",()=>commitPreparedRound(true));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerUndoBtn.addEventListener("click",undoLastRound);winnerNewGameBtn.addEventListener("click",resetGame);buildCardPicker();renderCardCalculator();applyLanguage();await boot();
+addPlayerBtn.addEventListener("click",addPlayer);playerName.addEventListener("keydown",e=>{if(e.key==="Enter")addPlayer()});startGameBtn.addEventListener("click",startGame);roundBtn.addEventListener("click",startRound);newGameBtn.addEventListener("click",resetGame);exportBtn.addEventListener("click",exportExcel);passBtn.addEventListener("click",()=>setDraft(0));saveScoreBtn.addEventListener("click",()=>{const n=Number(pointsInput.value);if(!Number.isInteger(n)||n<0){toastMsg("Ingrese un número entero de 0 o más.");return}setDraft(n)});pointsInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveScoreBtn.click()});document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{pointsInput.value=Number(pointsInput.value||0)+Number(b.dataset.add);pointsInput.focus()}));backTurnBtn.addEventListener("click",()=>{if(turnIndex){turnIndex--;showTurn()}});cancelRoundBtn.addEventListener("click",()=>{roundOverlay.classList.remove("show");roundDraft=[];turnIndex=0});winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerNewGameBtn.addEventListener("click",resetGame);await boot();
 </script>
 </body>
 </html>
