@@ -681,6 +681,33 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
   .qr-scanner-copy h2{font-size:23px}
 }
 
+
+/* v18 — spectator waiting screen hierarchy */
+#viewerWaiting{max-width:560px;margin:0 auto}
+#viewerWaiting .self-join-box{margin:0 auto 10px}
+.waiting-status-card{
+  display:flex;align-items:center;gap:9px;
+  max-width:520px;margin:0 auto;
+  border:1.5px solid #c8c0b2;border-radius:13px;
+  background:#f6f2eb;padding:9px 11px;text-align:left
+}
+.waiting-status-card .waiting-icon{
+  width:30px;height:30px;flex:0 0 30px;
+  display:grid;place-items:center;font-size:17px;margin:0
+}
+.waiting-status-copy{min-width:0}
+.waiting-status-copy h3{margin:0;font-size:12px}
+.waiting-status-copy p{
+  margin:2px 0 0;color:var(--muted);
+  font-size:9px;font-weight:800;line-height:1.35
+}
+@media(max-width:560px){
+  #viewerWaiting .self-join-box{margin-bottom:8px}
+  .waiting-status-card{padding:8px 9px}
+  .waiting-status-copy h3{font-size:11px}
+  .waiting-status-copy p{font-size:8.5px}
+}
+
 </style>
 </head>
 <body>
@@ -783,9 +810,6 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
       <button id="startGameBtn" class="btn btn-green btn-wide" disabled>Iniciar juego</button>
     </div>
     <div id="viewerWaiting" class="waiting hidden">
-      <div class="waiting-icon">⏳</div>
-      <h3 id="waitingTitle">Esperando al host</h3>
-      <p id="waitingText">La partida todavía no ha comenzado.</p>
       <div id="selfJoinBox" class="self-join-box">
         <h4 id="selfJoinTitle">¿Quiere jugar?</h4>
         <p id="selfJoinDesc">Escriba el nombre con el que quiere aparecer. El host debe aprobarlo.</p>
@@ -794,6 +818,13 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
           <button id="requestJoinBtn" type="button" class="btn btn-primary">Solicitar unirme</button>
         </div>
         <div id="selfJoinStatus" class="self-join-status hidden"></div>
+      </div>
+      <div class="waiting-status-card">
+        <div class="waiting-icon">⏳</div>
+        <div class="waiting-status-copy">
+          <h3 id="waitingTitle">Esperando al host</h3>
+          <p id="waitingText">La partida todavía no ha comenzado.</p>
+        </div>
       </div>
     </div>
     <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 id="scoreboardTitle" style="margin-bottom:3px">Marcador</h2></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
