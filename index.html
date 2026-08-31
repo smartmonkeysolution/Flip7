@@ -943,7 +943,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
         </div>
       </div>
 
-      <div id="hostGameActions" class="game-actions hidden"><button id="roundBtn" class="btn btn-pink">▶ Iniciar ronda</button><button id="editRoundsBtn" class="btn btn-orange" disabled>✎ Editar rondas anteriores</button><button id="newGameBtn" class="btn btn-ghost">Nuevo juego</button></div>
+      <div id="hostGameActions" class="game-actions hidden"><button id="roundBtn" class="btn btn-pink">▶ Iniciar ronda</button><button id="editRoundsBtn" class="btn btn-orange" title="Corregir puntuaciones de rondas ya cerradas" disabled>✎ Editar rondas anteriores</button><button id="newGameBtn" class="btn btn-ghost">Nuevo juego</button></div>
       <div id="viewerNote" class="viewer-note hidden">Marcador en vivo · esperando al host.</div>
 
     </div>
@@ -1324,7 +1324,7 @@ const I18N={
     transferConfirm:n=>`¿Transferir el control de la sala a ${n}? Usted dejará de ser host.`,transferDone:n=>`${n} ahora es el host.`,transferError:"No se pudo cambiar el host.",
     transferNote:"Después del cambio, el nuevo host tendrá el control de la sala y usted pasará a ser espectador.",
     permanentPremiumNote:"Esta estructura queda lista para convertirse en una función Premium cuando la app se publique en Android.",
-    permanentHistoryOnly:"El historial y la edición de rondas están disponibles en salas permanentes.",starterPopupKicker:"Siguiente ronda",
+    permanentHistoryOnly:"La edición de rondas está disponible mientras la partida actual conserve su historial.",starterPopupKicker:"Siguiente ronda",
     myRoomsKicker:"Salas permanentes",myRoomsTitle:"Mis salas permanentes",myRoomsDesc:"Aquí aparecen las salas permanentes que ha visitado con este usuario.",myRoomsLoading:"Cargando salas…",myRoomsEmpty:"Todavía no pertenece a ninguna sala permanente. Puede crear una o entrar a una usando su código.",
     roomsAsHost:n=>`${n} como host`,roomsAsVisitor:n=>`${n} como visitante`,roomsTotal:n=>`${n} sala${n===1?"":"s"}`,visitorRole:"Visitante",enterRoomAgain:"Entrar a la sala",
     participantsLabel:"Participantes",noParticipants:"Sin participantes registrados",openRoomResults:"Resultados",editRoomNameShort:"Cambiar nombre",deletePermanentRoom:n=>`Borrar ${n}`,deletePermanentRoomGeneric:"Borrar sala permanente",
@@ -1411,7 +1411,7 @@ const I18N={
     transferConfirm:n=>`Transfer room control to ${n}? You will stop being the host.`,transferDone:n=>`${n} is now the host.`,transferError:"The host could not be changed.",
     transferNote:"After the change, the new host will control the room and you will become a viewer.",
     permanentPremiumNote:"This structure is ready to become a Premium feature when the app is released on Android.",
-    permanentHistoryOnly:"Round history and editing are available in permanent rooms.",starterPopupKicker:"Next round",
+    permanentHistoryOnly:"Round editing is available while the current game still has its round history.",starterPopupKicker:"Next round",
     myRoomsKicker:"Permanent rooms",myRoomsTitle:"My permanent rooms",myRoomsDesc:"These are the permanent rooms you have visited with this user.",myRoomsLoading:"Loading rooms…",myRoomsEmpty:"You do not belong to any permanent rooms yet. Create one or join one with its code.",
     roomsAsHost:n=>`${n} as host`,roomsAsVisitor:n=>`${n} as visitor`,roomsTotal:n=>`${n} room${n===1?"":"s"}`,visitorRole:"Visitor",enterRoomAgain:"Enter room",
     participantsLabel:"Participants",noParticipants:"No participants registered",openRoomResults:"Results",editRoomNameShort:"Rename",deletePermanentRoom:n=>`Delete ${n}`,deletePermanentRoomGeneric:"Delete permanent room",
@@ -1671,7 +1671,7 @@ function tutorialSteps(){
     {icon:"🃏",visual:"score",title:"Each player sends their score",body:"When the Host starts a round, connected players receive a scoring popup on their own phone.",points:["Cards mode lets you select number cards and modifiers; the Flip 7 bonus is calculated automatically.","Manual mode is available when you already know the score.","Bust / 0 is always available."]},
     {icon:"✅",visual:"approve",title:"The Host validates the round",body:"Submitted scores are provisional until the Host approves them.",points:["Approve a correct submission.","Reject it to return the player to scoring, or edit it directly.","Players without a connected phone can be scored manually by the Host.","The round closes only after every player has an approved score."]},
     {icon:"🏆",visual:"rounds",title:"Rounds, first card and finish",body:"After a round closes, totals update for everyone and the app prepares the next round.",points:["The highest round score determines who receives the first card next, including ties.","A 3-second popup announces the next first-card player and the notice remains visible.","When the target is reached, the final result is confirmed before the podium."]},
-    {icon:"📊",visual:"results",title:"Results and history",body:"Permanent rooms keep a reusable record instead of losing everything after a game.",points:["See games, rounds, total points and player results.","Open previous games and review round winners.","The Host can edit previous rounds; totals, ranking and first-card information are recalculated.","The room name, history and room code remain for the next game."]}
+    {icon:"📊",visual:"results",title:"Results and history",body:"Permanent rooms keep a reusable record instead of losing everything after a game.",points:["See games, rounds, total points and player results.","Open previous games and review round winners.","The Host can edit previous rounds in both normal and permanent games; totals, ranking and first-card information are recalculated.","The room name, history and room code remain for the next game."]}
   ];
   return [
     {icon:"👋",visual:"home",title:"Bienvenido a Score Tracker",body:"La app separa la administración de la sala de la partida en vivo para que la mesa sea fácil de seguir.",points:["Cree una partida normal rápida o una sala permanente reutilizable.","Una persona funciona como Host y los demás pueden entrar desde su propio teléfono.","El idioma y el estado de conexión permanecen disponibles arriba."]},
@@ -1686,7 +1686,7 @@ function tutorialSteps(){
     {icon:"🃏",visual:"score",title:"Cada jugador envía su puntaje",body:"Cuando el Host inicia una ronda, los jugadores conectados reciben un popup de puntuación en su teléfono.",points:["Mis cartas permite seleccionar cartas numéricas y modificadores; el bono Flip 7 se calcula automáticamente.","Manual sirve si ya conoce el total de la ronda.","Bust / 0 siempre está disponible."]},
     {icon:"✅",visual:"approve",title:"El Host valida la ronda",body:"Los puntajes enviados son provisionales hasta que el Host los aprueba.",points:["Apruebe una puntuación correcta.","Rechácela para devolver al jugador al popup o edítela directamente.","El Host puede registrar manualmente el puntaje de alguien sin teléfono conectado.","La ronda solo se cierra cuando todos tienen un puntaje aprobado."]},
     {icon:"🏆",visual:"rounds",title:"Rondas, primera carta y final",body:"Al cerrar una ronda, los totales se actualizan para todos y la app prepara la siguiente.",points:["El mayor puntaje de la ronda determina quién recibe la primera carta siguiente, incluyendo empates.","Un popup de 3 segundos anuncia quién recibe la primera carta y el aviso permanece visible.","Cuando alguien alcanza la meta, se confirma el resultado final antes de mostrar el podio."]},
-    {icon:"📊",visual:"results",title:"Resultados e historial",body:"Las salas permanentes construyen un registro reutilizable en lugar de perder todo al terminar.",points:["Revise juegos, rondas, puntos totales y resultados por jugador.","Abra juegos anteriores y vea quién ganó cada ronda.","El Host puede editar rondas anteriores; se recalculan totales, posiciones y primera carta.","El nombre, historial y código de la sala permanecen para la siguiente partida."]}
+    {icon:"📊",visual:"results",title:"Resultados e historial",body:"Las salas permanentes construyen un registro reutilizable en lugar de perder todo al terminar.",points:["Revise juegos, rondas, puntos totales y resultados por jugador.","Abra juegos anteriores y vea quién ganó cada ronda.","El Host puede editar rondas anteriores tanto en partidas normales como permanentes; se recalculan totales, posiciones y primera carta.","El nombre, historial y código de la sala permanecen para la siguiente partida."]}
   ]
 }
 function tutorialVisualHtml(kind){
@@ -1953,7 +1953,7 @@ function render(){
     enterGameBtn.textContent=roomState.gameOver?t("viewFinishedGame"):t("enterCurrentGame");
   }
 
-  winnerNewGameBtn.classList.toggle("hidden",!isHost);winnerEditRoundsBtn.classList.toggle("hidden",!isHost||!isPermanent()||!roomState.history.length);
+  winnerNewGameBtn.classList.toggle("hidden",!isHost);winnerEditRoundsBtn.classList.toggle("hidden",!isHost||!roomState.history.length);
   if(inLobby&&isHost&&!roomState.started)renderSetup();
   if(inLobby&&!isHost&&!roomState.started){
     const base=roomState.players.length?t("waitingPlayers",roomState.players.length):t("waitingAdding");
@@ -2043,7 +2043,7 @@ function renderGame(){
     return `<tr class="${s===max&&max>0?"leader":""}"><td><div class="score-name">${esc(p.name)}</div></td><td><div class="progress"><span style="width:${pct}%"></span></div></td><td class="score-val"><span class="score-number" data-id="${p.id}">${s}</span><span class="score-unit"> pts</span><span class="remaining">${remaining>0?t("remaining",remaining):t("targetReached")}</span><span class="delta">${proj!==null?t("pendingProjection",provisional)+` → ${proj}`:(d>0?t("lastRound",d):d===0&&hasRounds?t("passedLast"):"")}</span></td></tr>`
   }).join("");
   roundPill.innerHTML=`<span class="dot"></span> ${roomState.gameOver?t("final"):`${t("round")} ${roomState.round}`}`;
-  hostGameActions.classList.toggle("hidden",!isHost);viewerNote.classList.toggle("hidden",isHost);editRoundsBtn.classList.toggle("hidden",!isPermanent());editRoundsBtn.disabled=!isPermanent()||!roomState.history.length||open;
+  hostGameActions.classList.toggle("hidden",!isHost);viewerNote.classList.toggle("hidden",isHost);editRoundsBtn.classList.remove("hidden");editRoundsBtn.disabled=!roomState.history.length||open;
   if(isHost){roundBtn.disabled=open||roomState.gameOver;roundBtn.textContent=open?t("roundInProgress",roomState.round):t("startRound")}else viewerNote.textContent=open?t("liveRoundDesc"):t("noRoundOpen");
   renderLiveRound();renderMyScorePanel();
   const starter=roomState.lastRoundStarter;if(starter){const names=Array.isArray(starter.names)?starter.names:[starter.name].filter(Boolean),who=names.join(names.length===2?(lang==="es"?" y ":" and "):", ");starterNotice.classList.remove("hidden");starterNoticeTitle.textContent=`${t("firstCard")}: ${who}`;starterNoticeText.textContent=names.length>1?t("tieRound",starter.round,starter.points):t("highestRound",starter.round,starter.points)}else starterNotice.classList.add("hidden");
@@ -2500,7 +2500,7 @@ function starterFromHistory(history,players){
   return {round:h.round,names,points:high}
 }
 function openEditHistory(){
-  if(!isHost||!isPermanent()||!roomState.history.length||roundIsOpen()){if(isHost&&!isPermanent())toastMsg(t("permanentHistoryOnly"));return}
+  if(!isHost||!roomState.history.length||roundIsOpen())return;
   winnerOverlay.classList.remove("show");
   editingHistoryRound=null;
   editHistoryEditor.classList.add("hidden");
