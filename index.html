@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#f2c355" />
-<title>Flip 7 | Score Tracker.</title>
+<title>Flip 7 | Score Tracker</title>
 <style>
 :root{--ink:#24211f;--cream:#fbf4e4;--paper:#fffaf0;--yellow:#f2c355;--pink:#e96480;--green:#56ad78;--orange:#e8a05b;--purple:#b965a4;--red:#d8525d;--muted:#6b645c;--line:#322e2a;--shadow:0 12px 34px rgba(32,29,24,.16);--soft-shadow:0 6px 16px rgba(32,29,24,.11);--radius:22px}
 *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded","Segoe UI",system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 12% 10%,rgba(233,100,128,.14),transparent 24%),radial-gradient(circle at 89% 20%,rgba(86,173,120,.15),transparent 20%),radial-gradient(circle at 35% 92%,rgba(185,101,164,.12),transparent 24%),#f1ebdf}button,input{font:inherit}button{touch-action:manipulation}.app{min-height:100vh;max-width:980px;margin:0 auto;padding:22px 16px calc(32px + env(safe-area-inset-bottom))}
@@ -627,6 +627,11 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
   #enterGameBtn{width:100%}
 }
 
+
+/* v16 — brand cleanup */
+.logo-card-v13 .logo-card-seven{margin:4px 0 0}
+.brand-copy h1{white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -636,10 +641,9 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
       <div class="logo-card-v13" aria-hidden="true">
         <span class="logo-card-top">FLIP</span>
         <span class="logo-card-seven">7</span>
-        <span class="logo-card-bottom">SCORE</span>
       </div>
       <div class="brand-copy">
-        <h1>Flip 7 <span class="brand-divider">|</span> <span class="brand-live">Score Tracker.</span></h1>
+        <h1><span class="brand-live">Score Tracker</span></h1>
         <p id="appSubtitle" class="subtitle">Marcador compartido · en vivo</p>
       </div>
     </div>
@@ -743,7 +747,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
         <div id="selfJoinStatus" class="self-join-status hidden"></div>
       </div>
     </div>
-    <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 id="scoreboardTitle" style="margin-bottom:3px">Marcador</h2><p id="scoreboardDesc">La <strong>meta</strong> se comprueba al cerrar cada ronda, después de registrar el puntaje de todos.</p></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
+    <div id="gameArea" class="hidden"><div class="panel-head" style="margin:-20px -20px 18px"><div class="game-top"><div><h2 id="scoreboardTitle" style="margin-bottom:3px">Marcador</h2></div><div id="roundPill" class="round-pill"><span class="dot"></span> Ronda 1</div></div></div>
       <div id="starterNotice" class="starter-notice hidden"><span class="starter-icon">🃏</span><div><strong id="starterNoticeTitle">Primera carta</strong><small id="starterNoticeText"></small></div></div>
       <div style="overflow-x:auto"><table class="leaderboard"><thead><tr><th id="playerHeader">Jugador</th><th id="progressHeader">Progreso</th><th id="pointsHeader" style="text-align:right">Puntos</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
 
@@ -1277,10 +1281,9 @@ async function loadMyPermanentRooms(){
     }))).filter(Boolean);
 
     rooms.sort((a,b)=>{
-      if(a.role!==b.role)return a.role==="host"?-1:1;
-      const an=String(a.room.roomName||t("permanentDefaultName"));
-      const bn=String(b.room.roomName||t("permanentDefaultName"));
-      return an.localeCompare(bn,lang,{sensitivity:"base"})
+      const aRecent=Number(a.room.updatedAt||a.room.permanentSince||a.room.createdAt||0);
+      const bRecent=Number(b.room.updatedAt||b.room.permanentSince||b.room.createdAt||0);
+      return bRecent-aRecent
     });
 
     const hostCount=rooms.filter(x=>x.role==="host").length;
@@ -1395,7 +1398,7 @@ function applyLanguage(){
   selfJoinTitle.textContent=t("selfJoinTitle"); selfJoinDesc.textContent=t("selfJoinDesc"); selfJoinName.placeholder=t("yourName"); requestJoinBtn.textContent=t("requestJoin");
   setText("targetTitle","targetTitle"); setText("targetDesc","targetDesc"); target200Btn.textContent=t("target200"); customTargetBtn.textContent=t("custom");
   customTargetInput.placeholder=t("customPlaceholder"); saveTargetBtn.textContent=t("useTarget"); setText("targetHelp","targetHelp"); startGameBtn.textContent=t("startGame");
-  setText("waitingTitle","waitingTitle"); setText("scoreboardTitle","scoreboard"); $("scoreboardDesc").innerHTML=t("scoreboardDesc");
+  setText("waitingTitle","waitingTitle"); setText("scoreboardTitle","scoreboard");
   setText("playerHeader","player"); setText("progressHeader","progress"); setText("pointsHeader","points");
   liveRoundTitle.textContent=t("liveRound"); liveRoundDesc.textContent=t("liveRoundDesc"); closeRoundBtn.textContent=t("closeRound");
   myScoreKicker.textContent=t("scorePopupKicker"); myScoreTitle.textContent=t("myScore"); myScoreDesc.textContent=t("myScoreDesc"); cardsTabBtn.textContent=t("cardsMode"); manualTabBtn.textContent=t("manualMode");
