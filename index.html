@@ -959,6 +959,12 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 .hub-action-copy strong{white-space:normal;line-height:1.12}
 @media(max-width:720px){.hub-action-copy strong{font-size:9.5px}}
 
+
+/* v25 — 4-character room codes */
+.room-code{letter-spacing:3px;font-size:15px}
+.invite-code-preview strong{letter-spacing:3px;font-size:14px}
+#joinCode{text-transform:uppercase;letter-spacing:3px;font-weight:1000}
+
 </style>
 </head>
 <body>
@@ -1012,7 +1018,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
           <small id="joinDesc">Ingrese el código o escanee el QR.</small>
         </div>
         <div class="join-row join-room-actions">
-          <input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO">
+          <input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CÓDIGO">
           <button id="scanQrBtn" class="btn btn-ghost scan-qr-btn" type="button">▣ Escanear QR</button>
           <button id="joinRoomBtn" class="btn btn-primary">Entrar</button>
         </div>
@@ -1047,7 +1053,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
           <div class="room-code-line">
             <small id="roomCodeCaption">Código</small>
-            <span id="roomCodeLabel" class="room-code">--------</span>
+            <span id="roomCodeLabel" class="room-code">----</span>
           </div>
 
           <div class="room-host-line">
@@ -1258,7 +1264,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
         </div>
         <div class="invite-code-preview">
           <small id="inviteCodeLabel">Código de la mesa</small>
-          <strong id="inviteCodeValue">--------</strong>
+          <strong id="inviteCodeValue">----</strong>
         </div>
       </section>
 
@@ -1590,7 +1596,7 @@ const I18N={
     noPlayer:"Sin jugador",wins:n=>`¡${n} gana!`,pts:"puntos",
     targetRange:"La meta debe ser un número entero entre 200 y 9999.",targetSet:n=>`Meta establecida en ${n} puntos`,
     customRange:"Ingrese una meta personalizada entre 201 y 9999.",duplicate:"Ese nombre ya está en la lista.",
-    needTarget:"Defina la meta antes de iniciar la partida.",roomCreateError:"No se pudo crear la mesa.",codeLength:"El código debe tener 8 caracteres.",
+    needTarget:"Defina la meta antes de iniciar la partida.",roomCreateError:"No se pudo crear la mesa.",codeLength:"El código debe tener 4 caracteres.",
     roomNotFound:"No encontré esa mesa.",roomOpenError:"No se pudo abrir la mesa.",roomGone:"La mesa ya no existe.",
     roundSaved:"Ronda guardada",roundSaveError:"No se pudo guardar la ronda.",newGameConfirm:"¿Empezar un juego nuevo en esta misma mesa? Se borrará el marcador e historial actual.",
     copied:"Link copiado.",copyLink:"Copie este enlace:",joinShare:c=>`Únase a mi mesa de Flip 7. Código ${c}`,excelError:"No se pudo generar el Excel.",
@@ -1962,7 +1968,7 @@ function tutorialSteps(){
   if(lang==="en")return [
     {icon:"👋",visual:"home",title:"Welcome to Score Tracker",body:"The app separates room setup from live gameplay so the table stays easy to follow.",points:["Create a quick table or a reusable permanent table.","One person is the Host; everyone else can join from their own phone.","Language and connection status stay available at the top."]},
     {icon:"🎴",visual:"rooms",title:"Quick table or permanent table",body:"From New table, choose a quick table for the current game or a permanent table for a recurring group.",points:["Quick table: play now without keeping permanent history.","Permanent table: keeps the same code, name, results and game history.","A quick table can be converted to permanent later."]},
-    {icon:"📷",visual:"join",title:"Join a table",body:"From Join a table, players and spectators can enter with the 8-character code or scan the QR.",points:["Scan QR opens the phone camera and joins automatically when the room is recognized.","The room link can also be shared directly.","Manual code entry always remains available."]},
+    {icon:"📷",visual:"join",title:"Join a table",body:"From Join a table, players and spectators can enter with the 4-character code or scan the QR.",points:["Scan QR opens the phone camera and joins automatically when the room is recognized.","The room link can also be shared directly.","Manual code entry always remains available."]},
     {icon:"🏠",visual:"permanent",title:"My tables",body:"My tables contains saved permanent tables, sorted from most recently active to oldest.",points:["See participants before entering.","Hosts can rename with ✏️ or delete with 🗑️.","Open Results directly from the room list."]},
     {icon:"🛋️",visual:"lobby",title:"The table lobby",body:"Every time you enter a table you land in the lobby first. Table administration stays here instead of cluttering the scoreboard.",points:["Invite players combines the list, invitations, manual entry and join requests.","Configure table contains the target and Host controls.","Results appears for permanent tables."]},
     {icon:"👥",visual:"players",title:"Manage players",body:"Players puts everything needed to build the table in one dedicated panel.",points:["Invite by QR, link or code when someone has a device.","Add someone manually when they do not have a device; the Host enters their scores.","People joining from their phone can request a spot; the Host accepts or rejects them.","When a new request arrives, the Host gets a popup to accept or decline it. Closing the popup leaves the request pending under Players."]},
@@ -1976,7 +1982,7 @@ function tutorialSteps(){
   return [
     {icon:"👋",visual:"home",title:"Bienvenido a Score Tracker",body:"La app separa la administración de la sala de la partida en vivo para que la mesa sea fácil de seguir.",points:["Cree una mesa rápida o una mesa permanente reutilizable.","Una persona funciona como Host y los demás pueden entrar desde su propio teléfono.","El idioma y el estado de conexión permanecen disponibles arriba."]},
     {icon:"🎴",visual:"rooms",title:"Mesa rápida o mesa permanente",body:"Al tocar Nueva mesa, elija entre una mesa rápida para jugar ahora o una mesa permanente para un grupo recurrente.",points:["Mesa rápida: para jugar ahora sin conservar historial permanente.","Mesa permanente: conserva código, nombre, resultados e historial de juegos.","Una mesa rápida puede convertirse en permanente después."]},
-    {icon:"📷",visual:"join",title:"Unirse a una mesa",body:"Desde Unirse a una mesa, jugadores y espectadores pueden entrar escribiendo el código de 8 caracteres o escaneando el QR.",points:["Escanear QR abre la cámara del teléfono y entra automáticamente cuando reconoce la sala.","También puede compartir directamente el enlace de la sala.","La entrada manual por código siempre sigue disponible."]},
+    {icon:"📷",visual:"join",title:"Unirse a una mesa",body:"Desde Unirse a una mesa, jugadores y espectadores pueden entrar escribiendo el código de 4 caracteres o escaneando el QR.",points:["Escanear QR abre la cámara del teléfono y entra automáticamente cuando reconoce la sala.","También puede compartir directamente el enlace de la sala.","La entrada manual por código siempre sigue disponible."]},
     {icon:"🏠",visual:"permanent",title:"Mis mesas",body:"Mis mesas reúne las mesas permanentes guardadas y las ordena de la actividad más reciente a la más antigua.",points:["Puede ver quiénes participan antes de entrar.","El Host puede cambiar el nombre con ✏️ o eliminar la sala con 🗑️.","Resultados puede abrirse directamente desde la lista de salas."]},
     {icon:"🛋️",visual:"lobby",title:"El lobby de la mesa",body:"Cada vez que entra a una mesa llega primero al Lobby. La administración vive aquí para no llenar el marcador de controles.",points:["Invitar jugadores reúne la lista, invitaciones, ingreso manual y solicitudes.","Configurar mesa contiene la meta y controles del Host.","Resultados aparece en las mesas permanentes."]},
     {icon:"👥",visual:"players",title:"Administrar jugadores",body:"Jugadores concentra todo lo necesario para armar la mesa desde un solo panel.",points:["Invite con QR, enlace o código a quien tenga dispositivo.","Agregue manualmente a quien no tenga dispositivo; el Host registrará sus puntos.","Quien entra desde su teléfono puede solicitar jugar; el Host acepta o rechaza.","Cuando llega una solicitud nueva, el Host recibe un popup para aceptar o rechazar. Si lo cierra, la solicitud queda pendiente dentro de Jugadores."]},
@@ -1993,11 +1999,11 @@ function tutorialVisualHtml(kind){
   const visuals={
     home:`<div class="tour-mini tour-home"><span>🎴</span><b>Score Tracker</b><small>● ${L?"En vivo":"Live"}</small></div>`,
     rooms:`<div class="tour-mini-grid"><div class="tour-mini-card green">🎴<b>${L?"Mesa rápida":"Quick table"}</b></div><div class="tour-mini-card orange">🏠<b>${L?"Mesa permanente":"Permanent table"}</b></div></div>`,
-    join:`<div class="tour-join"><div class="tour-code">AB7K2M9Q</div><div class="tour-qr">▦</div><span>${L?"Código o QR":"Code or QR"}</span></div>`,
+    join:`<div class="tour-join"><div class="tour-code">7KQ4</div><div class="tour-qr">▦</div><span>${L?"Código o QR":"Code or QR"}</span></div>`,
     permanent:`<div class="tour-room-list"><div><b>${L?"Viernes de Flip 7":"Friday Flip 7"}</b><small>Mike · Ana · Carlos</small><span>📊 ✏️ 🗑️</span></div><div><b>${L?"Familia":"Family"}</b><small>Ana · Sofía</small><span>📊</span></div></div>`,
     lobby:`<div class="tour-hub"><span>👥<b>${L?"Invitar jugadores":"Invite players"}</b></span><span>⚙️<b>${L?"Configurar mesa":"Configure table"}</b></span><span>📊<b>${L?"Resultados":"Results"}</b></span></div>`,
     players:`<div class="tour-player-list"><div>1 <b>Mike</b><em>📱</em></div><div>2 <b>Ana</b><em>✍️</em></div><div class="tour-player-actions"><button>▦ QR</button><button>+ ${L?"Manual":"Manual"}</button></div></div>`,
-    invite:`<div class="tour-invite"><div class="tour-big-qr">▦</div><b>AB7K2M9Q</b><button>${L?"Compartir link":"Share link"}</button></div>`,
+    invite:`<div class="tour-invite"><div class="tour-big-qr">▦</div><b>7KQ4</b><button>${L?"Compartir link":"Share link"}</button></div>`,
     settings:`<div class="tour-settings"><div>🎯 <b>${L?"Meta":"Target"} 200</b></div><div>🏠 <b>${L?"Permanente":"Permanent"}</b></div><div>👑 <b>Host</b></div></div>`,
     start:`<div class="tour-start"><div><span>👥 4</span><span>🎯 200</span></div><button>▶ ${L?"Iniciar partida":"Start game"}</button><small>← ${L?"Volver a la mesa":"Back to table"}</small></div>`,
     score:`<div class="tour-score"><div class="tour-tabs"><b>🃏 ${L?"Mis cartas":"My cards"}</b><span>✏️ Manual</span></div><div class="tour-card-row"><i>4</i><i>7</i><i>11</i><i>×2</i></div><strong>44 pts</strong></div>`,
@@ -2099,7 +2105,7 @@ async function stopPresence(){
   const p=presenceRef; presenceRef=null;
   try{await remove(p)}catch(e){console.warn("Presence cleanup",e)}
 }
-function code(){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",b=new Uint8Array(8);crypto.getRandomValues(b);return Array.from(b,x=>a[x%a.length]).join("")}async function uniqueCode(){for(let i=0;i<8;i++){const c=code();if(!(await get(ref(db,"rooms/"+c))).exists())return c}throw Error("No room code")}
+function code(){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",b=new Uint8Array(4);crypto.getRandomValues(b);return Array.from(b,x=>a[x%a.length]).join("")}async function uniqueCode(){for(let i=0;i<20;i++){const c=code();if(!(await get(ref(db,"rooms/"+c))).exists())return c}throw Error("No room code")}
 function openNewTable(){
   newTableOverlay.classList.add("show")
 }
@@ -2121,13 +2127,13 @@ function extractRoomCodeFromQr(raw){
   const value=String(raw||"").trim();
   if(!value)return "";
   const direct=value.toUpperCase().replace(/[^A-Z0-9]/g,"");
-  if(direct.length===8&&value.length<=12)return direct;
+  if((direct.length===4||direct.length===8)&&value.length<=12)return direct;
   try{
     const u=new URL(value,location.href);
     const q=String(u.searchParams.get("room")||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
-    if(q.length===8)return q
+    if(q.length===4||q.length===8)return q
   }catch(e){}
-  const match=value.match(/[?&]room=([A-Z0-9]{8})(?:[&#]|$)/i);
+  const match=value.match(/[?&]room=([A-Z0-9]{4}|[A-Z0-9]{8})(?:[&#]|$)/i);
   return match?match[1].toUpperCase():""
 }
 function stopQrScanner(closeOverlay=true){
@@ -2205,7 +2211,7 @@ async function handleScannedRoom(room){
   await joinRoom(room);
   qrScannerBusy=false
 }
-async function joinRoom(c,auto=false){c=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");if(c.length!==8){if(!auto)toastMsg(t("codeLength"));return}try{const snap=await get(ref(db,"rooms/"+c));if(!snap.exists()){toastMsg(t("roomNotFound"));return}const d=roomNorm(snap.val());await enterRoom(c,d.hostUid===uid)}catch(e){console.error(e);toastMsg(t("roomOpenError"))}}
+async function joinRoom(c,auto=false){c=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");if(c.length!==4&&c.length!==8){if(!auto)toastMsg(t("codeLength"));return}try{const snap=await get(ref(db,"rooms/"+c));if(!snap.exists()){toastMsg(t("roomNotFound"));return}const d=roomNorm(snap.val());await enterRoom(c,d.hostUid===uid)}catch(e){console.error(e);toastMsg(t("roomOpenError"))}}
 async function enterRoom(c,host){stopQrScanner(true);if(unsubscribeRoom)unsubscribeRoom();await stopPresence();roomCode=c;roomRef=ref(db,"rooms/"+c);isHost=host;previousRoomState=null;winnerShown=false;pendingRound=null;roomView="lobby";customTargetMode=false;joinPopupRequestUid=null;joinPopupRequestKey=null;dismissedJoinRequestKeys.clear();joinRequestPopupOverlay.classList.remove("show");roomCodeLabel.textContent=c;const roomUrl=new URL(location.href);roomUrl.searchParams.set("room",c);history.replaceState({},document.title,roomUrl.pathname+roomUrl.search+roomUrl.hash);homeScreen.classList.add("hidden");roomScreen.classList.remove("hidden");watchRoomPresence();if(firebaseConnected)await registerPresence();unsubscribeRoom=onValue(roomRef,s=>{if(!s.exists()){toastMsg(t("roomGone"));leaveRoom();return}previousRoomState=roomState?JSON.parse(JSON.stringify(roomState)):null;roomState=roomNorm(s.val());isHost=roomState.hostUid===uid;roleLabel.textContent=isHost?t("host"):t("viewer");if(roomState.permanent)ensurePermanentMembership(c);if(presenceRef&&firebaseConnected)update(presenceRef,{role:isHost?"host":"viewer"}).catch(()=>{});render();if(roomView==="game"&&roomState.gameOver&&!winnerShown){winnerShown=true;setTimeout(showWinner,220)}if(!roomState.gameOver||roomView!=="game"){if(!roomState.gameOver)winnerShown=false;winnerOverlay.classList.remove("show")} })}
 function joinRequestKey(request){
   return request?`${request.uid}:${Number(request.requestedAt||0)}`:""
@@ -2345,7 +2351,7 @@ function renderPlayersHub(){
   playersOverlayCount.textContent=t("playersCount",roomState.players.length);
   playersPendingSummary.textContent=t("pendingSummary",requests.length);
   playersPendingSummary.classList.toggle("hidden",requests.length===0);
-  inviteCodeValue.textContent=roomCode||"--------";
+  inviteCodeValue.textContent=roomCode||"----";
   manualPlayerSection.classList.toggle("hidden",!editable);
   playersLockedNote.classList.toggle("hidden",editable);
 
