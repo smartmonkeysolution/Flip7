@@ -797,6 +797,81 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
   .tour-hub{grid-template-columns:repeat(2,1fr)}
 }
 
+
+/* ============================================================
+   v21 — Nueva mesa / Mis mesas / Unirse a una mesa
+   ============================================================ */
+.home-paths{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.home-path-card{
+  min-height:104px;border:2px solid #c8c0b2;border-radius:16px;background:#fff;
+  padding:14px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  gap:10px;text-align:left;color:var(--ink);cursor:pointer
+}
+.home-path-card:hover{border-color:var(--line);background:#fffaf0}
+.home-path-card.primary{background:#e8f3df;border-color:#abc59e}
+.home-path-icon{
+  width:42px;height:42px;display:grid;place-items:center;flex:0 0 auto;
+  border:1.5px solid var(--line);border-radius:12px;background:var(--cream);font-size:20px
+}
+.home-path-card.primary .home-path-icon{background:var(--green)}
+.home-path-copy{min-width:0}
+.home-path-copy strong{display:block;font-size:17px;line-height:1.1}
+.home-path-copy small{display:block;margin-top:5px;color:var(--muted);font-size:10px;font-weight:750;line-height:1.4}
+.home-path-arrow{font-size:28px;font-weight:800;color:#766e64}
+
+.join-path{
+  grid-column:1/-1;cursor:default;
+  grid-template-columns:auto 1fr;
+  min-height:auto
+}
+.join-path:hover{border-color:#c8c0b2;background:#fff}
+.join-path .join-room-actions{grid-column:1/-1;margin-top:2px}
+
+/* New table chooser */
+.new-table-card{
+  width:min(100%,620px);background:var(--paper);border:3px solid var(--line);
+  border-radius:24px;box-shadow:0 24px 70px rgba(0,0,0,.36);padding:20px
+}
+.new-table-head{margin:8px 0 14px}
+.new-table-head h2{margin:0;font-size:27px;line-height:1.08}
+.new-table-head p{margin:6px 0 0;color:var(--muted);font-size:11px;font-weight:800;line-height:1.45}
+.new-table-options{display:grid;gap:9px}
+.new-table-option{
+  width:100%;min-height:92px;border:2px solid var(--line);border-radius:15px;
+  padding:12px 13px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  gap:11px;text-align:left;cursor:pointer;box-shadow:0 3px 0 rgba(50,46,42,.12)
+}
+.new-table-option.quick{background:#dff1d7}
+.new-table-option.permanent{background:#ffe0b5}
+.new-table-option:hover{transform:translateY(-1px);box-shadow:0 4px 0 rgba(50,46,42,.14)}
+.new-table-option:active{transform:translateY(1px);box-shadow:none}
+.new-table-option-icon{
+  width:44px;height:44px;display:grid;place-items:center;border:1.5px solid var(--line);
+  border-radius:12px;background:rgba(255,255,255,.58);font-size:22px
+}
+.new-table-option strong{display:block;font-size:15px}
+.new-table-option small{display:block;margin-top:4px;color:#5f584f;font-size:9.5px;font-weight:800;line-height:1.4}
+.new-table-option>b{font-size:27px}
+.new-table-tip{
+  margin-top:11px;padding:9px 10px;border:1px solid #d4ccbf;border-radius:10px;
+  background:#fff;color:var(--muted);font-size:9px;font-weight:800;line-height:1.4
+}
+
+@media(max-width:650px){
+  .home-paths{grid-template-columns:1fr;gap:8px}
+  .home-path-card{min-height:82px;padding:11px}
+  .home-path-card.join-path{grid-column:auto}
+  .home-path-icon{width:38px;height:38px;font-size:18px}
+  .home-path-copy strong{font-size:15px}
+  .home-path-copy small{font-size:9px;margin-top:3px}
+  .new-table-card{width:calc(100% - 12px);padding:15px;border-radius:19px}
+  .new-table-head h2{font-size:22px}
+  .new-table-option{min-height:78px;padding:10px}
+  .new-table-option-icon{width:39px;height:39px;font-size:19px}
+  .new-table-option strong{font-size:13px}
+  .new-table-option small{font-size:8.5px}
+}
+
 </style>
 </head>
 <body>
@@ -818,11 +893,45 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
     </div>
   </div>
   <div id="setupAlert" class="setup-alert"><strong>Falta conectar Firebase.</strong>La app está lista para partidas en vivo, pero primero debe pegar la configuración de su proyecto Firebase en <b>firebaseConfig</b>. Revise README.txt.</div>
-  <section id="homeScreen" class="panel"><div class="panel-head"><h2 id="homeTitle">Partida compartida</h2><p id="homeDesc">Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.</p></div><div class="panel-body"><div class="home-grid">
-    <div class="choice"><h3 id="createTitle">🎴 Partida normal</h3><p id="createDesc">Sala temporal para una partida. No guarda historial permanente.</p><button id="createRoomBtn" class="btn btn-green btn-wide">Crear partida normal</button></div>
-    <div class="choice"><h3 id="createPermanentTitle">🏠 Sala permanente</h3><p id="createPermanentDesc">Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.</p><div class="choice-actions"><button id="createPermanentRoomBtn" class="btn btn-orange btn-wide">Crear sala permanente</button><button id="myPermanentRoomsBtn" class="btn btn-ghost btn-wide">Mis salas permanentes</button></div></div>
-    <div class="choice"><h3 id="joinTitle">👀 Unirse a sala</h3><p id="joinDesc">Ingrese el código o escanee el QR de una partida normal o sala permanente.</p><div class="join-row join-room-actions"><input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO"><button id="scanQrBtn" class="btn btn-ghost scan-qr-btn" type="button">▣ Escanear QR</button><button id="joinRoomBtn" class="btn btn-primary">Entrar</button></div></div>
+  <section id="homeScreen" class="panel">
+  <div class="panel-head">
+    <h2 id="homeTitle">¿Cómo quiere jugar?</h2>
+    <p id="homeDesc">Cree una mesa nueva, vuelva a una mesa guardada o únase a la mesa de otra persona.</p>
   </div>
+  <div class="panel-body">
+    <div class="home-paths">
+      <button id="newTableBtn" class="home-path-card primary" type="button">
+        <span class="home-path-icon">➕</span>
+        <span class="home-path-copy">
+          <strong id="newTableTitle">Nueva mesa</strong>
+          <small id="newTableDesc">Cree una mesa rápida o permanente.</small>
+        </span>
+        <span class="home-path-arrow">›</span>
+      </button>
+
+      <button id="myPermanentRoomsBtn" class="home-path-card" type="button">
+        <span class="home-path-icon">🗂️</span>
+        <span class="home-path-copy">
+          <strong id="myTablesTitle">Mis mesas</strong>
+          <small id="myTablesDesc">Vuelva a sus mesas permanentes guardadas.</small>
+        </span>
+        <span class="home-path-arrow">›</span>
+      </button>
+
+      <div class="home-path-card join-path">
+        <span class="home-path-icon">🔗</span>
+        <div class="home-path-copy">
+          <strong id="joinTitle">Unirse a una mesa</strong>
+          <small id="joinDesc">Ingrese el código o escanee el QR.</small>
+        </div>
+        <div class="join-row join-room-actions">
+          <input id="joinCode" class="room-input" type="text" maxlength="8" autocomplete="off" placeholder="CÓDIGO">
+          <button id="scanQrBtn" class="btn btn-ghost scan-qr-btn" type="button">▣ Escanear QR</button>
+          <button id="joinRoomBtn" class="btn btn-primary">Entrar</button>
+        </div>
+      </div>
+    </div>
+
     <div class="tutorial-launch-card">
       <div class="tutorial-launch-copy">
         <span class="tutorial-launch-icon">✨</span>
@@ -833,18 +942,19 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
       </div>
       <button id="tutorialBtn" class="btn btn-ghost tutorial-launch-btn" type="button">Ver tutorial</button>
     </div>
-  </div></section>
+  </div>
+</section>
   <section id="roomScreen" class="panel hidden"><div class="panel-body">
     <div id="roomBar" class="room-bar">
       <div class="room-main-row">
         <div class="room-identity">
           <div class="room-info-row">
-            <span id="roomLabel" class="room-eyebrow">Sala</span>
+            <span id="roomLabel" class="room-eyebrow">Mesa</span>
             <span id="roomTypePill" class="room-type-pill">Normal</span>
           </div>
 
           <div class="room-name-line">
-            <span id="roomNamePill" class="room-name-pill hidden">Sala permanente</span>
+            <span id="roomNamePill" class="room-name-pill hidden">Mesa permanente</span>
             <button id="renameRoomBtn" class="inline-icon-btn hidden" type="button" title="Cambiar nombre" aria-label="Cambiar nombre">✏️</button>
           </div>
 
@@ -952,6 +1062,44 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
 
 
+
+<div id="newTableOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="newTableOverlayTitle">
+  <div class="new-table-card">
+    <div class="turn-top">
+      <span id="newTableKicker" class="turn-counter">Nueva mesa</span>
+      <button id="newTableCloseBtn" class="small-btn" type="button" aria-label="Cerrar">×</button>
+    </div>
+    <div class="new-table-head">
+      <h2 id="newTableOverlayTitle">¿Qué tipo de mesa quiere crear?</h2>
+      <p id="newTableOverlayDesc">Puede empezar rápido o conservar esta mesa para futuros juegos.</p>
+    </div>
+
+    <div class="new-table-options">
+      <button id="createRoomBtn" class="new-table-option quick" type="button">
+        <span class="new-table-option-icon">⚡</span>
+        <span>
+          <strong id="createTitle">Mesa rápida</strong>
+          <small id="createDesc">Para jugar ahora. No guarda historial permanente.</small>
+        </span>
+        <b>›</b>
+      </button>
+
+      <button id="createPermanentRoomBtn" class="new-table-option permanent" type="button">
+        <span class="new-table-option-icon">🏠</span>
+        <span>
+          <strong id="createPermanentTitle">Mesa permanente</strong>
+          <small id="createPermanentDesc">Mantiene el mismo código y guarda juegos, rondas y resultados.</small>
+        </span>
+        <b>›</b>
+      </button>
+    </div>
+
+    <div class="new-table-tip" id="newTableTip">
+      Puede convertir una mesa rápida en permanente más adelante.
+    </div>
+  </div>
+</div>
+
 <div id="tutorialOverlay" class="overlay tutorial-overlay" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle">
   <div class="tutorial-card">
     <div class="tutorial-top">
@@ -981,7 +1129,7 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
   <div class="hub-sheet">
     <div class="hub-sheet-head">
       <div>
-        <div id="playersOverlayKicker" class="player-modal-kicker">Sala</div>
+        <div id="playersOverlayKicker" class="player-modal-kicker">Mesa</div>
         <h2 id="playersOverlayTitle">Jugadores</h2>
         <p id="playersOverlayDesc">Administre quién participa en esta partida.</p>
       </div>
@@ -1182,10 +1330,10 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
 <div id="myRoomsOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="my-rooms-card">
-    <div class="turn-top"><span id="myRoomsKicker" class="turn-counter">Salas permanentes</span><button id="myRoomsCloseBtn" class="small-btn" type="button">×</button></div>
+    <div class="turn-top"><span id="myRoomsKicker" class="turn-counter">Mesas permanentes</span><button id="myRoomsCloseBtn" class="small-btn" type="button">×</button></div>
     <div class="my-rooms-head">
-      <h2 id="myRoomsTitle">Mis salas permanentes</h2>
-      <p id="myRoomsDesc">Aquí aparecen las salas permanentes que ha visitado con este usuario.</p>
+      <h2 id="myRoomsTitle">Mis mesas</h2>
+      <p id="myRoomsDesc">Aquí aparecen sus mesas permanentes guardadas en este dispositivo.</p>
     </div>
     <div id="myRoomsSummary" class="my-rooms-summary"></div>
     <div id="myRoomsList" class="my-rooms-list"><div class="my-rooms-loading">Cargando…</div></div>
@@ -1194,9 +1342,9 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
 <div id="renameRoomOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="rename-room-card">
-    <div class="turn-top"><span id="renameRoomKicker" class="turn-counter">Sala permanente</span><button id="renameRoomCloseBtn" class="small-btn" type="button">×</button></div>
-    <h2 id="renameRoomTitle">Nombre de la sala</h2>
-    <p id="renameRoomDesc">Use un nombre para reconocer fácilmente esta sala permanente.</p>
+    <div class="turn-top"><span id="renameRoomKicker" class="turn-counter">Mesa permanente</span><button id="renameRoomCloseBtn" class="small-btn" type="button">×</button></div>
+    <h2 id="renameRoomTitle">Nombre de la mesa</h2>
+    <p id="renameRoomDesc">Use un nombre para reconocer fácilmente esta mesa permanente.</p>
     <input id="renameRoomInput" type="text" maxlength="40" autocomplete="off" placeholder="Ej. Viernes de Flip 7">
     <div class="rename-room-actions">
       <button id="renameRoomCancelBtn" class="btn btn-ghost" type="button">Cancelar</button>
@@ -1216,9 +1364,9 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
 <div id="permanentStatsOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="permanent-stats-card">
-    <div class="turn-top"><span id="permanentStatsKicker" class="turn-counter">Sala permanente</span><button id="permanentStatsCloseBtn" class="small-btn" type="button">×</button></div>
-    <div id="permanentStatsTitle" class="turn-player" style="font-size:clamp(27px,7vw,40px)">Resultados de la sala</div>
-    <div id="permanentStatsSubtitle" class="current-score">Los datos se acumulan por juego dentro de esta sala.</div>
+    <div class="turn-top"><span id="permanentStatsKicker" class="turn-counter">Mesa permanente</span><button id="permanentStatsCloseBtn" class="small-btn" type="button">×</button></div>
+    <div id="permanentStatsTitle" class="turn-player" style="font-size:clamp(27px,7vw,40px)">Resultados de la mesa</div>
+    <div id="permanentStatsSubtitle" class="current-score">Los datos se acumulan por juego dentro de esta mesa.</div>
     <div id="permanentStatsSummary" class="stats-summary-grid"></div>
     <div id="currentGameStats"></div>
     <div id="playerStatsTitle" class="stats-section-title">Resultados de jugadores</div>
@@ -1231,11 +1379,11 @@ input[type=text],input[type=number]{width:100%;min-height:52px;border:2px solid 
 
 <div id="transferHostOverlay" class="overlay" role="dialog" aria-modal="true">
   <div class="transfer-host-card">
-    <div class="turn-top"><span id="transferHostKicker" class="turn-counter">Sala permanente</span><button id="transferHostCloseBtn" class="small-btn" type="button">×</button></div>
+    <div class="turn-top"><span id="transferHostKicker" class="turn-counter">Mesa permanente</span><button id="transferHostCloseBtn" class="small-btn" type="button">×</button></div>
     <div id="transferHostTitle" class="turn-player" style="font-size:clamp(27px,7vw,40px)">Cambiar host</div>
     <div id="transferHostSubtitle" class="current-score">Seleccione un jugador conectado. El cambio es inmediato.</div>
     <div id="transferHostList" class="transfer-list"></div>
-    <div id="transferHostNote" class="permanent-note">Después del cambio, el nuevo host tendrá el control de la sala y usted pasará a ser espectador.</div>
+    <div id="transferHostNote" class="permanent-note">Después del cambio, el nuevo host tendrá el control de la mesa y usted pasará a ser espectador.</div>
   </div>
 </div>
 <div id="winnerOverlay" class="overlay"><div class="score-card"><div class="score-card-inner winner"><div class="trophy">🏆</div><h2 id="winnerName">¡Partida terminada!</h2><p id="winnerSubtitle">Clasificación final</p><div class="podium"><div id="place2" class="place second"></div><div id="place1" class="place first"></div><div id="place3" class="place third"></div></div><div class="winner-actions"><button id="winnerCloseBtn" class="btn btn-primary btn-wide">Ver marcador final</button><button id="winnerEditRoundsBtn" class="btn btn-orange btn-wide hidden">✎ Editar rondas anteriores</button><button id="winnerNewGameBtn" class="link-btn hidden">Empezar otro juego</button></div></div></div></div>
@@ -1269,18 +1417,20 @@ const I18N={
   es:{
     subtitle:"Marcador compartido · en vivo",goal:"Meta",undefinedTarget:"Por definir",languageButton:"🌐 ES",roomCodeCaption:"Código",
     tutorialLaunchTitle:"¿Primera vez aquí?",tutorialLaunchDesc:"Conozca la app paso a paso en un tour rápido.",tutorialLaunchBtn:"Ver tutorial",tutorialKicker:"Tutorial",tutorialPrev:"← Anterior",tutorialNext:"Siguiente →",tutorialDone:"Listo",
-    homeTitle:"Partida compartida",homeDesc:"Una persona crea la sala y lleva el marcador. Los demás ven los cambios en tiempo real.",
-    createTitle:"🎴 Partida normal",createDesc:"Sala temporal para una partida. No guarda historial permanente.",createRoom:"Crear partida normal",
-    createPermanentTitle:"🏠 Sala permanente",createPermanentDesc:"Mantiene el mismo código y QR, guarda juegos, rondas y estadísticas.",createPermanentRoom:"Crear sala permanente",myPermanentRooms:"Mis salas permanentes",
-    joinTitle:"👀 Unirse a sala",joinDesc:"Ingrese el código o escanee el QR de una partida normal o sala permanente.",code:"CÓDIGO",enter:"Entrar",
-    scanQr:"▣ Escanear QR",qrScannerKicker:"Unirse a sala",qrScannerTitle:"Escanear QR",qrScannerDesc:"Apunte la cámara al código QR de la sala.",qrScannerStarting:"Solicitando acceso a la cámara…",qrScannerReady:"Buscando código QR…",qrScannerInvalid:"Ese QR no corresponde a una sala de Flip 7.",qrScannerCameraError:"No se pudo abrir la cámara. Revise el permiso de cámara e intente nuevamente.",qrScannerUnsupported:"Este dispositivo no permite usar la cámara desde el navegador.",qrScannerCancel:"Cancelar",qrScannerFound:"Sala detectada. Entrando…",
-    room:"Sala",host:"Host",viewer:"Espectador",share:"Compartir",leave:"Salir",
+    homeTitle:"¿Cómo quiere jugar?",homeDesc:"Cree una mesa nueva, vuelva a una mesa guardada o únase a la mesa de otra persona.",
+    newTableTitle:"Nueva mesa",newTableDesc:"Cree una mesa rápida o permanente.",myTablesTitle:"Mis mesas",myTablesDesc:"Vuelva a sus mesas permanentes guardadas.",
+    newTableKicker:"Nueva mesa",newTableOverlayTitle:"¿Qué tipo de mesa quiere crear?",newTableOverlayDesc:"Puede empezar rápido o conservar esta mesa para futuros juegos.",newTableTip:"Puede convertir una mesa rápida en permanente más adelante.",
+    createTitle:"Mesa rápida",createDesc:"Para jugar ahora. No guarda historial permanente.",createRoom:"Crear mesa rápida",
+    createPermanentTitle:"Mesa permanente",createPermanentDesc:"Mantiene el mismo código y guarda juegos, rondas y resultados.",createPermanentRoom:"Crear mesa permanente",myPermanentRooms:"Mis mesas",
+    joinTitle:"Unirse a una mesa",joinDesc:"Ingrese el código o escanee el QR.",code:"CÓDIGO",enter:"Entrar",
+    scanQr:"▣ Escanear QR",qrScannerKicker:"Unirse a una mesa",qrScannerTitle:"Escanear QR",qrScannerDesc:"Apunte la cámara al código QR de la mesa.",qrScannerStarting:"Solicitando acceso a la cámara…",qrScannerReady:"Buscando código QR…",qrScannerInvalid:"Ese QR no corresponde a una mesa de Flip 7.",qrScannerCameraError:"No se pudo abrir la cámara. Revise el permiso de cámara e intente nuevamente.",qrScannerUnsupported:"Este dispositivo no permite usar la cámara desde el navegador.",qrScannerCancel:"Cancelar",qrScannerFound:"Mesa detectada. Entrando…",
+    room:"Mesa",host:"Host",viewer:"Espectador",share:"Compartir",leave:"Salir",
     playersHub:"Jugadores",invitePlayers:"Invitar",gameSettings:"Partida",resultsShort:"Resultados",inviteMeta:"QR + link",settingsMeta:"Configurar",resultsMeta:"Juegos y datos",
     playersOverlayTitle:"Jugadores",playersOverlayDesc:"Administre quién participa en esta partida.",playersCount:n=>`${n} jugador${n===1?"":"es"}`,
-    playersLocked:"La lista está bloqueada mientras el juego está en curso.",setupCompactTitle:"Lobby de la sala",setupCompactDesc:"Revise jugadores, invitaciones y configuración antes de iniciar.",
-    backToLobby:"← Volver a la sala",enterCurrentGame:"Entrar a la partida",viewFinishedGame:"Ver partida final",lobbyGameRunning:"Partida en curso",lobbyGameFinished:"Partida finalizada",lobbyGameTitle:n=>`Juego ${n}`,lobbyRoundMeta:r=>`Ronda ${r}`,
+    playersLocked:"La lista está bloqueada mientras el juego está en curso.",setupCompactTitle:"Lobby de la mesa",setupCompactDesc:"Revise jugadores, invitaciones y configuración antes de iniciar.",
+    backToLobby:"← Volver a la mesa",enterCurrentGame:"Entrar a la partida",viewFinishedGame:"Ver partida final",lobbyGameRunning:"Partida en curso",lobbyGameFinished:"Partida finalizada",lobbyGameTitle:n=>`Juego ${n}`,lobbyRoundMeta:r=>`Ronda ${r}`,
     setupPlayers:n=>`👥 ${n} jugador${n===1?"":"es"}`,setupTarget:n=>`🎯 Meta ${n||"—"}`,setupPending:n=>`🔔 ${n} pendiente${n===1?"":"s"}`,
-    settingsOverlayTitle:"Partida",settingsOverlayDesc:"Cambie únicamente lo necesario antes de comenzar.",settingsRoomType:"Tipo de sala",settingsHost:"Host actual",currentHostYou:"Usted",settingsLocked:"La meta queda bloqueada cuando comienza el juego.",
+    settingsOverlayTitle:"Partida",settingsOverlayDesc:"Cambie únicamente lo necesario antes de comenzar.",settingsRoomType:"Tipo de mesa",settingsHost:"Host actual",currentHostYou:"Usted",settingsLocked:"La meta queda bloqueada cuando comienza el juego.",
     setupTitle:"Configurar partida",setupDesc:"Como host puede agregar o quitar jugadores y elegir la meta antes de iniciar.",
     playerPlaceholder:"Nombre del jugador",add:"Agregar",emptyPlayers:"Agregue al menos 2 jugadores para comenzar.",remove:"Quitar",
     targetTitle:"Meta de la partida",targetDesc:"Flip 7 normalmente termina en 200, pero puede usar una meta mayor.",
@@ -1297,12 +1447,12 @@ const I18N={
     noPlayer:"Sin jugador",wins:n=>`¡${n} gana!`,pts:"puntos",
     targetRange:"La meta debe ser un número entero entre 200 y 9999.",targetSet:n=>`Meta establecida en ${n} puntos`,
     customRange:"Ingrese una meta personalizada entre 201 y 9999.",duplicate:"Ese nombre ya está en la lista.",
-    needTarget:"Defina la meta antes de iniciar la partida.",roomCreateError:"No se pudo crear la sala.",codeLength:"El código debe tener 8 caracteres.",
-    roomNotFound:"No encontré esa sala.",roomOpenError:"No se pudo abrir la sala.",roomGone:"La sala ya no existe.",
-    roundSaved:"Ronda guardada",roundSaveError:"No se pudo guardar la ronda.",newGameConfirm:"¿Empezar un juego nuevo en esta misma sala? Se borrará el marcador e historial actual.",
-    copied:"Link copiado.",copyLink:"Copie este link:",joinShare:c=>`Únase a mi partida. Sala ${c}`,excelError:"No se pudo generar el Excel.",
+    needTarget:"Defina la meta antes de iniciar la partida.",roomCreateError:"No se pudo crear la mesa.",codeLength:"El código debe tener 8 caracteres.",
+    roomNotFound:"No encontré esa mesa.",roomOpenError:"No se pudo abrir la mesa.",roomGone:"La mesa ya no existe.",
+    roundSaved:"Ronda guardada",roundSaveError:"No se pudo guardar la ronda.",newGameConfirm:"¿Empezar un juego nuevo en esta misma mesa? Se borrará el marcador e historial actual.",
+    copied:"Link copiado.",copyLink:"Copie este enlace:",joinShare:c=>`Únase a mi mesa de Flip 7. Código ${c}`,excelError:"No se pudo generar el Excel.",
     integerScore:"Ingrese un número entero de 0 o más.",noRounds:"Aún no hay rondas completadas.",
-    live:"En vivo",reconnecting:"Reconectando…",offline:"Sin conexión",connectedCount:n=>`👥 ${n} conectado${n===1?"":"s"}`,qr:"QR",qrTitle:"Unirse a la sala",close:"Cerrar",shareLink:"Compartir link",
+    live:"En vivo",reconnecting:"Reconectando…",offline:"Sin conexión",connectedCount:n=>`👥 ${n} conectado${n===1?"":"s"}`,qr:"QR",qrTitle:"Unirse a la mesa",close:"Cerrar",shareLink:"Compartir link",
     undoRound:"↶ Deshacer última ronda",undoConfirm:r=>`¿Deshacer la ronda ${r}? Se restaurarán los puntajes anteriores.`,undoDone:r=>`Ronda ${r} deshecha.`,undoError:"No se pudo deshacer la ronda.",
     reviewRound:"Revisar ronda",reviewSubtitle:"Confirme los puntos antes de sincronizarlos con todos.",correct:"Corregir",confirmRound:"Confirmar ronda",cancelRoundReview:"Cancelar ronda",
     projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Meta alcanzada",targetReachedSubtitle:"Revise el resultado antes de mostrar el podio.",reviewAgain:"Revisar ronda",finishGame:"Finalizar partida",leaderPreview:(n,p)=>`${n} quedaría con ${p} puntos.`,
@@ -1312,25 +1462,25 @@ const I18N={
     requestPending:"Solicitud enviada. Esperando aprobación del host.",requestAccepted:n=>`Ya está en la lista como ${n}.`,requestRejected:"El host rechazó su solicitud.",
     requestSent:"Solicitud enviada al host.",requestError:"No se pudo enviar la solicitud.",requestNameRequired:"Escriba el nombre con el que quiere jugar.",
     requestAcceptError:"No se pudo aceptar la solicitud.",requestRejectError:"No se pudo rechazar la solicitud.",playerAccepted:n=>`${n} fue agregado a la partida.`,
-    roomNormal:"Normal",roomPermanent:"Permanente",roomPermanentGame:n=>`Permanente · Juego ${n}`,permanentDefaultName:"Sala permanente",renameRoom:"✏️ Nombre",renameRoomKicker:"Sala permanente",renameRoomTitle:"Nombre de la sala",renameRoomDesc:"Use un nombre para reconocer fácilmente esta sala permanente. Si lo deja vacío, volverá al nombre predeterminado.",renameRoomPlaceholder:"Ej. Viernes de Flip 7",renameRoomSave:"Guardar nombre",renameRoomCancel:"Cancelar",roomNameSaved:"Nombre de la sala actualizado.",roomNameError:"No se pudo cambiar el nombre de la sala.",makePermanent:"🏠 Hacer permanente",statsHistory:"📊 Resultados",transferHost:"👑 Cambiar host",
-    permanentConfirm:"¿Convertir esta sala en permanente? Mantendrá este mismo código y QR, y desde ahora guardará juegos, rondas y estadísticas.",
-    permanentDone:"Sala convertida en permanente.",permanentError:"No se pudo convertir la sala.",
-    permanentStatsKicker:"Sala permanente",permanentStatsTitle:"Resultados de la sala",permanentStatsSubtitle:"Los datos se acumulan por juego dentro de esta sala.",
+    roomNormal:"Rápida",roomPermanent:"Permanente",roomPermanentGame:n=>`Permanente · Juego ${n}`,permanentDefaultName:"Mesa permanente",renameRoom:"✏️ Nombre",renameRoomKicker:"Mesa permanente",renameRoomTitle:"Nombre de la mesa",renameRoomDesc:"Use un nombre para reconocer fácilmente esta mesa permanente. Si lo deja vacío, volverá al nombre predeterminado.",renameRoomPlaceholder:"Ej. Viernes de Flip 7",renameRoomSave:"Guardar nombre",renameRoomCancel:"Cancelar",roomNameSaved:"Nombre de la mesa actualizado.",roomNameError:"No se pudo cambiar el nombre de la mesa.",makePermanent:"🏠 Hacer permanente",statsHistory:"📊 Resultados",transferHost:"👑 Cambiar host",
+    permanentConfirm:"¿Convertir esta mesa en permanente? Mantendrá este mismo código y QR, y desde ahora guardará juegos, rondas y resultados.",
+    permanentDone:"Mesa convertida en permanente.",permanentError:"No se pudo convertir la mesa.",
+    permanentStatsKicker:"Mesa permanente",permanentStatsTitle:"Resultados de la mesa",permanentStatsSubtitle:"Los datos se acumulan por juego dentro de esta mesa.",
     gamesPlayed:"Juegos",totalRoundsStat:"Rondas",totalPointsStat:"Puntos totales",uniquePlayers:"Jugadores",
     playerStatsTitle:"Resultados de jugadores",statsGames:"Juegos",statsWins:"Victorias",statsRoundWins:"Rondas ganadas",statsAvg:"Promedio",
     gameHistoryTitle:"Juegos anteriores",currentGame:"Juego actual",inProgress:"En curso",noPermanentGames:"Todavía no hay juegos completados en esta sala.",
     gameLabel:n=>`Juego ${n}`,winnerLabel:n=>`Ganador: ${n}`,noWinner:"Sin ganador",roundWinnerLabel:n=>`Gana ronda: ${n}`,gameTotal:n=>`Total: ${n} pts`,gameTarget:n=>`Meta: ${n}`,gameRounds:n=>`${n} rondas`,
     transferHostTitle:"Cambiar host",transferHostSubtitle:"Seleccione un jugador conectado. El cambio es inmediato.",noTransferCandidates:"No hay otro jugador conectado disponible para recibir el host.",
     transferConfirm:n=>`¿Transferir el control de la sala a ${n}? Usted dejará de ser host.`,transferDone:n=>`${n} ahora es el host.`,transferError:"No se pudo cambiar el host.",
-    transferNote:"Después del cambio, el nuevo host tendrá el control de la sala y usted pasará a ser espectador.",
+    transferNote:"Después del cambio, el nuevo host tendrá el control de la mesa y usted pasará a ser espectador.",
     permanentPremiumNote:"Esta estructura queda lista para convertirse en una función Premium cuando la app se publique en Android.",
     permanentHistoryOnly:"La edición de rondas está disponible mientras la partida actual conserve su historial.",starterPopupKicker:"Siguiente ronda",
-    myRoomsKicker:"Salas permanentes",myRoomsTitle:"Mis salas permanentes",myRoomsDesc:"Aquí aparecen las salas permanentes que ha visitado con este usuario.",myRoomsLoading:"Cargando salas…",myRoomsEmpty:"Todavía no pertenece a ninguna sala permanente. Puede crear una o entrar a una usando su código.",
-    roomsAsHost:n=>`${n} como host`,roomsAsVisitor:n=>`${n} como visitante`,roomsTotal:n=>`${n} sala${n===1?"":"s"}`,visitorRole:"Visitante",enterRoomAgain:"Entrar a la sala",
-    participantsLabel:"Participantes",noParticipants:"Sin participantes registrados",openRoomResults:"Resultados",editRoomNameShort:"Cambiar nombre",deletePermanentRoom:n=>`Borrar ${n}`,deletePermanentRoomGeneric:"Borrar sala permanente",
-    deletePermanentConfirm:n=>`¿Borrar "${n}" permanentemente? Se eliminarán la sala, sus juegos, rondas, historial y estadísticas. Esta acción no se puede deshacer.`,
-    permanentRoomDeleted:n=>`${n} fue eliminada.`,permanentRoomDeleteError:"No se pudo borrar la sala permanente.",
-    roomWaiting:"Esperando iniciar",roomFinished:"Juego finalizado",roomPlaying:(g,r)=>`Juego ${g} · Ronda ${r}`,myRoomsLoadError:"No se pudieron cargar sus salas permanentes.",
+    myRoomsKicker:"Mesas permanentes",myRoomsTitle:"Mis mesas",myRoomsDesc:"Aquí aparecen sus mesas permanentes guardadas en este dispositivo.",myRoomsLoading:"Cargando mesas…",myRoomsEmpty:"Todavía no tiene mesas permanentes guardadas. Puede crear una nueva o unirse a una usando su código.",
+    roomsAsHost:n=>`${n} como host`,roomsAsVisitor:n=>`${n} como visitante`,roomsTotal:n=>`${n} mesa${n===1?"":"s"}`,visitorRole:"Visitante",enterRoomAgain:"Entrar a la mesa",
+    participantsLabel:"Participantes",noParticipants:"Sin participantes registrados",openRoomResults:"Resultados",editRoomNameShort:"Cambiar nombre",deletePermanentRoom:n=>`Borrar ${n}`,deletePermanentRoomGeneric:"Borrar mesa permanente",
+    deletePermanentConfirm:n=>`¿Borrar "${n}" permanentemente? Se eliminarán la mesa, sus juegos, rondas, historial y resultados. Esta acción no se puede deshacer.`,
+    permanentRoomDeleted:n=>`${n} fue eliminada.`,permanentRoomDeleteError:"No se pudo borrar la mesa permanente.",
+    roomWaiting:"Esperando iniciar",roomFinished:"Juego finalizado",roomPlaying:(g,r)=>`Juego ${g} · Ronda ${r}`,myRoomsLoadError:"No se pudieron cargar sus mesas permanentes.",
 
     presenceError:"No se pudo registrar la conexión en vivo.",
     startRound:"▶ Iniciar ronda",roundInProgress:r=>`Ronda ${r} en curso`,liveRound:"Ronda en vivo",liveRoundDesc:"Los puntajes enviados son provisionales hasta que el host los apruebe.",
@@ -1356,18 +1506,20 @@ const I18N={
   en:{
     subtitle:"Shared scoreboard · live",goal:"Target",undefinedTarget:"To define",languageButton:"🌐 EN",roomCodeCaption:"Code",
     tutorialLaunchTitle:"First time here?",tutorialLaunchDesc:"Learn the app step by step with a quick guided tour.",tutorialLaunchBtn:"View tutorial",tutorialKicker:"Tutorial",tutorialPrev:"← Back",tutorialNext:"Next →",tutorialDone:"Done",
-    homeTitle:"Shared game",homeDesc:"One person creates the room and manages the score. Everyone else sees changes in real time.",
-    createTitle:"🎴 Normal game",createDesc:"Temporary room for one game. It does not keep permanent history.",createRoom:"Create normal game",
-    createPermanentTitle:"🏠 Permanent room",createPermanentDesc:"Keeps the same code and QR, and stores games, rounds, and statistics.",createPermanentRoom:"Create permanent room",myPermanentRooms:"My permanent rooms",
-    joinTitle:"👀 Join room",joinDesc:"Enter the code or scan the QR for a normal game or permanent room.",code:"CODE",enter:"Join",
-    scanQr:"▣ Scan QR",qrScannerKicker:"Join room",qrScannerTitle:"Scan QR",qrScannerDesc:"Point the camera at the room QR code.",qrScannerStarting:"Requesting camera access…",qrScannerReady:"Looking for a QR code…",qrScannerInvalid:"That QR code is not a Flip 7 room.",qrScannerCameraError:"The camera could not be opened. Check camera permission and try again.",qrScannerUnsupported:"This device cannot use the camera from the browser.",qrScannerCancel:"Cancel",qrScannerFound:"Room detected. Joining…",
-    room:"Room",host:"Host",viewer:"Spectator",share:"Share",leave:"Leave",
+    homeTitle:"How do you want to play?",homeDesc:"Create a new table, return to a saved table, or join someone else’s table.",
+    newTableTitle:"New table",newTableDesc:"Create a quick or permanent table.",myTablesTitle:"My tables",myTablesDesc:"Return to your saved permanent tables.",
+    newTableKicker:"New table",newTableOverlayTitle:"What kind of table do you want?",newTableOverlayDesc:"Start quickly or keep this table for future games.",newTableTip:"You can turn a quick table into a permanent one later.",
+    createTitle:"Quick table",createDesc:"Play now. It does not keep permanent history.",createRoom:"Create quick table",
+    createPermanentTitle:"Permanent table",createPermanentDesc:"Keeps the same code and stores games, rounds, and results.",createPermanentRoom:"Create permanent table",myPermanentRooms:"My tables",
+    joinTitle:"Join a table",joinDesc:"Enter the code or scan the QR.",code:"CODE",enter:"Join",
+    scanQr:"▣ Scan QR",qrScannerKicker:"Join a table",qrScannerTitle:"Scan QR",qrScannerDesc:"Point the camera at the table QR code.",qrScannerStarting:"Requesting camera access…",qrScannerReady:"Looking for a QR code…",qrScannerInvalid:"That QR code is not a Flip 7 table.",qrScannerCameraError:"The camera could not be opened. Check camera permission and try again.",qrScannerUnsupported:"This device cannot use the camera from the browser.",qrScannerCancel:"Cancel",qrScannerFound:"Table detected. Joining…",
+    room:"Table",host:"Host",viewer:"Spectator",share:"Share",leave:"Leave",
     playersHub:"Players",invitePlayers:"Invite",gameSettings:"Game",resultsShort:"Results",inviteMeta:"QR + link",settingsMeta:"Configure",resultsMeta:"Games & data",
     playersOverlayTitle:"Players",playersOverlayDesc:"Manage who is participating in this game.",playersCount:n=>`${n} player${n===1?"":"s"}`,
-    playersLocked:"The player list is locked while the game is in progress.",setupCompactTitle:"Room lobby",setupCompactDesc:"Review players, invites, and game settings before starting.",
-    backToLobby:"← Back to room",enterCurrentGame:"Enter game",viewFinishedGame:"View final game",lobbyGameRunning:"Game in progress",lobbyGameFinished:"Game finished",lobbyGameTitle:n=>`Game ${n}`,lobbyRoundMeta:r=>`Round ${r}`,
+    playersLocked:"The player list is locked while the game is in progress.",setupCompactTitle:"Table lobby",setupCompactDesc:"Review players, invites, and game settings before starting.",
+    backToLobby:"← Back to table",enterCurrentGame:"Enter game",viewFinishedGame:"View final game",lobbyGameRunning:"Game in progress",lobbyGameFinished:"Game finished",lobbyGameTitle:n=>`Game ${n}`,lobbyRoundMeta:r=>`Round ${r}`,
     setupPlayers:n=>`👥 ${n} player${n===1?"":"s"}`,setupTarget:n=>`🎯 Target ${n||"—"}`,setupPending:n=>`🔔 ${n} pending`,
-    settingsOverlayTitle:"Game",settingsOverlayDesc:"Change only what you need before starting.",settingsRoomType:"Room type",settingsHost:"Current host",currentHostYou:"You",settingsLocked:"The target is locked after the game starts.",
+    settingsOverlayTitle:"Game",settingsOverlayDesc:"Change only what you need before starting.",settingsRoomType:"Table type",settingsHost:"Current host",currentHostYou:"You",settingsLocked:"The target is locked after the game starts.",
     setupTitle:"Set up game",setupDesc:"As host, you can add or remove players and choose the target before starting.",
     playerPlaceholder:"Player name",add:"Add",emptyPlayers:"Add at least 2 players to start.",remove:"Remove",
     targetTitle:"Game target",targetDesc:"Flip 7 normally ends at 200, but you can use a higher target.",
@@ -1384,12 +1536,12 @@ const I18N={
     noPlayer:"No player",wins:n=>`${n} wins!`,pts:"points",
     targetRange:"The target must be a whole number between 200 and 9999.",targetSet:n=>`Target set to ${n} points`,
     customRange:"Enter a custom target between 201 and 9999.",duplicate:"That name is already on the list.",
-    needTarget:"Choose a target before starting the game.",roomCreateError:"The room could not be created.",codeLength:"The code must be 8 characters.",
-    roomNotFound:"I couldn't find that room.",roomOpenError:"The room could not be opened.",roomGone:"This room no longer exists.",
-    roundSaved:"Round saved",roundSaveError:"The round could not be saved.",newGameConfirm:"Start a new game in this same room? The current scoreboard and history will be cleared.",
-    copied:"Link copied.",copyLink:"Copy this link:",joinShare:c=>`Join my Flip 7 game. Room ${c}`,excelError:"The Excel file could not be generated.",
+    needTarget:"Choose a target before starting the game.",roomCreateError:"The table could not be created.",codeLength:"The code must be 8 characters.",
+    roomNotFound:"I couldn't find that table.",roomOpenError:"The table could not be opened.",roomGone:"This table no longer exists.",
+    roundSaved:"Round saved",roundSaveError:"The round could not be saved.",newGameConfirm:"Start a new game at this same table? The current scoreboard and history will be cleared.",
+    copied:"Link copied.",copyLink:"Copy this link:",joinShare:c=>`Join my Flip 7 table. Code ${c}`,excelError:"The Excel file could not be generated.",
     integerScore:"Enter a whole number of 0 or more.",noRounds:"No completed rounds yet.",
-    live:"Live",reconnecting:"Reconnecting…",offline:"Offline",connectedCount:n=>`👥 ${n} connected`,qr:"QR",qrTitle:"Join room",close:"Close",shareLink:"Share link",
+    live:"Live",reconnecting:"Reconnecting…",offline:"Offline",connectedCount:n=>`👥 ${n} connected`,qr:"QR",qrTitle:"Join table",close:"Close",shareLink:"Share link",
     undoRound:"↶ Undo last round",undoConfirm:r=>`Undo round ${r}? Previous scores will be restored.`,undoDone:r=>`Round ${r} undone.`,undoError:"The round could not be undone.",
     reviewRound:"Review round",reviewSubtitle:"Confirm the scores before syncing them with everyone.",correct:"Correct",confirmRound:"Confirm round",cancelRoundReview:"Cancel round",
     projectedTotal:n=>`Total: ${n}`,targetReachedTitle:"Target reached",targetReachedSubtitle:"Review the result before showing the podium.",reviewAgain:"Review round",finishGame:"Finish game",leaderPreview:(n,p)=>`${n} would have ${p} points.`,
@@ -1399,10 +1551,10 @@ const I18N={
     requestPending:"Request sent. Waiting for host approval.",requestAccepted:n=>`You are on the player list as ${n}.`,requestRejected:"The host declined your request.",
     requestSent:"Request sent to the host.",requestError:"The request could not be sent.",requestNameRequired:"Enter the name you want to play as.",
     requestAcceptError:"The request could not be accepted.",requestRejectError:"The request could not be declined.",playerAccepted:n=>`${n} was added to the game.`,
-    roomNormal:"Normal",roomPermanent:"Permanent",roomPermanentGame:n=>`Permanent · Game ${n}`,permanentDefaultName:"Permanent room",renameRoom:"✏️ Name",renameRoomKicker:"Permanent room",renameRoomTitle:"Room name",renameRoomDesc:"Give this permanent room a name so it is easy to recognize. Leave it blank to restore the default name.",renameRoomPlaceholder:"e.g. Friday Flip 7",renameRoomSave:"Save name",renameRoomCancel:"Cancel",roomNameSaved:"Room name updated.",roomNameError:"The room name could not be changed.",makePermanent:"🏠 Make permanent",statsHistory:"📊 Results",transferHost:"👑 Change host",
-    permanentConfirm:"Convert this room into a permanent room? It will keep the same code and QR and will store games, rounds, and statistics from now on.",
-    permanentDone:"Room converted to permanent.",permanentError:"The room could not be converted.",
-    permanentStatsKicker:"Permanent room",permanentStatsTitle:"Room results",permanentStatsSubtitle:"Data accumulates game by game inside this room.",
+    roomNormal:"Quick",roomPermanent:"Permanent",roomPermanentGame:n=>`Permanent · Game ${n}`,permanentDefaultName:"Permanent table",renameRoom:"✏️ Name",renameRoomKicker:"Permanent table",renameRoomTitle:"Table name",renameRoomDesc:"Give this permanent table a name so it is easy to recognize. Leave it blank to restore the default name.",renameRoomPlaceholder:"e.g. Friday Flip 7",renameRoomSave:"Save name",renameRoomCancel:"Cancel",roomNameSaved:"Table name updated.",roomNameError:"The table name could not be changed.",makePermanent:"🏠 Make permanent",statsHistory:"📊 Results",transferHost:"👑 Change host",
+    permanentConfirm:"Convert this table into a permanent table? It will keep the same code and QR and store games, rounds, and results from now on.",
+    permanentDone:"Table converted to permanent.",permanentError:"The table could not be converted.",
+    permanentStatsKicker:"Permanent table",permanentStatsTitle:"Table results",permanentStatsSubtitle:"Data accumulates game by game inside this room.",
     gamesPlayed:"Games",totalRoundsStat:"Rounds",totalPointsStat:"Total points",uniquePlayers:"Players",
     playerStatsTitle:"Player results",statsGames:"Games",statsWins:"Wins",statsRoundWins:"Round wins",statsAvg:"Average",
     gameHistoryTitle:"Previous games",currentGame:"Current game",inProgress:"In progress",noPermanentGames:"There are no completed games in this room yet.",
@@ -1412,12 +1564,12 @@ const I18N={
     transferNote:"After the change, the new host will control the room and you will become a viewer.",
     permanentPremiumNote:"This structure is ready to become a Premium feature when the app is released on Android.",
     permanentHistoryOnly:"Round editing is available while the current game still has its round history.",starterPopupKicker:"Next round",
-    myRoomsKicker:"Permanent rooms",myRoomsTitle:"My permanent rooms",myRoomsDesc:"These are the permanent rooms you have visited with this user.",myRoomsLoading:"Loading rooms…",myRoomsEmpty:"You do not belong to any permanent rooms yet. Create one or join one with its code.",
-    roomsAsHost:n=>`${n} as host`,roomsAsVisitor:n=>`${n} as visitor`,roomsTotal:n=>`${n} room${n===1?"":"s"}`,visitorRole:"Visitor",enterRoomAgain:"Enter room",
-    participantsLabel:"Participants",noParticipants:"No participants registered",openRoomResults:"Results",editRoomNameShort:"Rename",deletePermanentRoom:n=>`Delete ${n}`,deletePermanentRoomGeneric:"Delete permanent room",
-    deletePermanentConfirm:n=>`Permanently delete "${n}"? The room, games, rounds, history, and statistics will be deleted. This cannot be undone.`,
-    permanentRoomDeleted:n=>`${n} was deleted.`,permanentRoomDeleteError:"The permanent room could not be deleted.",
-    roomWaiting:"Waiting to start",roomFinished:"Game finished",roomPlaying:(g,r)=>`Game ${g} · Round ${r}`,myRoomsLoadError:"Your permanent rooms could not be loaded.",
+    myRoomsKicker:"Permanent tables",myRoomsTitle:"My tables",myRoomsDesc:"These are your permanent tables saved on this device.",myRoomsLoading:"Loading tables…",myRoomsEmpty:"You do not have any saved permanent tables yet. Create one or join one with its code.",
+    roomsAsHost:n=>`${n} as host`,roomsAsVisitor:n=>`${n} as visitor`,roomsTotal:n=>`${n} table${n===1?"":"s"}`,visitorRole:"Visitor",enterRoomAgain:"Enter table",
+    participantsLabel:"Participants",noParticipants:"No participants registered",openRoomResults:"Results",editRoomNameShort:"Rename",deletePermanentRoom:n=>`Delete ${n}`,deletePermanentRoomGeneric:"Delete permanent table",
+    deletePermanentConfirm:n=>`Permanently delete "${n}"? The table, games, rounds, history, and results will be deleted. This cannot be undone.`,
+    permanentRoomDeleted:n=>`${n} was deleted.`,permanentRoomDeleteError:"The permanent table could not be deleted.",
+    roomWaiting:"Waiting to start",roomFinished:"Game finished",roomPlaying:(g,r)=>`Game ${g} · Round ${r}`,myRoomsLoadError:"Your permanent tables could not be loaded.",
 
     presenceError:"Live connection could not be registered.",
     startRound:"▶ Start round",roundInProgress:r=>`Round ${r} in progress`,liveRound:"Live round",liveRoundDesc:"Submitted scores are provisional until the host approves them.",
@@ -1443,7 +1595,7 @@ const I18N={
 };
 const t=(key,...args)=>{const v=I18N[lang][key];return typeof v==="function"?v(...args):v};
 
-const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),tutorialBtn=$("tutorialBtn"),tutorialLaunchTitle=$("tutorialLaunchTitle"),tutorialLaunchDesc=$("tutorialLaunchDesc"),createRoomBtn=$("createRoomBtn"),createPermanentRoomBtn=$("createPermanentRoomBtn"),myPermanentRoomsBtn=$("myPermanentRoomsBtn"),joinCode=$("joinCode"),scanQrBtn=$("scanQrBtn"),joinRoomBtn=$("joinRoomBtn"),roomBar=$("roomBar"),roomNamePill=$("roomNamePill"),roomCodeCaption=$("roomCodeCaption"),roomCodeLabel=$("roomCodeLabel"),roomTypePill=$("roomTypePill"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),playersHubBtn=$("playersHubBtn"),playersHubLabel=$("playersHubLabel"),playersHubMeta=$("playersHubMeta"),playersRequestBadge=$("playersRequestBadge"),inviteHubLabel=$("inviteHubLabel"),inviteHubMeta=$("inviteHubMeta"),settingsHubBtn=$("settingsHubBtn"),settingsHubLabel=$("settingsHubLabel"),settingsHubMeta=$("settingsHubMeta"),permanentStatsBtn=$("permanentStatsBtn"),resultsHubLabel=$("resultsHubLabel"),resultsHubMeta=$("resultsHubMeta"),renameRoomBtn=$("renameRoomBtn"),makePermanentBtn=$("makePermanentBtn"),transferHostBtn=$("transferHostBtn"),qrRoomBtn=$("qrRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),gameReturnBar=$("gameReturnBar"),backToLobbyBtn=$("backToLobbyBtn"),lobbyActiveGame=$("lobbyActiveGame"),lobbyActiveKicker=$("lobbyActiveKicker"),lobbyActiveTitle=$("lobbyActiveTitle"),lobbyActiveMeta=$("lobbyActiveMeta"),enterGameBtn=$("enterGameBtn"),hostSetup=$("hostSetup"),setupPlayersSummary=$("setupPlayersSummary"),setupTargetSummary=$("setupTargetSummary"),setupRequestsSummary=$("setupRequestsSummary"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),liveRoundPanel=$("liveRoundPanel"),liveRoundTitle=$("liveRoundTitle"),liveRoundDesc=$("liveRoundDesc"),roundApprovalCount=$("roundApprovalCount"),roundLiveList=$("roundLiveList"),closeRoundWrap=$("closeRoundWrap"),closeRoundBtn=$("closeRoundBtn"),closeRoundHint=$("closeRoundHint"),tutorialOverlay=$("tutorialOverlay"),tutorialKicker=$("tutorialKicker"),tutorialStepCounter=$("tutorialStepCounter"),tutorialProgressBar=$("tutorialProgressBar"),tutorialVisual=$("tutorialVisual"),tutorialIcon=$("tutorialIcon"),tutorialTitle=$("tutorialTitle"),tutorialBody=$("tutorialBody"),tutorialPoints=$("tutorialPoints"),tutorialDots=$("tutorialDots"),tutorialCloseBtn=$("tutorialCloseBtn"),tutorialPrevBtn=$("tutorialPrevBtn"),tutorialNextBtn=$("tutorialNextBtn"),playersHubOverlay=$("playersHubOverlay"),playersOverlayKicker=$("playersOverlayKicker"),playersOverlayTitle=$("playersOverlayTitle"),playersOverlayDesc=$("playersOverlayDesc"),playersOverlayCount=$("playersOverlayCount"),playersOverlayCloseBtn=$("playersOverlayCloseBtn"),playerManagementControls=$("playerManagementControls"),playersLockedNote=$("playersLockedNote"),gameSettingsOverlay=$("gameSettingsOverlay"),settingsOverlayKicker=$("settingsOverlayKicker"),settingsOverlayTitle=$("settingsOverlayTitle"),settingsOverlayDesc=$("settingsOverlayDesc"),settingsOverlayCloseBtn=$("settingsOverlayCloseBtn"),settingsRoomTypeLabel=$("settingsRoomTypeLabel"),settingsRoomTypeValue=$("settingsRoomTypeValue"),settingsHostLabel=$("settingsHostLabel"),settingsHostValue=$("settingsHostValue"),settingsTargetWrap=$("settingsTargetWrap"),settingsLockedNote=$("settingsLockedNote"),playerScoreOverlay=$("playerScoreOverlay"),myScorePanel=$("myScorePanel"),myScoreKicker=$("myScoreKicker"),myScoreTitle=$("myScoreTitle"),myScoreDesc=$("myScoreDesc"),myScoreRound=$("myScoreRound"),mySubmissionState=$("mySubmissionState"),myScoreForm=$("myScoreForm"),cardsTabBtn=$("cardsTabBtn"),manualTabBtn=$("manualTabBtn"),cardsScorePane=$("cardsScorePane"),manualScorePane=$("manualScorePane"),myManualScore=$("myManualScore"),myBustBtn=$("myBustBtn"),myCardsBustBtn=$("myCardsBustBtn"),numberCardsGrid=$("numberCardsGrid"),modifierCardsGrid=$("modifierCardsGrid"),cardCalcLabel=$("cardCalcLabel"),cardCalcTotal=$("cardCalcTotal"),cardCalcDetail=$("cardCalcDetail"),clearMyScoreBtn=$("clearMyScoreBtn"),submitMyScoreBtn=$("submitMyScoreBtn"),playerScoreLockNote=$("playerScoreLockNote"),viewerRoundOverlay=$("viewerRoundOverlay"),viewerRoundKicker=$("viewerRoundKicker"),viewerRoundTitle=$("viewerRoundTitle"),viewerRoundDesc=$("viewerRoundDesc"),viewerRoundCount=$("viewerRoundCount"),viewerRoundList=$("viewerRoundList"),viewerRoundLockNote=$("viewerRoundLockNote"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),editRoundsBtn=$("editRoundsBtn"),newGameBtn=$("newGameBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),hostEntryNote=$("hostEntryNote"),hostCardsTabBtn=$("hostCardsTabBtn"),hostManualTabBtn=$("hostManualTabBtn"),hostCardsPane=$("hostCardsPane"),hostManualPane=$("hostManualPane"),hostNumberCardsGrid=$("hostNumberCardsGrid"),hostModifierCardsGrid=$("hostModifierCardsGrid"),hostCardCalcLabel=$("hostCardCalcLabel"),hostCardCalcTotal=$("hostCardCalcTotal"),hostCardCalcDetail=$("hostCardCalcDetail"),hostCardsBustBtn=$("hostCardsBustBtn"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),removeSubmissionBtn=$("removeSubmissionBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),editHistoryOverlay=$("editHistoryOverlay"),editHistoryKicker=$("editHistoryKicker"),editHistoryTitle=$("editHistoryTitle"),editHistorySubtitle=$("editHistorySubtitle"),editHistoryRoundList=$("editHistoryRoundList"),editHistoryEditor=$("editHistoryEditor"),editHistoryBackBtn=$("editHistoryBackBtn"),editHistoryRoundLabel=$("editHistoryRoundLabel"),editHistoryList=$("editHistoryList"),editHistoryCancelBtn=$("editHistoryCancelBtn"),editHistorySaveBtn=$("editHistorySaveBtn"),editHistoryCloseBtn=$("editHistoryCloseBtn"),qrScannerOverlay=$("qrScannerOverlay"),qrScannerKicker=$("qrScannerKicker"),qrScannerTitle=$("qrScannerTitle"),qrScannerDesc=$("qrScannerDesc"),qrScannerVideo=$("qrScannerVideo"),qrScannerCanvas=$("qrScannerCanvas"),qrScannerStatus=$("qrScannerStatus"),qrScannerCloseBtn=$("qrScannerCloseBtn"),qrScannerCancelBtn=$("qrScannerCancelBtn"),myRoomsOverlay=$("myRoomsOverlay"),myRoomsKicker=$("myRoomsKicker"),myRoomsTitle=$("myRoomsTitle"),myRoomsDesc=$("myRoomsDesc"),myRoomsSummary=$("myRoomsSummary"),myRoomsList=$("myRoomsList"),myRoomsCloseBtn=$("myRoomsCloseBtn"),renameRoomOverlay=$("renameRoomOverlay"),renameRoomKicker=$("renameRoomKicker"),renameRoomTitle=$("renameRoomTitle"),renameRoomDesc=$("renameRoomDesc"),renameRoomInput=$("renameRoomInput"),renameRoomCancelBtn=$("renameRoomCancelBtn"),renameRoomSaveBtn=$("renameRoomSaveBtn"),renameRoomCloseBtn=$("renameRoomCloseBtn"),starterPopupOverlay=$("starterPopupOverlay"),starterPopupKicker=$("starterPopupKicker"),starterPopupTitle=$("starterPopupTitle"),starterPopupText=$("starterPopupText"),permanentStatsOverlay=$("permanentStatsOverlay"),permanentStatsKicker=$("permanentStatsKicker"),permanentStatsTitle=$("permanentStatsTitle"),permanentStatsSubtitle=$("permanentStatsSubtitle"),permanentStatsSummary=$("permanentStatsSummary"),currentGameStats=$("currentGameStats"),playerStatsTitle=$("playerStatsTitle"),statsPlayerCol=$("statsPlayerCol"),statsGamesCol=$("statsGamesCol"),statsWinsCol=$("statsWinsCol"),statsRoundWinsCol=$("statsRoundWinsCol"),statsPointsCol=$("statsPointsCol"),statsAvgCol=$("statsAvgCol"),playerStatsBody=$("playerStatsBody"),gameHistoryTitle=$("gameHistoryTitle"),permanentGamesList=$("permanentGamesList"),permanentPremiumNote=$("permanentPremiumNote"),permanentStatsCloseBtn=$("permanentStatsCloseBtn"),transferHostOverlay=$("transferHostOverlay"),transferHostKicker=$("transferHostKicker"),transferHostTitle=$("transferHostTitle"),transferHostSubtitle=$("transferHostSubtitle"),transferHostList=$("transferHostList"),transferHostNote=$("transferHostNote"),transferHostCloseBtn=$("transferHostCloseBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerEditRoundsBtn=$("winnerEditRoundsBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
+const languageBtn=$("languageBtn"),homeScreen=$("homeScreen"),roomScreen=$("roomScreen"),setupAlert=$("setupAlert"),tutorialBtn=$("tutorialBtn"),tutorialLaunchTitle=$("tutorialLaunchTitle"),tutorialLaunchDesc=$("tutorialLaunchDesc"),newTableBtn=$("newTableBtn"),newTableTitle=$("newTableTitle"),newTableDesc=$("newTableDesc"),myTablesTitle=$("myTablesTitle"),myTablesDesc=$("myTablesDesc"),createRoomBtn=$("createRoomBtn"),createPermanentRoomBtn=$("createPermanentRoomBtn"),myPermanentRoomsBtn=$("myPermanentRoomsBtn"),joinCode=$("joinCode"),scanQrBtn=$("scanQrBtn"),joinRoomBtn=$("joinRoomBtn"),roomBar=$("roomBar"),roomNamePill=$("roomNamePill"),roomCodeCaption=$("roomCodeCaption"),roomCodeLabel=$("roomCodeLabel"),roomTypePill=$("roomTypePill"),roleLabel=$("roleLabel"),connectionStatus=$("connectionStatus"),viewerCount=$("viewerCount"),playersHubBtn=$("playersHubBtn"),playersHubLabel=$("playersHubLabel"),playersHubMeta=$("playersHubMeta"),playersRequestBadge=$("playersRequestBadge"),inviteHubLabel=$("inviteHubLabel"),inviteHubMeta=$("inviteHubMeta"),settingsHubBtn=$("settingsHubBtn"),settingsHubLabel=$("settingsHubLabel"),settingsHubMeta=$("settingsHubMeta"),permanentStatsBtn=$("permanentStatsBtn"),resultsHubLabel=$("resultsHubLabel"),resultsHubMeta=$("resultsHubMeta"),renameRoomBtn=$("renameRoomBtn"),makePermanentBtn=$("makePermanentBtn"),transferHostBtn=$("transferHostBtn"),qrRoomBtn=$("qrRoomBtn"),leaveRoomBtn=$("leaveRoomBtn"),gameReturnBar=$("gameReturnBar"),backToLobbyBtn=$("backToLobbyBtn"),lobbyActiveGame=$("lobbyActiveGame"),lobbyActiveKicker=$("lobbyActiveKicker"),lobbyActiveTitle=$("lobbyActiveTitle"),lobbyActiveMeta=$("lobbyActiveMeta"),enterGameBtn=$("enterGameBtn"),hostSetup=$("hostSetup"),setupPlayersSummary=$("setupPlayersSummary"),setupTargetSummary=$("setupTargetSummary"),setupRequestsSummary=$("setupRequestsSummary"),viewerWaiting=$("viewerWaiting"),waitingText=$("waitingText"),joinRequestsBox=$("joinRequestsBox"),joinRequestsTitle=$("joinRequestsTitle"),joinRequestsDesc=$("joinRequestsDesc"),joinRequestsCount=$("joinRequestsCount"),joinRequestsList=$("joinRequestsList"),manualAddLabel=$("manualAddLabel"),selfJoinBox=$("selfJoinBox"),selfJoinTitle=$("selfJoinTitle"),selfJoinDesc=$("selfJoinDesc"),selfJoinForm=$("selfJoinForm"),selfJoinName=$("selfJoinName"),requestJoinBtn=$("requestJoinBtn"),selfJoinStatus=$("selfJoinStatus"),playerName=$("playerName"),addPlayerBtn=$("addPlayerBtn"),playerList=$("playerList"),startGameBtn=$("startGameBtn"),targetPreview=$("targetPreview"),target200Btn=$("target200Btn"),customTargetBtn=$("customTargetBtn"),customTargetRow=$("customTargetRow"),customTargetInput=$("customTargetInput"),saveTargetBtn=$("saveTargetBtn"),gameArea=$("gameArea"),scoreBody=$("scoreBody"),roundPill=$("roundPill"),liveRoundPanel=$("liveRoundPanel"),liveRoundTitle=$("liveRoundTitle"),liveRoundDesc=$("liveRoundDesc"),roundApprovalCount=$("roundApprovalCount"),roundLiveList=$("roundLiveList"),closeRoundWrap=$("closeRoundWrap"),closeRoundBtn=$("closeRoundBtn"),closeRoundHint=$("closeRoundHint"),newTableOverlay=$("newTableOverlay"),newTableKicker=$("newTableKicker"),newTableOverlayTitle=$("newTableOverlayTitle"),newTableOverlayDesc=$("newTableOverlayDesc"),newTableTip=$("newTableTip"),newTableCloseBtn=$("newTableCloseBtn"),tutorialOverlay=$("tutorialOverlay"),tutorialKicker=$("tutorialKicker"),tutorialStepCounter=$("tutorialStepCounter"),tutorialProgressBar=$("tutorialProgressBar"),tutorialVisual=$("tutorialVisual"),tutorialIcon=$("tutorialIcon"),tutorialTitle=$("tutorialTitle"),tutorialBody=$("tutorialBody"),tutorialPoints=$("tutorialPoints"),tutorialDots=$("tutorialDots"),tutorialCloseBtn=$("tutorialCloseBtn"),tutorialPrevBtn=$("tutorialPrevBtn"),tutorialNextBtn=$("tutorialNextBtn"),playersHubOverlay=$("playersHubOverlay"),playersOverlayKicker=$("playersOverlayKicker"),playersOverlayTitle=$("playersOverlayTitle"),playersOverlayDesc=$("playersOverlayDesc"),playersOverlayCount=$("playersOverlayCount"),playersOverlayCloseBtn=$("playersOverlayCloseBtn"),playerManagementControls=$("playerManagementControls"),playersLockedNote=$("playersLockedNote"),gameSettingsOverlay=$("gameSettingsOverlay"),settingsOverlayKicker=$("settingsOverlayKicker"),settingsOverlayTitle=$("settingsOverlayTitle"),settingsOverlayDesc=$("settingsOverlayDesc"),settingsOverlayCloseBtn=$("settingsOverlayCloseBtn"),settingsRoomTypeLabel=$("settingsRoomTypeLabel"),settingsRoomTypeValue=$("settingsRoomTypeValue"),settingsHostLabel=$("settingsHostLabel"),settingsHostValue=$("settingsHostValue"),settingsTargetWrap=$("settingsTargetWrap"),settingsLockedNote=$("settingsLockedNote"),playerScoreOverlay=$("playerScoreOverlay"),myScorePanel=$("myScorePanel"),myScoreKicker=$("myScoreKicker"),myScoreTitle=$("myScoreTitle"),myScoreDesc=$("myScoreDesc"),myScoreRound=$("myScoreRound"),mySubmissionState=$("mySubmissionState"),myScoreForm=$("myScoreForm"),cardsTabBtn=$("cardsTabBtn"),manualTabBtn=$("manualTabBtn"),cardsScorePane=$("cardsScorePane"),manualScorePane=$("manualScorePane"),myManualScore=$("myManualScore"),myBustBtn=$("myBustBtn"),myCardsBustBtn=$("myCardsBustBtn"),numberCardsGrid=$("numberCardsGrid"),modifierCardsGrid=$("modifierCardsGrid"),cardCalcLabel=$("cardCalcLabel"),cardCalcTotal=$("cardCalcTotal"),cardCalcDetail=$("cardCalcDetail"),clearMyScoreBtn=$("clearMyScoreBtn"),submitMyScoreBtn=$("submitMyScoreBtn"),playerScoreLockNote=$("playerScoreLockNote"),viewerRoundOverlay=$("viewerRoundOverlay"),viewerRoundKicker=$("viewerRoundKicker"),viewerRoundTitle=$("viewerRoundTitle"),viewerRoundDesc=$("viewerRoundDesc"),viewerRoundCount=$("viewerRoundCount"),viewerRoundList=$("viewerRoundList"),viewerRoundLockNote=$("viewerRoundLockNote"),hostGameActions=$("hostGameActions"),viewerNote=$("viewerNote"),starterNotice=$("starterNotice"),starterNoticeTitle=$("starterNoticeTitle"),starterNoticeText=$("starterNoticeText"),roundBtn=$("roundBtn"),editRoundsBtn=$("editRoundsBtn"),newGameBtn=$("newGameBtn"),roundOverlay=$("roundOverlay"),turnCounter=$("turnCounter"),roundLabel=$("roundLabel"),turnPlayer=$("turnPlayer"),turnCurrentScore=$("turnCurrentScore"),hostEntryNote=$("hostEntryNote"),hostCardsTabBtn=$("hostCardsTabBtn"),hostManualTabBtn=$("hostManualTabBtn"),hostCardsPane=$("hostCardsPane"),hostManualPane=$("hostManualPane"),hostNumberCardsGrid=$("hostNumberCardsGrid"),hostModifierCardsGrid=$("hostModifierCardsGrid"),hostCardCalcLabel=$("hostCardCalcLabel"),hostCardCalcTotal=$("hostCardCalcTotal"),hostCardCalcDetail=$("hostCardCalcDetail"),hostCardsBustBtn=$("hostCardsBustBtn"),pointsInput=$("pointsInput"),passBtn=$("passBtn"),saveScoreBtn=$("saveScoreBtn"),removeSubmissionBtn=$("removeSubmissionBtn"),backTurnBtn=$("backTurnBtn"),cancelRoundBtn=$("cancelRoundBtn"),reviewOverlay=$("reviewOverlay"),reviewRoundLabel=$("reviewRoundLabel"),reviewTitle=$("reviewTitle"),reviewSubtitle=$("reviewSubtitle"),reviewList=$("reviewList"),reviewCorrectBtn=$("reviewCorrectBtn"),reviewConfirmBtn=$("reviewConfirmBtn"),reviewCancelBtn=$("reviewCancelBtn"),finishConfirmOverlay=$("finishConfirmOverlay"),finishConfirmTitle=$("finishConfirmTitle"),finishConfirmSubtitle=$("finishConfirmSubtitle"),finishLeader=$("finishLeader"),finishLeaderScore=$("finishLeaderScore"),finishReviewBtn=$("finishReviewBtn"),finishGameBtn=$("finishGameBtn"),qrOverlay=$("qrOverlay"),qrTitle=$("qrTitle"),qrCodeLabel=$("qrCodeLabel"),qrCode=$("qrCode"),qrLinkText=$("qrLinkText"),qrShareBtn=$("qrShareBtn"),qrCloseBtn=$("qrCloseBtn"),qrCloseTopBtn=$("qrCloseTopBtn"),editHistoryOverlay=$("editHistoryOverlay"),editHistoryKicker=$("editHistoryKicker"),editHistoryTitle=$("editHistoryTitle"),editHistorySubtitle=$("editHistorySubtitle"),editHistoryRoundList=$("editHistoryRoundList"),editHistoryEditor=$("editHistoryEditor"),editHistoryBackBtn=$("editHistoryBackBtn"),editHistoryRoundLabel=$("editHistoryRoundLabel"),editHistoryList=$("editHistoryList"),editHistoryCancelBtn=$("editHistoryCancelBtn"),editHistorySaveBtn=$("editHistorySaveBtn"),editHistoryCloseBtn=$("editHistoryCloseBtn"),qrScannerOverlay=$("qrScannerOverlay"),qrScannerKicker=$("qrScannerKicker"),qrScannerTitle=$("qrScannerTitle"),qrScannerDesc=$("qrScannerDesc"),qrScannerVideo=$("qrScannerVideo"),qrScannerCanvas=$("qrScannerCanvas"),qrScannerStatus=$("qrScannerStatus"),qrScannerCloseBtn=$("qrScannerCloseBtn"),qrScannerCancelBtn=$("qrScannerCancelBtn"),myRoomsOverlay=$("myRoomsOverlay"),myRoomsKicker=$("myRoomsKicker"),myRoomsTitle=$("myRoomsTitle"),myRoomsDesc=$("myRoomsDesc"),myRoomsSummary=$("myRoomsSummary"),myRoomsList=$("myRoomsList"),myRoomsCloseBtn=$("myRoomsCloseBtn"),renameRoomOverlay=$("renameRoomOverlay"),renameRoomKicker=$("renameRoomKicker"),renameRoomTitle=$("renameRoomTitle"),renameRoomDesc=$("renameRoomDesc"),renameRoomInput=$("renameRoomInput"),renameRoomCancelBtn=$("renameRoomCancelBtn"),renameRoomSaveBtn=$("renameRoomSaveBtn"),renameRoomCloseBtn=$("renameRoomCloseBtn"),starterPopupOverlay=$("starterPopupOverlay"),starterPopupKicker=$("starterPopupKicker"),starterPopupTitle=$("starterPopupTitle"),starterPopupText=$("starterPopupText"),permanentStatsOverlay=$("permanentStatsOverlay"),permanentStatsKicker=$("permanentStatsKicker"),permanentStatsTitle=$("permanentStatsTitle"),permanentStatsSubtitle=$("permanentStatsSubtitle"),permanentStatsSummary=$("permanentStatsSummary"),currentGameStats=$("currentGameStats"),playerStatsTitle=$("playerStatsTitle"),statsPlayerCol=$("statsPlayerCol"),statsGamesCol=$("statsGamesCol"),statsWinsCol=$("statsWinsCol"),statsRoundWinsCol=$("statsRoundWinsCol"),statsPointsCol=$("statsPointsCol"),statsAvgCol=$("statsAvgCol"),playerStatsBody=$("playerStatsBody"),gameHistoryTitle=$("gameHistoryTitle"),permanentGamesList=$("permanentGamesList"),permanentPremiumNote=$("permanentPremiumNote"),permanentStatsCloseBtn=$("permanentStatsCloseBtn"),transferHostOverlay=$("transferHostOverlay"),transferHostKicker=$("transferHostKicker"),transferHostTitle=$("transferHostTitle"),transferHostSubtitle=$("transferHostSubtitle"),transferHostList=$("transferHostList"),transferHostNote=$("transferHostNote"),transferHostCloseBtn=$("transferHostCloseBtn"),winnerOverlay=$("winnerOverlay"),winnerName=$("winnerName"),winnerCloseBtn=$("winnerCloseBtn"),winnerEditRoundsBtn=$("winnerEditRoundsBtn"),winnerNewGameBtn=$("winnerNewGameBtn"),toast=$("toast");
 function configured(){return firebaseConfig.apiKey&&!Object.values(firebaseConfig).some(v=>String(v).includes("PEGUE_AQUI"))}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function norm(v){return Array.isArray(v)?v.filter(Boolean):v&&typeof v==="object"?Object.keys(v).sort((a,b)=>Number(a)-Number(b)).map(k=>v[k]).filter(Boolean):[]}function normalizeGames(v){
   if(!v||typeof v!=="object")return [];
   return Object.values(v).filter(Boolean).sort((a,b)=>Number(a.number||0)-Number(b.number||0))
@@ -1622,8 +1774,11 @@ function applyLanguage(){
   languageBtn.textContent=t("languageButton");
   setText("appSubtitle","subtitle");
   tutorialLaunchTitle.textContent=t("tutorialLaunchTitle"); tutorialLaunchDesc.textContent=t("tutorialLaunchDesc"); tutorialBtn.textContent=t("tutorialLaunchBtn"); tutorialKicker.textContent=t("tutorialKicker");
-  setText("homeTitle","homeTitle"); setText("homeDesc","homeDesc"); setText("createTitle","createTitle"); setText("createDesc","createDesc"); setText("createPermanentTitle","createPermanentTitle"); setText("createPermanentDesc","createPermanentDesc");
-  createRoomBtn.textContent=t("createRoom"); createPermanentRoomBtn.textContent=t("createPermanentRoom"); myPermanentRoomsBtn.textContent=t("myPermanentRooms"); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); scanQrBtn.textContent=t("scanQr"); joinRoomBtn.textContent=t("enter");
+  setText("homeTitle","homeTitle"); setText("homeDesc","homeDesc");
+  newTableTitle.textContent=t("newTableTitle"); newTableDesc.textContent=t("newTableDesc"); myTablesTitle.textContent=t("myTablesTitle"); myTablesDesc.textContent=t("myTablesDesc");
+  newTableKicker.textContent=t("newTableKicker"); newTableOverlayTitle.textContent=t("newTableOverlayTitle"); newTableOverlayDesc.textContent=t("newTableOverlayDesc"); newTableTip.textContent=t("newTableTip");
+  setText("createTitle","createTitle"); setText("createDesc","createDesc"); setText("createPermanentTitle","createPermanentTitle"); setText("createPermanentDesc","createPermanentDesc");
+  myPermanentRoomsBtn.setAttribute("aria-label",t("myPermanentRooms")); setText("joinTitle","joinTitle"); setText("joinDesc","joinDesc"); joinCode.placeholder=t("code"); scanQrBtn.textContent=t("scanQr"); joinRoomBtn.textContent=t("enter");
   qrScannerKicker.textContent=t("qrScannerKicker"); qrScannerTitle.textContent=t("qrScannerTitle"); qrScannerDesc.textContent=t("qrScannerDesc"); qrScannerCancelBtn.textContent=t("qrScannerCancel");
   setText("roomLabel","room"); roomCodeCaption.textContent=t("roomCodeCaption"); playersHubLabel.textContent=t("playersHub"); inviteHubLabel.textContent=t("invitePlayers"); inviteHubMeta.textContent=t("inviteMeta"); settingsHubLabel.textContent=t("gameSettings"); settingsHubMeta.textContent=t("settingsMeta"); resultsHubLabel.textContent=t("resultsShort"); resultsHubMeta.textContent=t("resultsMeta");
   renameRoomBtn.textContent="✏️"; renameRoomBtn.title=t("editRoomNameShort"); renameRoomBtn.setAttribute("aria-label",t("editRoomNameShort")); makePermanentBtn.textContent=t("makePermanent"); transferHostBtn.textContent=t("transferHost"); leaveRoomBtn.textContent=t("leave");
@@ -1659,48 +1814,48 @@ function applyLanguage(){
 
 function tutorialSteps(){
   if(lang==="en")return [
-    {icon:"👋",visual:"home",title:"Welcome to Score Tracker",body:"The app separates room setup from live gameplay so the table stays easy to follow.",points:["Create a quick normal game or a reusable permanent room.","One person is the Host; everyone else can join from their own phone.","Language and connection status stay available at the top."]},
-    {icon:"🎴",visual:"rooms",title:"Normal game or permanent room",body:"Choose the room type based on whether you want a one-time game or a recurring group.",points:["Normal game: quick room for the current game.","Permanent room: keeps the same code, name, results and game history.","A normal room can be converted to permanent later."]},
-    {icon:"📷",visual:"join",title:"Join by code or QR",body:"Players and spectators can enter with the 8-character code or scan the room QR.",points:["Scan QR opens the phone camera and joins automatically when the room is recognized.","The room link can also be shared directly.","Manual code entry always remains available."]},
-    {icon:"🏠",visual:"permanent",title:"Your permanent rooms",body:"Permanent rooms are designed for recurring groups and are sorted from most recently active to oldest.",points:["See participants before entering.","Hosts can rename with ✏️ or delete with 🗑️.","Open Results directly from the room list."]},
-    {icon:"🛋️",visual:"lobby",title:"The room lobby",body:"Every time you enter a room you land in the lobby first. Room administration stays here instead of cluttering the scoreboard.",points:["Players shows who is in the room.","Invite opens QR and sharing.","Game contains target and Host controls.","Results appears for permanent rooms."]},
+    {icon:"👋",visual:"home",title:"Welcome to Score Tracker",body:"The app separates room setup from live gameplay so the table stays easy to follow.",points:["Create a quick table or a reusable permanent table.","One person is the Host; everyone else can join from their own phone.","Language and connection status stay available at the top."]},
+    {icon:"🎴",visual:"rooms",title:"Quick table or permanent table",body:"From New table, choose a quick table for the current game or a permanent table for a recurring group.",points:["Quick table: play now without keeping permanent history.","Permanent table: keeps the same code, name, results and game history.","A quick table can be converted to permanent later."]},
+    {icon:"📷",visual:"join",title:"Join a table",body:"From Join a table, players and spectators can enter with the 8-character code or scan the QR.",points:["Scan QR opens the phone camera and joins automatically when the room is recognized.","The room link can also be shared directly.","Manual code entry always remains available."]},
+    {icon:"🏠",visual:"permanent",title:"My tables",body:"My tables contains saved permanent tables, sorted from most recently active to oldest.",points:["See participants before entering.","Hosts can rename with ✏️ or delete with 🗑️.","Open Results directly from the room list."]},
+    {icon:"🛋️",visual:"lobby",title:"The table lobby",body:"Every time you enter a table you land in the lobby first. Table administration stays here instead of cluttering the scoreboard.",points:["Players shows who is at the table.","Invite opens QR and sharing.","Game contains target and Host controls.","Results appears for permanent rooms."]},
     {icon:"👥",visual:"players",title:"Manage players",body:"Before the game starts, the Host controls the player list from one dedicated panel.",points:["Add a player manually when someone has no device.","People joining from their phone can request a spot; the Host accepts or rejects them.","Pending requests appear as a badge."]},
-    {icon:"➕",visual:"invite",title:"Invite the table",body:"Invite keeps room sharing in one place.",points:["Show the room QR for nearby players.","Share the room link through the device share menu when supported.","A visitor to a permanent room can find it again under My permanent rooms on that same browser identity."]},
-    {icon:"⚙️",visual:"settings",title:"Configure the game",body:"Game settings hold controls that matter before starting but do not need to stay visible all the time.",points:["Choose the standard 200-point target or a custom target above 200.","Convert a normal room to permanent.","In a permanent room, transfer Host control to another connected player."]},
-    {icon:"▶️",visual:"start",title:"Start when the lobby is ready",body:"The lobby summarizes player count, target and pending requests.",points:["Once started, room controls disappear from the scoreboard.","Back to room returns to the lobby without changing the live game.","If you re-enter while a game is active, the lobby offers Enter game."]},
+    {icon:"➕",visual:"invite",title:"Invite the table",body:"Invite keeps table sharing in one place.",points:["Show the room QR for nearby players.","Share the room link through the device share menu when supported.","A visitor to a permanent table can find it again under My tables on that same browser identity."]},
+    {icon:"⚙️",visual:"settings",title:"Configure the game",body:"Game settings hold controls that matter before starting but do not need to stay visible all the time.",points:["Choose the standard 200-point target or a custom target above 200.","Convert a quick table to permanent.","At a permanent table, transfer Host control to another connected player."]},
+    {icon:"▶️",visual:"start",title:"Start when the lobby is ready",body:"The lobby summarizes player count, target and pending requests.",points:["Once started, table controls disappear from the scoreboard.","Back to table returns to the lobby without changing the live game.","If you re-enter while a game is active, the table opens in the lobby first and offers Enter game."]},
     {icon:"🃏",visual:"score",title:"Each player sends their score",body:"When the Host starts a round, connected players receive a scoring popup on their own phone.",points:["Cards mode lets you select number cards and modifiers; the Flip 7 bonus is calculated automatically.","Manual mode is available when you already know the score.","Bust / 0 is always available."]},
     {icon:"✅",visual:"approve",title:"The Host validates the round",body:"Submitted scores are provisional until the Host approves them.",points:["Approve a correct submission.","Reject it to return the player to scoring, or edit it directly.","Players without a connected phone can be scored manually by the Host.","The round closes only after every player has an approved score."]},
     {icon:"🏆",visual:"rounds",title:"Rounds, first card and finish",body:"After a round closes, totals update for everyone and the app prepares the next round.",points:["The highest round score determines who receives the first card next, including ties.","A 3-second popup announces the next first-card player and the notice remains visible.","When the target is reached, the final result is confirmed before the podium."]},
-    {icon:"📊",visual:"results",title:"Results and history",body:"Permanent rooms keep a reusable record instead of losing everything after a game.",points:["See games, rounds, total points and player results.","Open previous games and review round winners.","The Host can edit previous rounds in both normal and permanent games; totals, ranking and first-card information are recalculated.","The room name, history and room code remain for the next game."]}
+    {icon:"📊",visual:"results",title:"Results and history",body:"Permanent tables keep a reusable record instead of losing everything after a game.",points:["See games, rounds, total points and player results.","Open previous games and review round winners.","The Host can edit previous rounds in both normal and permanent games; totals, ranking and first-card information are recalculated.","The table name, history and table code remain for the next game."]}
   ];
   return [
-    {icon:"👋",visual:"home",title:"Bienvenido a Score Tracker",body:"La app separa la administración de la sala de la partida en vivo para que la mesa sea fácil de seguir.",points:["Cree una partida normal rápida o una sala permanente reutilizable.","Una persona funciona como Host y los demás pueden entrar desde su propio teléfono.","El idioma y el estado de conexión permanecen disponibles arriba."]},
-    {icon:"🎴",visual:"rooms",title:"Partida normal o sala permanente",body:"Elija el tipo de sala dependiendo de si será una sola partida o un grupo que jugará nuevamente.",points:["Partida normal: una sala rápida para el juego actual.","Sala permanente: conserva código, nombre, resultados e historial de juegos.","Una sala normal puede convertirse en permanente después."]},
-    {icon:"📷",visual:"join",title:"Unirse por código o QR",body:"Jugadores y espectadores pueden entrar escribiendo el código de 8 caracteres o escaneando el QR.",points:["Escanear QR abre la cámara del teléfono y entra automáticamente cuando reconoce la sala.","También puede compartir directamente el enlace de la sala.","La entrada manual por código siempre sigue disponible."]},
-    {icon:"🏠",visual:"permanent",title:"Mis salas permanentes",body:"Las salas permanentes están pensadas para grupos recurrentes y se ordenan de la actividad más reciente a la más antigua.",points:["Puede ver quiénes participan antes de entrar.","El Host puede cambiar el nombre con ✏️ o eliminar la sala con 🗑️.","Resultados puede abrirse directamente desde la lista de salas."]},
-    {icon:"🛋️",visual:"lobby",title:"El lobby de la sala",body:"Cada vez que entra a una sala llega primero al Lobby. La administración vive aquí para no llenar el marcador de controles.",points:["Jugadores muestra quién está en la sala.","Invitar abre QR y opciones para compartir.","Partida contiene la meta y controles del Host.","Resultados aparece en las salas permanentes."]},
+    {icon:"👋",visual:"home",title:"Bienvenido a Score Tracker",body:"La app separa la administración de la sala de la partida en vivo para que la mesa sea fácil de seguir.",points:["Cree una mesa rápida o una mesa permanente reutilizable.","Una persona funciona como Host y los demás pueden entrar desde su propio teléfono.","El idioma y el estado de conexión permanecen disponibles arriba."]},
+    {icon:"🎴",visual:"rooms",title:"Mesa rápida o mesa permanente",body:"Al tocar Nueva mesa, elija entre una mesa rápida para jugar ahora o una mesa permanente para un grupo recurrente.",points:["Mesa rápida: para jugar ahora sin conservar historial permanente.","Mesa permanente: conserva código, nombre, resultados e historial de juegos.","Una mesa rápida puede convertirse en permanente después."]},
+    {icon:"📷",visual:"join",title:"Unirse a una mesa",body:"Desde Unirse a una mesa, jugadores y espectadores pueden entrar escribiendo el código de 8 caracteres o escaneando el QR.",points:["Escanear QR abre la cámara del teléfono y entra automáticamente cuando reconoce la sala.","También puede compartir directamente el enlace de la sala.","La entrada manual por código siempre sigue disponible."]},
+    {icon:"🏠",visual:"permanent",title:"Mis mesas",body:"Mis mesas reúne las mesas permanentes guardadas y las ordena de la actividad más reciente a la más antigua.",points:["Puede ver quiénes participan antes de entrar.","El Host puede cambiar el nombre con ✏️ o eliminar la sala con 🗑️.","Resultados puede abrirse directamente desde la lista de salas."]},
+    {icon:"🛋️",visual:"lobby",title:"El lobby de la mesa",body:"Cada vez que entra a una mesa llega primero al Lobby. La administración vive aquí para no llenar el marcador de controles.",points:["Jugadores muestra quién está en la mesa.","Invitar abre QR y opciones para compartir.","Partida contiene la meta y controles del Host.","Resultados aparece en las salas permanentes."]},
     {icon:"👥",visual:"players",title:"Administrar jugadores",body:"Antes de iniciar, el Host controla la lista desde un solo panel.",points:["Puede agregar manualmente a alguien que no tenga dispositivo.","Quien entra desde su teléfono puede solicitar jugar; el Host acepta o rechaza.","Las solicitudes pendientes aparecen con un indicador."]},
-    {icon:"➕",visual:"invite",title:"Invitar a la mesa",body:"Invitar concentra todas las formas de compartir la sala.",points:["Muestre el QR para quienes están cerca.","Comparta el enlace usando el menú del dispositivo cuando esté disponible.","Quien visita una sala permanente puede volver a encontrarla en Mis salas permanentes usando esa misma identidad del navegador."]},
-    {icon:"⚙️",visual:"settings",title:"Configurar la partida",body:"Partida agrupa controles importantes antes de jugar que no necesitan ocupar espacio todo el tiempo.",points:["Use la meta estándar de 200 puntos o una meta personalizada superior a 200.","Convierta una sala normal en permanente.","En una sala permanente, transfiera el Host a otro jugador conectado."]},
-    {icon:"▶️",visual:"start",title:"Iniciar cuando el lobby esté listo",body:"El Lobby resume cantidad de jugadores, meta y solicitudes pendientes.",points:["Al iniciar, los controles de la sala desaparecen del marcador.","Volver a la sala regresa al Lobby sin alterar la partida en vivo.","Si vuelve a entrar mientras ya hay juego, el Lobby ofrece Entrar a la partida."]},
+    {icon:"➕",visual:"invite",title:"Invitar a la mesa",body:"Invitar concentra todas las formas de compartir la mesa.",points:["Muestre el QR para quienes están cerca.","Comparta el enlace usando el menú del dispositivo cuando esté disponible.","Quien visita una sala permanente puede volver a encontrarla en Mis mesas usando esa misma identidad del navegador."]},
+    {icon:"⚙️",visual:"settings",title:"Configurar la partida",body:"Partida agrupa controles importantes antes de jugar que no necesitan ocupar espacio todo el tiempo.",points:["Use la meta estándar de 200 puntos o una meta personalizada superior a 200.","Convierta una mesa rápida en permanente.","En una mesa permanente, transfiera el Host a otro jugador conectado."]},
+    {icon:"▶️",visual:"start",title:"Iniciar cuando el lobby esté listo",body:"El Lobby resume cantidad de jugadores, meta y solicitudes pendientes.",points:["Al iniciar, los controles de la mesa desaparecen del marcador.","Volver a la mesa regresa al Lobby sin alterar la partida en vivo.","Si vuelve a entrar mientras ya hay juego, la mesa abre primero su Lobby y ofrece Entrar a la partida."]},
     {icon:"🃏",visual:"score",title:"Cada jugador envía su puntaje",body:"Cuando el Host inicia una ronda, los jugadores conectados reciben un popup de puntuación en su teléfono.",points:["Mis cartas permite seleccionar cartas numéricas y modificadores; el bono Flip 7 se calcula automáticamente.","Manual sirve si ya conoce el total de la ronda.","Bust / 0 siempre está disponible."]},
     {icon:"✅",visual:"approve",title:"El Host valida la ronda",body:"Los puntajes enviados son provisionales hasta que el Host los aprueba.",points:["Apruebe una puntuación correcta.","Rechácela para devolver al jugador al popup o edítela directamente.","El Host puede registrar manualmente el puntaje de alguien sin teléfono conectado.","La ronda solo se cierra cuando todos tienen un puntaje aprobado."]},
     {icon:"🏆",visual:"rounds",title:"Rondas, primera carta y final",body:"Al cerrar una ronda, los totales se actualizan para todos y la app prepara la siguiente.",points:["El mayor puntaje de la ronda determina quién recibe la primera carta siguiente, incluyendo empates.","Un popup de 3 segundos anuncia quién recibe la primera carta y el aviso permanece visible.","Cuando alguien alcanza la meta, se confirma el resultado final antes de mostrar el podio."]},
-    {icon:"📊",visual:"results",title:"Resultados e historial",body:"Las salas permanentes construyen un registro reutilizable en lugar de perder todo al terminar.",points:["Revise juegos, rondas, puntos totales y resultados por jugador.","Abra juegos anteriores y vea quién ganó cada ronda.","El Host puede editar rondas anteriores tanto en partidas normales como permanentes; se recalculan totales, posiciones y primera carta.","El nombre, historial y código de la sala permanecen para la siguiente partida."]}
+    {icon:"📊",visual:"results",title:"Resultados e historial",body:"Las mesas permanentes construyen un registro reutilizable en lugar de perder todo al terminar.",points:["Revise juegos, rondas, puntos totales y resultados por jugador.","Abra juegos anteriores y vea quién ganó cada ronda.","El Host puede editar rondas anteriores tanto en partidas normales como permanentes; se recalculan totales, posiciones y primera carta.","El nombre, historial y código de la mesa permanecen para la siguiente partida."]}
   ]
 }
 function tutorialVisualHtml(kind){
   const L=lang==="es";
   const visuals={
     home:`<div class="tour-mini tour-home"><span>🎴</span><b>Score Tracker</b><small>● ${L?"En vivo":"Live"}</small></div>`,
-    rooms:`<div class="tour-mini-grid"><div class="tour-mini-card green">🎴<b>${L?"Partida normal":"Normal game"}</b></div><div class="tour-mini-card orange">🏠<b>${L?"Sala permanente":"Permanent room"}</b></div></div>`,
+    rooms:`<div class="tour-mini-grid"><div class="tour-mini-card green">🎴<b>${L?"Mesa rápida":"Quick table"}</b></div><div class="tour-mini-card orange">🏠<b>${L?"Mesa permanente":"Permanent table"}</b></div></div>`,
     join:`<div class="tour-join"><div class="tour-code">AB7K2M9Q</div><div class="tour-qr">▦</div><span>${L?"Código o QR":"Code or QR"}</span></div>`,
     permanent:`<div class="tour-room-list"><div><b>${L?"Viernes de Flip 7":"Friday Flip 7"}</b><small>Mike · Ana · Carlos</small><span>📊 ✏️ 🗑️</span></div><div><b>${L?"Familia":"Family"}</b><small>Ana · Sofía</small><span>📊</span></div></div>`,
     lobby:`<div class="tour-hub"><span>👥<b>${L?"Jugadores":"Players"}</b></span><span>➕<b>${L?"Invitar":"Invite"}</b></span><span>⚙️<b>${L?"Partida":"Game"}</b></span><span>📊<b>${L?"Resultados":"Results"}</b></span></div>`,
     players:`<div class="tour-player-list"><div>1 <b>Mike</b><em>📱</em></div><div>2 <b>Ana</b><em>📱</em></div><button>+ ${L?"Agregar":"Add"}</button></div>`,
     invite:`<div class="tour-invite"><div class="tour-big-qr">▦</div><b>AB7K2M9Q</b><button>${L?"Compartir link":"Share link"}</button></div>`,
     settings:`<div class="tour-settings"><div>🎯 <b>${L?"Meta":"Target"} 200</b></div><div>🏠 <b>${L?"Permanente":"Permanent"}</b></div><div>👑 <b>Host</b></div></div>`,
-    start:`<div class="tour-start"><div><span>👥 4</span><span>🎯 200</span></div><button>▶ ${L?"Iniciar partida":"Start game"}</button><small>← ${L?"Volver a la sala":"Back to room"}</small></div>`,
+    start:`<div class="tour-start"><div><span>👥 4</span><span>🎯 200</span></div><button>▶ ${L?"Iniciar partida":"Start game"}</button><small>← ${L?"Volver a la mesa":"Back to table"}</small></div>`,
     score:`<div class="tour-score"><div class="tour-tabs"><b>🃏 ${L?"Mis cartas":"My cards"}</b><span>✏️ Manual</span></div><div class="tour-card-row"><i>4</i><i>7</i><i>11</i><i>×2</i></div><strong>44 pts</strong></div>`,
     approve:`<div class="tour-approve"><div><b>Mike</b><span class="tour-status pending">${L?"Pendiente":"Pending"}</span><strong>34</strong></div><div class="tour-approve-actions"><button>✓</button><button>✏️</button><button>×</button></div></div>`,
     rounds:`<div class="tour-round"><span>${L?"Ronda 4":"Round 4"}</span><div>🃏 <b>${L?"Primera carta: Ana":"First card: Ana"}</b></div><div class="tour-podium">🥇 Mike&nbsp;&nbsp;🥈 Ana&nbsp;&nbsp;🥉 Carlos</div></div>`,
@@ -1801,8 +1956,15 @@ async function stopPresence(){
   try{await remove(p)}catch(e){console.warn("Presence cleanup",e)}
 }
 function code(){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",b=new Uint8Array(8);crypto.getRandomValues(b);return Array.from(b,x=>a[x%a.length]).join("")}async function uniqueCode(){for(let i=0;i<8;i++){const c=code();if(!(await get(ref(db,"rooms/"+c))).exists())return c}throw Error("No room code")}
+function openNewTable(){
+  newTableOverlay.classList.add("show")
+}
+function closeNewTable(){
+  newTableOverlay.classList.remove("show")
+}
 async function createRoom(permanent=false){
   createRoomBtn.disabled=createPermanentRoomBtn.disabled=true;
+  newTableOverlay.classList.remove("show");
   try{
     const c=await uniqueCode(),now=Date.now();
     await set(ref(db,"rooms/"+c),{hostUid:uid,createdAt:now,updatedAt:now,permanent:!!permanent,permanentSince:permanent?now:null,gameNumber:1,target:null,started:false,gameOver:false,round:1,players:[],history:[]});
@@ -2568,9 +2730,9 @@ function showQr(){
   }catch(e){console.warn(e);qrCode.textContent=u.toString()}
   qrOverlay.classList.add("show")
 }
-async function shareRoom(){const u=roomUrl();try{if(navigator.share){await navigator.share({title:isPermanent()?`${roomDisplayName()} · Flip 7 Live`:"Flip 7 Live",text:t("joinShare",roomCode),url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg(t("copied"))}else prompt(t("copyLink"),u.toString())}catch(e){if(e?.name!=="AbortError")prompt(t("copyLink"),u.toString())}}async function leaveRoom(){await stopPresence();if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");playerScoreOverlay.classList.remove("show");viewerRoundOverlay.classList.remove("show");editHistoryOverlay.classList.remove("show");playersHubOverlay.classList.remove("show");gameSettingsOverlay.classList.remove("show");myRoomsOverlay.classList.remove("show");renameRoomOverlay.classList.remove("show");starterPopupOverlay.classList.remove("show");clearTimeout(starterPopupTimer);permanentStatsOverlay.classList.remove("show");transferHostOverlay.classList.remove("show");reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");qrOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
+async function shareRoom(){const u=roomUrl();try{if(navigator.share){await navigator.share({title:isPermanent()?`${roomDisplayName()} · Flip 7 Live`:"Flip 7 Live",text:t("joinShare",roomCode),url:u.toString()})}else if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(u.toString());toastMsg(t("copied"))}else prompt(t("copyLink"),u.toString())}catch(e){if(e?.name!=="AbortError")prompt(t("copyLink"),u.toString())}}async function leaveRoom(){await stopPresence();if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;roomState=previousRoomState=null;roomCode="";roomRef=null;winnerOverlay.classList.remove("show");roundOverlay.classList.remove("show");playerScoreOverlay.classList.remove("show");viewerRoundOverlay.classList.remove("show");editHistoryOverlay.classList.remove("show");playersHubOverlay.classList.remove("show");gameSettingsOverlay.classList.remove("show");myRoomsOverlay.classList.remove("show");newTableOverlay.classList.remove("show");renameRoomOverlay.classList.remove("show");starterPopupOverlay.classList.remove("show");clearTimeout(starterPopupTimer);permanentStatsOverlay.classList.remove("show");transferHostOverlay.classList.remove("show");reviewOverlay.classList.remove("show");finishConfirmOverlay.classList.remove("show");qrOverlay.classList.remove("show");roomScreen.classList.add("hidden");homeScreen.classList.remove("hidden");const u=new URL(location.href);u.searchParams.delete("room");history.replaceState({},document.title,u.pathname+u.search)}
 tutorialBtn.addEventListener("click",()=>openTutorial(0));tutorialCloseBtn.addEventListener("click",closeTutorial);tutorialPrevBtn.addEventListener("click",tutorialPrevious);tutorialNextBtn.addEventListener("click",tutorialNext);
-languageBtn.addEventListener("click",toggleLanguage);createRoomBtn.addEventListener("click",()=>createRoom(false));createPermanentRoomBtn.addEventListener("click",()=>createRoom(true));myPermanentRoomsBtn.addEventListener("click",openMyPermanentRooms);scanQrBtn.addEventListener("click",openQrScanner);qrScannerCloseBtn.addEventListener("click",()=>stopQrScanner(true));qrScannerCancelBtn.addEventListener("click",()=>stopQrScanner(true));joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});enterGameBtn.addEventListener("click",enterGameView);backToLobbyBtn.addEventListener("click",returnToLobby);playersHubBtn.addEventListener("click",openPlayersHub);playersOverlayCloseBtn.addEventListener("click",closePlayersHub);settingsHubBtn.addEventListener("click",openGameSettings);settingsOverlayCloseBtn.addEventListener("click",closeGameSettings);permanentStatsBtn.addEventListener("click",openPermanentStats);renameRoomBtn.addEventListener("click",()=>openRenameRoom());makePermanentBtn.addEventListener("click",makePermanent);transferHostBtn.addEventListener("click",openTransferHost);qrRoomBtn.addEventListener("click",showQr);leaveRoomBtn.addEventListener("click",leaveRoom);qrShareBtn.addEventListener("click",shareRoom);qrCloseBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));qrCloseTopBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
+languageBtn.addEventListener("click",toggleLanguage);newTableBtn.addEventListener("click",openNewTable);newTableCloseBtn.addEventListener("click",closeNewTable);createRoomBtn.addEventListener("click",()=>createRoom(false));createPermanentRoomBtn.addEventListener("click",()=>createRoom(true));myPermanentRoomsBtn.addEventListener("click",openMyPermanentRooms);scanQrBtn.addEventListener("click",openQrScanner);qrScannerCloseBtn.addEventListener("click",()=>stopQrScanner(true));qrScannerCancelBtn.addEventListener("click",()=>stopQrScanner(true));joinRoomBtn.addEventListener("click",()=>joinRoom(joinCode.value));joinCode.addEventListener("input",()=>joinCode.value=joinCode.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8));joinCode.addEventListener("keydown",e=>{if(e.key==="Enter")joinRoomBtn.click()});enterGameBtn.addEventListener("click",enterGameView);backToLobbyBtn.addEventListener("click",returnToLobby);playersHubBtn.addEventListener("click",openPlayersHub);playersOverlayCloseBtn.addEventListener("click",closePlayersHub);settingsHubBtn.addEventListener("click",openGameSettings);settingsOverlayCloseBtn.addEventListener("click",closeGameSettings);permanentStatsBtn.addEventListener("click",openPermanentStats);renameRoomBtn.addEventListener("click",()=>openRenameRoom());makePermanentBtn.addEventListener("click",makePermanent);transferHostBtn.addEventListener("click",openTransferHost);qrRoomBtn.addEventListener("click",showQr);leaveRoomBtn.addEventListener("click",leaveRoom);qrShareBtn.addEventListener("click",shareRoom);qrCloseBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));qrCloseTopBtn.addEventListener("click",()=>qrOverlay.classList.remove("show"));target200Btn.addEventListener("click",()=>setTargetValue(DEFAULT_TARGET));
 customTargetBtn.addEventListener("click",showCustomTarget);
 saveTargetBtn.addEventListener("click",()=>{const n=Number(customTargetInput.value);if(!Number.isInteger(n)||n<=DEFAULT_TARGET||n>9999){toastMsg(t("customRange"));customTargetInput.focus();return}setTargetValue(n)});
 customTargetInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveTargetBtn.click()});
@@ -2588,6 +2750,7 @@ editHistoryCloseBtn.addEventListener("click",closeEditHistoryOverlay);editHistor
 myRoomsCloseBtn.addEventListener("click",()=>myRoomsOverlay.classList.remove("show"));renameRoomSaveBtn.addEventListener("click",saveRoomName);renameRoomCancelBtn.addEventListener("click",closeRenameRoom);renameRoomCloseBtn.addEventListener("click",closeRenameRoom);renameRoomInput.addEventListener("keydown",e=>{if(e.key==="Enter")saveRoomName();if(e.key==="Escape")closeRenameRoom()});permanentStatsCloseBtn.addEventListener("click",()=>{permanentStatsOverlay.classList.remove("show");resultsPreviewRoom=null});transferHostCloseBtn.addEventListener("click",()=>transferHostOverlay.classList.remove("show"));winnerCloseBtn.addEventListener("click",()=>winnerOverlay.classList.remove("show"));winnerEditRoundsBtn.addEventListener("click",openEditHistory);winnerNewGameBtn.addEventListener("click",resetGame);
 
 document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&newTableOverlay.classList.contains("show")){closeNewTable();return}
   if(!tutorialOverlay.classList.contains("show"))return;
   if(e.key==="Escape"){closeTutorial();return}
   if(e.key==="ArrowRight"){e.preventDefault();tutorialNext()}
